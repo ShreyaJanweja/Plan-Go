@@ -8,6 +8,28 @@ body {
   min-height: 100vh;
   color: #333;
 }
+/* body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  color: #333; */
+
+  /* Gradient Background */
+  /* background: linear-gradient(-45deg, #a8edea, #fed6e3, #fbc2eb, #a1c4fd);
+  background-size: 400% 400%; */
+
+  /* Animation */
+  /* animation: gradientBG 15s ease infinite; */
+/* }
+
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}  */
 
 /* Navbar */
 .navbar {
