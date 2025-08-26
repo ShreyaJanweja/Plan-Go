@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plan & Go ✈</title>
+  <link rel="stylesheet" href="project.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="logo">Plan & Go ✈</div>
+    <nav>
+      <a href="login.html">Login</a>
+      <a href="signup.html">Signup</a>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Plan & Go ✈</h1>
+    <p>Your smart travel planner - simple, fast & personalized.</p>
+
+    <div class="trip-form">
+      <!-- Days -->
+      <select id="days">
+        <option value="">Travel Days</option>
+        <option value="1">Single Day</option>
+        <option value="2-3">2 - 3 Days</option>
+        <option value="4-5">4 - 5 Days</option>
+        <option value="5-7">5 - 7 Days</option>
+      </select>
+
+      <!-- Destination with search -->
+      <div class="destination-input">
+        <input type="text" id="destination" placeholder="Search Destination">
+        <span class="search-icon">🔍</span>
+      </div>
+
+      <!-- People count -->
+      <select id="people">
+        <option value="">People</option>
+        <option value="1">1 Person</option>
+        <option value="2">2 People</option>
+        <option value="3">3 People</option>
+        <option value="4">4 People</option>
+        <option value="5">5 People</option>
+        <option value="6">6 People</option>
+        <option value="7">7 People</option>
+        <option value="8">8 People</option>
+        <option value="9">9 People</option>
+        <option value="10">10 People</option>
+      </select>
+
+      <button onclick="planTrip()">Plan Trip</button>
+    </div>
+  </section>
+
+  <!-- Extra Content Section for Scroll -->
+  <section class="about">
+    <h2>Why Choose Plan & Go?</h2>
+    <p>Plan & Go helps you create personalized travel itineraries, track expenses, check weather forecasts, 
+    and share your trips with friends. Our simple design makes travel planning smooth and fun!</p>
+
+    <div class="features">
+      <div class="card">🌍 Explore Destinations</div>
+      <div class="card">💰 Track Expenses</div>
+      <div class="card">☀ Get Weather Updates</div>
+      <div class="card">🤝 Share Trips</div>
+    </div>
+  </section>
+
+  <!-- Footer (Only visible when scrolling to bottom) -->
+  <footer>
+    <p>Contact us: planandgo@gmail.com | +91 98765 43210</p>
+    <p>© 2025 Plan & Go. All rights reserved.</p>
+  </footer>
+
+  <script src="project.js"></script>
+</body>
+</html>

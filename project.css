@@ -3,9 +3,9 @@ body {
   margin: 0;
   font-family: Arial, sans-serif;
   background: linear-gradient(135deg, #a8edea, #fed6e3);
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
 }
 
 /* Navbar */
@@ -39,7 +39,6 @@ body {
 .hero {
   text-align: center;
   padding: 80px 20px;
-  flex: 1;
 }
 
 .hero h1 {
@@ -103,6 +102,48 @@ body {
   background: #055e85;
 }
 
+/* About Section */
+.about {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.about h2 {
+  font-size: 32px;
+  color: #2A7B9B;
+  margin-bottom: 20px;
+}
+
+.about p {
+  max-width: 700px;
+  margin: auto;
+  color: #333;
+  font-size: 18px;
+  margin-bottom: 40px;
+}
+
+.features {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.card {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  font-size: 18px;
+  color: #2A7B9B;
+  min-width: 200px;
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
 /* Footer */
 footer {
   background: rgba(255, 255, 255, 0.8);
@@ -110,4 +151,5 @@ footer {
   padding: 15px;
   font-size: 14px;
   color: #333;
+  margin-top: auto; /* Ensures footer sticks to bottom only after scroll */
 }

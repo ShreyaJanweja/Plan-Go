@@ -9,4 +9,4 @@ function planTrip() {
   }
 
   alert(`Trip Planned!\n\nDays: ${days}\nDestination: ${destination}\nPeople: ${people}`);
-} 
+}
