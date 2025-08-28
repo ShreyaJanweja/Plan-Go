@@ -3,35 +3,110 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Travel Planner - Login</title>
-  <link rel="stylesheet" href="login.css">
+  <title>Login</title>
+  <link rel="stylesheet" href="style.css">
 </head>
+<style>
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  background: url("https://images.pexels.com/photos/457882/pexels-photo-457882.jpeg") no-repeat center center/cover;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(15px);
+  padding: 40px;
+  border-radius: 15px;
+  text-align: center;
+  width: 350px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+h2 {
+  margin-bottom: 10px;
+  color: white;
+}
+
+p {
+  color: #f1f1f1;
+  margin-bottom: 20px;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: none;
+  outline: none;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 15px;
+  background: #00bfff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+button:hover {
+  background: #0099cc;
+}
+
+a {
+  color: yellow;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+</style>
+</style>
 <body>
-
-  <!-- Navbar -->
-  <nav class="navbar">
-    <div class="logo">Plan & Go ✈</div>
-  </nav>
-
-  <!-- Login Box -->
-  <div class="login-container">
-    <div class="login-box">
-      <h2>Welcome back! 👋</h2>
-      <p class="welcome-text">Chlo abb karte hai apna trip plan 😎✈️</p>
-
-      <form id="loginForm">
-        <input type="email" placeholder="Email" required>
-        <input type="password" placeholder="Password" required>
-        <button type="submit">Login</button>
-      </form>
-
-      <p class="redirect-text">Don't have an account? <a href="signup.html">Sign Up</a></p>
-    </div>
+  <div class="container">
+    <h2>Welcome back! 👋</h2>
+    <p>Chlo abb karte hai apna trip plan 😍✈</p>
+    <form id="loginForm">
+      <input type="email" id="email" placeholder="Email" required>
+      <input type="password" id="password" placeholder="Password" required>
+      <button type="submit">Login</button>
+    </form>
+    <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
   </div>
 
-  <!-- Airplane Animation Icon -->
-  <div class="airplane">✈️</div>
+  <script>
+    const loginForm = document.getElementById("loginForm");
 
-  <script src="login.js"></script>
+    loginForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      const savedEmail = localStorage.getItem("userEmail");
+      const savedPassword = localStorage.getItem("userPassword");
+
+      if (email === savedEmail && password === savedPassword) {
+        alert("🎉 Login Successful!");
+        window.location.href = "project.html"; // <-- ab yaha redirect hoga
+      } else {
+        alert("❌ Invalid Email or Password");
+      }
+    });
+  </script>
 </body>
 </html>
