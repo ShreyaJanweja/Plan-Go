@@ -23,7 +23,7 @@ form.addEventListener("submit", (e) => {
 
     // Redirect after animation
     setTimeout(() => {
-      window.location.href = "project.html"; // yahan apna page ka naam daalna
+      window.location.href = "project.html"; 
     }, 2000);
   } else {
     alert("Please enter both email and password.");
