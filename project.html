@@ -6,6 +6,29 @@
   <title>Plan & Go ✈</title>
   <link rel="stylesheet" href="project.css">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    /* Suggestions dropdown style */
+    .suggestions {
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background: white;
+      max-height: 200px;
+      overflow-y: auto;
+      position: absolute;
+      width: calc(100% - 40px);
+      z-index: 1000;
+    }
+    .suggestions div {
+      padding: 8px;
+      cursor: pointer;
+    }
+    .suggestions div:hover {
+      background: #f0f0f0;
+    }
+    .destination-input {
+      position: relative;
+    }
+  </style>
 </head>
 <body>
   <!-- Navbar -->
@@ -35,6 +58,7 @@
       <div class="destination-input">
         <input type="text" id="destination" placeholder="Search Destination">
         <span class="search-icon">🔍</span>
+        <div id="suggestions" class="suggestions"></div>
       </div>
 
       <!-- People count -->
@@ -127,6 +151,48 @@
       // Redirect user to trip-schedule page with query params
       window.location.href = `trip-schedule.html?start=${encodeURIComponent(startDate)}&end=${encodeURIComponent(endDate)}&days=${days}&destination=${encodeURIComponent(destination)}&people=${encodeURIComponent(people)}`;
     }
+
+    // ✅ Fetch location suggestions from OpenStreetMap Nominatim API
+    const destInput = document.getElementById("destination");
+    const suggestionsBox = document.getElementById("suggestions");
+
+    destInput.addEventListener("input", async function() {
+      const query = this.value.trim();
+      if (query.length < 2) {
+        suggestionsBox.innerHTML = "";
+        return;
+      }
+
+      const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&addressdetails=1&limit=5`;
+
+      try {
+        const response = await fetch(url, { headers: { "Accept-Language": "en" } });
+        const results = await response.json();
+
+        suggestionsBox.innerHTML = "";
+
+        results.forEach(place => {
+          let displayName = place.display_name;
+
+          // Format: city, state, country
+          let city = place.address.city || place.address.town || place.address.village || "";
+          let state = place.address.state || "";
+          let country = place.address.country || "";
+          let formatted = [city, state, country].filter(Boolean).join(", ");
+
+          let div = document.createElement("div");
+          div.textContent = formatted || displayName;
+
+          div.onclick = function() {
+            destInput.value = formatted || displayName;
+            suggestionsBox.innerHTML = "";
+          };
+          suggestionsBox.appendChild(div);
+        });
+      } catch (err) {
+        console.error("Error fetching locations:", err);
+      }
+    });
   </script>
 
   <!-- ✅ Footer -->
