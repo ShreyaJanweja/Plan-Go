@@ -33,18 +33,6 @@
       color: #444;
     }
 
-    label {
-      font-weight: 600;
-    }
-
-    input {
-      padding: 8px;
-      margin: 5px 0 15px;
-      width: 100%;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-    }
-
     button {
       padding: 10px 18px;
       background: #66a6ff;
@@ -83,11 +71,8 @@
 <body>
   <div class="planner-container">
     <h1>🗓 Trip Planner</h1>
-    <label for="days">Enter number of days:</label>
-    <input type="number" id="days" min="1" placeholder="e.g. 3">
+    <p id="tripInfo"></p>
 
-    <button onclick="generateSchedule()">Generate Suggested Plan</button>
-    
     <div id="schedule"></div>
     <div class="output" id="finalOutput"></div>
   </div>
@@ -105,17 +90,23 @@
       return arr[Math.floor(Math.random() * arr.length)];
     }
 
-    function generateSchedule() {
-      let days = document.getElementById("days").value;
+    // ✅ Read query parameters (start, end, days, destination, people)
+    function getQueryParams() {
+      const params = new URLSearchParams(window.location.search);
+      return {
+        start: params.get("start"),
+        end: params.get("end"),
+        days: parseInt(params.get("days")),
+        destination: params.get("destination"),
+        people: params.get("people")
+      };
+    }
+
+    function generateSchedule(days, tripDetails) {
       let scheduleDiv = document.getElementById("schedule");
       let outputDiv = document.getElementById("finalOutput");
       scheduleDiv.innerHTML = "";
       outputDiv.innerHTML = "";
-
-      if (!days || days < 1) {
-        alert("Please enter a valid number of days!");
-        return;
-      }
 
       let plan = [];
 
@@ -144,12 +135,13 @@
       let saveBtn = document.createElement("button");
       saveBtn.textContent = "Save Trip Plan";
       saveBtn.style.marginTop = "20px";
-      saveBtn.onclick = () => savePlan(plan);
+      saveBtn.onclick = () => savePlan(plan, tripDetails);
       scheduleDiv.appendChild(saveBtn);
     }
 
-    function savePlan(plan) {
-      localStorage.setItem("savedTrip", JSON.stringify(plan));
+    function savePlan(plan, tripDetails) {
+      const fullPlan = { tripDetails, plan };
+      localStorage.setItem("savedTrip", JSON.stringify(fullPlan));
       alert("✅ Your trip plan has been saved!");
       showSavedPlan();
     }
@@ -163,8 +155,14 @@
         return;
       }
 
-      let plan = JSON.parse(saved);
-      outputDiv.innerHTML = "<h2>📌 Saved Trip Itinerary</h2>";
+      let { tripDetails, plan } = JSON.parse(saved);
+      outputDiv.innerHTML = `
+        <h2>📌 Saved Trip Itinerary</h2>
+        <p><b>Destination:</b> ${tripDetails.destination}</p>
+        <p><b>Travelers:</b> ${tripDetails.people}</p>
+        <p><b>From:</b> ${tripDetails.start} ➝ <b>To:</b> ${tripDetails.end} (${tripDetails.days} days)</p>
+        <hr>
+      `;
 
       plan.forEach((day, i) => {
         outputDiv.innerHTML += `
@@ -178,8 +176,23 @@
       });
     }
 
-    // Show saved trip automatically on page load
-    window.onload = showSavedPlan;
+    // ✅ On page load
+    window.onload = function() {
+      let tripDetails = getQueryParams();
+      if (!tripDetails.start || !tripDetails.end || !tripDetails.days) {
+        document.getElementById("tripInfo").innerHTML = "⚠ No trip details found. Please go back and plan again.";
+        return;
+      }
+
+      document.getElementById("tripInfo").innerHTML = `
+        <b>Destination:</b> ${tripDetails.destination} <br>
+        <b>Travelers:</b> ${tripDetails.people} <br>
+        <b>From:</b> ${tripDetails.start} ➝ <b>To:</b> ${tripDetails.end} (${tripDetails.days} days)
+      `;
+
+      generateSchedule(tripDetails.days, tripDetails);
+      showSavedPlan();
+    };
   </script>
 </body>
 </html>

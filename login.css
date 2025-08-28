@@ -94,3 +94,12 @@ body {
   text-decoration: none;
   font-weight: bold;
 }
+
+/* Airplane */
+.airplane {
+  position: fixed;
+  bottom: 50px;
+  left: 20px;
+  font-size: 40px;
+  display: none; /* hidden until login */
+}

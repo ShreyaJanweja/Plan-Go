@@ -25,6 +25,7 @@
     <p>Your smart travel planner - simple, fast & personalized.</p>
 
     <div class="trip-form">
+<<<<<<< HEAD
       <!-- Days -->
       <select id="days">
         <option value="">Travel Days</option>
@@ -33,6 +34,15 @@
         <option value="4-5">4 - 5 Days</option>
         <option value="5-7">5 - 7 Days</option>
       </select>
+=======
+      <!-- Start Date -->
+      <label>Start Date:</label>
+      <input type="date" id="startDate">
+
+      <!-- End Date -->
+      <label>End Date:</label>
+      <input type="date" id="endDate">
+>>>>>>> c2bb361d4d11e51934839d14dc9cd818c8ec010a
 
       <!-- Destination with search -->
       <div class="destination-input">
@@ -74,17 +84,34 @@
   </section>
 
   <section class="suggested-trips">
-  <h2>🌍 Suggested Trips</h2>
-  <p>Discover some of our handpicked destinations to make your travel unforgettable.</p>
+    <h2>🌍 Suggested Trips</h2>
+    <p>Discover some of our handpicked destinations to make your travel unforgettable.</p>
   
+<<<<<<< HEAD
   <div class="trips-container">
     <div class="trip-card">
   <img src="Shimla.png" alt="Shimla Family Trip">
   <h3>Best choices for Snowy Retreat</h3> 
   <p>Perfect for families: Snowy mountains, toy train rides, and cozy stays in the hills of Himachal.</p>
 </div>
+=======
+    <div class="trips-container">
+      <!-- Shimla -->
+      <div class="trip-card">
+        <img src="Shimla.png" alt="Shimla Family Trip">
+        <h3>Family Fun in Shimla</h3> 
+        <p>Perfect for families: Snowy mountains, toy train rides, and cozy stays in the hills of Himachal.</p>
+      </div>
+>>>>>>> c2bb361d4d11e51934839d14dc9cd818c8ec010a
 
+      <!-- Friends Trip -->
+      <div class="trip-card">
+        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80" alt="Goa Adventure">
+        <h3>Goa Adventure with Friends</h3>
+        <p>Beaches, nightlife, and water sports — the ultimate getaway with friends!</p>
+      </div>
 
+<<<<<<< HEAD
     <!-- Friends Trip -->
     <div class="trip-card">
       <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80" alt="Goa Adventure">
@@ -104,6 +131,61 @@
 
 
   <!-- Footer (Only visible when scrolling to bottom) -->
+=======
+      <!-- Couple Trip -->
+      <div class="trip-card">
+        <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=800&q=80" alt="Paris Romance">
+        <h3>Romantic Paris Escape</h3>
+        <p>Romantic Eiffel Tower views, candlelight dinners, and dreamy walks along the Seine.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Script -->
+  <script>
+    // ✅ Disable past dates
+    window.onload = function () {
+      const today = new Date().toISOString().split("T")[0]; 
+      document.getElementById("startDate").setAttribute("min", today);
+      document.getElementById("endDate").setAttribute("min", today);
+
+      // ✅ Ensure End Date is not before Start Date
+      document.getElementById("startDate").addEventListener("change", function () {
+        const selectedStart = this.value;
+        document.getElementById("endDate").setAttribute("min", selectedStart);
+      });
+    };
+
+    function planTrip() {
+      const startDate = document.getElementById("startDate").value;
+      const endDate = document.getElementById("endDate").value;
+      const destination = document.getElementById("destination").value.trim();
+      const people = document.getElementById("people").value;
+
+      if (!startDate || !endDate || !destination || !people) {
+        alert("Please fill all fields before planning your trip!");
+        return;
+      }
+
+      // Calculate number of days
+      const start = new Date(startDate);
+      const end = new Date(endDate);
+      const diffTime = end - start;
+
+      if (diffTime < 0) {
+        alert("End date cannot be before start date!");
+        return;
+      }
+
+      const days = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1; // include both start & end day
+
+      // Redirect user to trip-schedule page with query params
+      window.location.href = `trip-schedule.html?start=${encodeURIComponent(startDate)}&end=${encodeURIComponent(endDate)}&days=${days}&destination=${encodeURIComponent(destination)}&people=${encodeURIComponent(people)}`;
+    }
+  </script>
+
+  <!-- ✅ Footer -->
+>>>>>>> c2bb361d4d11e51934839d14dc9cd818c8ec010a
   <footer>
     <p>Contact us: planandgo@gmail.com | +91 98765 43210</p>
     <p>© 2025 Plan & Go. All rights reserved.</p>
