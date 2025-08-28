@@ -1,4 +1,5 @@
-/* Reset + Fonts */
+
+
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
@@ -8,28 +9,6 @@ body {
   min-height: 100vh;
   color: #333;
 }
-/* body {
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  color: #333; */
-
-  /* Gradient Background */
-  /* background: linear-gradient(-45deg, #a8edea, #fed6e3, #fbc2eb, #a1c4fd);
-  background-size: 400% 400%; */
-
-  /* Animation */
-  /* animation: gradientBG 15s ease infinite; */
-/* }
-
-@keyframes gradientBG {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}  */
 
 /* Navbar */
 .navbar {
@@ -51,7 +30,7 @@ body {
 
 .navbar a {
   margin-left: 20px;
-  text-decoration: none;
+  text-decoration: none;   /* underline hata diya */
   color: #2A7B9B;
   font-weight: 600;
   font-size: 16px;
@@ -91,7 +70,7 @@ body {
   flex-wrap: wrap;
 }
 
-.trip-form select, 
+.trip-form select,
 .trip-form input {
   padding: 14px;
   border: 1px solid #ddd;
@@ -206,11 +185,10 @@ footer {
   font-family: 'Poppins', sans-serif;
 }
 
-
 .suggested-trips {
   text-align: center;
   padding: 60px 20px;
-  background: linear-gradient(135deg, #a8edea, #fed6e3); 
+  background: linear-gradient(135deg, #a8edea, #fed6e3);
 }
 
 .suggested-trips h2 {
@@ -262,4 +240,4 @@ footer {
 .trip-card:hover {
   transform: translateY(-8px);
   box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-} 
+}
