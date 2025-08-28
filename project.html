@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,8 +25,14 @@
     <p>Your smart travel planner - simple, fast & personalized.</p>
 
     <div class="trip-form">
-      <!-- Days (generalized input instead of fixed dropdown) -->
-      <input type="number" id="days" min="1" placeholder="Enter Number of Days">
+      <!-- Days -->
+      <select id="days">
+        <option value="">Travel Days</option>
+        <option value="1">Single Day</option>
+        <option value="2-3">2 - 3 Days</option>
+        <option value="4-5">4 - 5 Days</option>
+        <option value="5-7">5 - 7 Days</option>
+      </select>
 
       <!-- Destination with search -->
       <div class="destination-input">
@@ -33,26 +41,38 @@
       </div>
 
       <!-- People count -->
-      <input type="number" id="people" min="1" placeholder="Number of People">
+      <select id="people">
+        <option value="">People</option>
+        <option value="1">1 Person</option>
+        <option value="2">2 People</option>
+        <option value="3">3 People</option>
+        <option value="4">4 People</option>
+        <option value="5">5 People</option>
+        <option value="6">6 People</option>
+        <option value="7">7 People</option>
+        <option value="8">8 People</option>
+        <option value="9">9 People</option>
+        <option value="10">10 People</option>
+      </select>
 
       <button onclick="planTrip()">Plan Trip</button>
     </div>
   </section>
 
-  <!-- About Section -->
+  <!-- Extra Content Section for Scroll -->
   <section class="about">
     <h2>Why Choose Plan & Go?</h2>
     <p>Plan & Go helps you create personalized travel itineraries, track expenses, check weather forecasts, 
     and share your trips with friends. Our simple design makes travel planning smooth and fun!</p>
 
     <div class="features">
+      <!-- <div class="card">🌍 Explore Destinations</div> -->
       <div class="card">💰 Track Expenses</div>
       <div class="card">☀ Get Weather Updates</div>
       <div class="card">🤝 Share Trips</div>
     </div>
   </section>
 
-  <!-- Suggested Trips -->
   <section class="suggested-trips">
   <h2>🌍 Suggested Trips</h2>
   <p>Discover some of our handpicked destinations to make your travel unforgettable.</p>
@@ -60,49 +80,35 @@
   <div class="trips-container">
     <div class="trip-card">
   <img src="Shimla.png" alt="Shimla Family Trip">
-  <h3>Family Fun in Shimla</h3> 
+  <h3>Best choices for Snowy Retreat</h3> 
   <p>Perfect for families: Snowy mountains, toy train rides, and cozy stays in the hills of Himachal.</p>
 </div>
-
 
 
     <!-- Friends Trip -->
     <div class="trip-card">
       <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80" alt="Goa Adventure">
-      <h3>Goa Adventure with Friends</h3>
+      <h3>Best choices for Sunnny Shores Retreat</h3>
       <p>Beaches, nightlife, and water sports — the ultimate getaway with friends!</p>
     </div>
-
+ 
     <!-- Couple Trip -->
     <div class="trip-card">
       <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=800&q=80" alt="Paris Romance">
-      <h3>Romantic Paris Escape</h3>
+      <h3>Best choices for Rain Retreat</h3>
       <p>Romantic Eiffel Tower views, candlelight dinners, and dreamy walks along the Seine.</p>
     </div>
   </div>
 </section>
 
-  <!-- Script -->
-  <script>
-    function planTrip() {
-      const days = document.getElementById("days").value;
-      const destination = document.getElementById("destination").value.trim();
-      const people = document.getElementById("people").value;
 
-      if (!days || !destination || !people) {
-        alert("Please fill all fields before planning your trip!");
-        return;
-      }
 
-      // Redirect user to trip-schedule page with query params
-      window.location.href = `trip-schedule.html?days=${encodeURIComponent(days)}&destination=${encodeURIComponent(destination)}&people=${encodeURIComponent(people)}`;
-    }
-  </script>
-
-  <!-- ✅ Footer should be outside script -->
+  <!-- Footer (Only visible when scrolling to bottom) -->
   <footer>
     <p>Contact us: planandgo@gmail.com | +91 98765 43210</p>
     <p>© 2025 Plan & Go. All rights reserved.</p>
   </footer>
+
+  <script src="project.js"></script>
 </body>
 </html>
