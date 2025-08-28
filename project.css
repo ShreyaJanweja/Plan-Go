@@ -10,16 +10,18 @@ body {
   color: #333;
 }
 
-/* Navbar */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 15px 50px;
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(12px);
   font-family: 'Montserrat', sans-serif;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
+
+
 
 .logo {
   font-size: 26px;
