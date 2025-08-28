@@ -1,105 +1,80 @@
-/* General Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, sans-serif;
-}
 
-/* Background Sky */
+/* Background with sky + mountains */
 body {
+  margin: 0;
   height: 100vh;
-  background: linear-gradient(135deg, #a8edea, #fed6e3);
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  font-family: Arial, sans-serif;
+  background: url('https://www.google.com/imgres?q=images%20of%20mountains%20%2B%20sky&imgurl=https%3A%2F%2Fstatic.vecteezy.com%2Fsystem%2Fresources%2Fpreviews%2F035%2F772%2F165%2Fnon_2x%2Fai-generated-morning-serenity-mountains-stand-against-a-clear-blue-sky-backdrop-photo.jpg&imgrefurl=https%3A%2F%2Fwww.vecteezy.com%2Ffree-photos%2Fblue-sky-mountain&docid=Kvria2Rz3KZxRM&tbnid=fLr6qOtn7UCBNM&vet=12ahUKEwjGsffz7q2PAxVWyDgGHd_bNTEQM3oECBEQAA..i&w=1470&h=980&hcb=2&ved=2ahUKEwjGsffz7q2PAxVWyDgGHd_bNTEQM3oECBEQAA') no-repeat center center/cover; /* <-- Apna background image yahan daalo */
 }
 
-/* Navbar */
-.navbar {
-  background: rgba(255, 255, 255, 0.7);
-  padding: 15px 40px;
-  backdrop-filter: blur(8px);
-  font-size: 22px;
-  font-weight: bold;
-  color: #2A7B9B;
-  position: fixed;
-  width: 100%;
-  top: 0;
-}
-
-/* Login Container */
+/* Glassmorphism Login Box */
 .login-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
-/* Login Box */
-.login-box {
-  background: #ffffffd9;
-  padding: 40px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
   border-radius: 15px;
-  box-shadow: 0px 4px 12px rgba(0,0,0,0.2);
-  text-align: center;
+  padding: 40px;
   width: 350px;
-}
-
-.login-box h2 {
-  margin-bottom: 10px;
-  color: #004d80;
-}
-
-.welcome-text {
-  margin-bottom: 20px;
-  font-size: 15px;
-  color: #333;
-}
-
-.login-box input {
-  width: 100%;
-  padding: 12px;
-  margin: 10px 0;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  outline: none;
-}
-
-.login-box button {
-  width: 100%;
-  padding: 12px;
-  background-color: #0077a6;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
   color: white;
+  text-align: center;
+}
+
+h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.input-group {
+  margin: 15px 0;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px;
   border: none;
   border-radius: 8px;
-  cursor: pointer;
-  font-size: 16px;
-  margin-top: 10px;
-  transition: 0.3s;
-}
-
-.login-box button:hover {
-  background-color: #005f80;
-}
-
-.redirect-text {
-  margin-top: 15px;
+  outline: none;
   font-size: 14px;
 }
 
-.redirect-text a {
-  color: #0077a6;
-  text-decoration: none;
-  font-weight: bold;
+.options {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  margin-bottom: 20px;
 }
 
-/* Airplane */
-.airplane {
-  position: fixed;
-  bottom: 50px;
-  left: 20px;
-  font-size: 40px;
-  display: none; /* hidden until login */
+.options a {
+  color: #00c6ff;
+  text-decoration: none;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 25px;
+  background: linear-gradient(135deg, #00c6ff, #0072ff);
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: linear-gradient(135deg, #0072ff, #00c6ff);
+}
+
+.register {
+  margin-top: 15px;
+  font-size: 13px;
+}
+
+.register a {
+  color: #00c6ff;
+  font-weight: bold;
+  text-decoration: none;
 }
