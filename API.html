@@ -1,6 +1,5 @@
 
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -59,12 +58,10 @@
       background: #e9ecef;
     }
 
-    iframe {
+    .details {
       margin-top: 20px;
-      width: 90%;
-      height: 400px;
-      border: none;
-      border-radius: 10px;
+      font-size: 16px;
+      color: #444;
     }
   </style>
 </head>
@@ -76,18 +73,19 @@
     <div class="suggestions" id="suggestions"></div>
   </div>
 
-  <!-- Map -->
-  <iframe id="map" src=""></iframe>
+  <!-- Selected Place Details -->
+  <div class="details" id="details"></div>
 
   <script>
     const input = document.getElementById("destination");
     const suggestionsBox = document.getElementById("suggestions");
-    const map = document.getElementById("map");
+    const detailsBox = document.getElementById("details");
 
     input.addEventListener("input", async () => {
       let query = input.value;
       if (query.length < 3) {
         suggestionsBox.innerHTML = "";
+        detailsBox.innerHTML = "";
         return;
       }
 
@@ -105,8 +103,11 @@
           input.value = place.display_name;
           suggestionsBox.innerHTML = "";
 
-          // Load map location
-          map.src = `https://www.openstreetmap.org/export/embed.html?bbox=${place.boundingbox[2]},${place.boundingbox[0]},${place.boundingbox[3]},${place.boundingbox[1]}&layer=mapnik`;
+          // Extract state + country
+          let state = place.address?.state || "Not available";
+          let country = place.address?.country || "Not available";
+
+          detailsBox.innerHTML = `<strong>State:</strong> ${state} <br> <strong>Country:</strong> ${country}`;
         });
         suggestionsBox.appendChild(div);
       });
