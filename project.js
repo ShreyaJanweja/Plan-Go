@@ -7,6 +7,5 @@ function planTrip() {
     alert("⚠ Please fill all fields!");
     return;
   }
-
   alert(`Trip Planned!\n\nDays: ${days}\nDestination: ${destination}\nPeople: ${people}`);
 }
