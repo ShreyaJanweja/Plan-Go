@@ -57,57 +57,60 @@
     </div>
   </section>
 
-  <!-- Extra Content Section for Scroll -->
+  <!-- About Section -->
   <section class="about">
     <h2>Why Choose Plan & Go?</h2>
     <p>Plan & Go helps you create personalized travel itineraries, track expenses, check weather forecasts, 
     and share your trips with friends. Our simple design makes travel planning smooth and fun!</p>
 
     <div class="features">
-      <!-- <div class="card">🌍 Explore Destinations</div> -->
       <div class="card">💰 Track Expenses</div>
       <div class="card">☀ Get Weather Updates</div>
       <div class="card">🤝 Share Trips</div>
     </div>
   </section>
 
+  <!-- Suggested Trips -->
   <section class="suggested-trips">
-  <h2>🌍 Suggested Trips</h2>
-  <p>Discover some of our handpicked destinations to make your travel unforgettable.</p>
-  
-  <div class="trips-container">
-    <div class="trip-card">
-  <img src="Shimla.png" alt="Shimla Family Trip">
-  <h3>Family Fun in Shimla</h3>
-  <p>Perfect for families: Snowy mountains, toy train rides, and cozy stays in the hills of Himachal.</p>
-</div>
+    <h2>🌍 Suggested Trips</h2>
+    <p>Discover some of our handpicked destinations to make your travel unforgettable.</p>
+    
+    <div class="trips-container">
 
+      <a href="shimla.html" class="trip-card">
+        <img src="Shimla.png" alt="Best choices for Mountains ">
+        <h3>Best choices for Snowy Retreat</h3>
+        <p>Perfect for families: Snowy mountains, toy train rides, and cozy stays in the hills of Himachal.</p>
+      </a>
 
+      <a href="goa.html" class="trip-card">
+        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80" alt="Goa Adventure">
+        <h3>Best choices for Sunny Shores Retreat</h3>
+        <p>Beaches, nightlife, and water sports — the ultimate getaway with friends!</p>
+      </a>
 
-    <!-- Friends Trip -->
-    <div class="trip-card">
-      <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80" alt="Goa Adventure">
-      <h3>Goa Adventure with Friends</h3>
-      <p>Beaches, nightlife, and water sports — the ultimate getaway with friends!</p>
+      <a href="paris.html" class="trip-card">
+        <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=800&q=80" alt="Paris Romance">
+        <h3>Best choices for Rain Retreat</h3>
+        <p>Romantic Eiffel Tower views, candlelight dinners, and dreamy walks along the Seine.</p>
+      </a>
+
     </div>
+  </section>
 
-    <!-- Couple Trip -->
-    <div class="trip-card">
-      <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=800&q=80" alt="Paris Romance">
-      <h3>Romantic Paris Escape</h3>
-      <p>Romantic Eiffel Tower views, candlelight dinners, and dreamy walks along the Seine.</p>
-    </div>
-  </div>
-</section>
+  <script>
+    function planTrip() {
+      let days = document.getElementById("days").value;
+      let destination = document.getElementById("destination").value;
+      let people = document.getElementById("people").value;
 
+      if (!days || !destination || !people) {
+        alert("Please fill all fields before planning your trip!");
+        return;
+      }
 
-
-  <!-- Footer (Only visible when scrolling to bottom) -->
-  <footer>
-    <p>Contact us: planandgo@gmail.com | +91 98765 43210</p>
-    <p>© 2025 Plan & Go. All rights reserved.</p>
-  </footer>
-
-  <script src="project.js"></script>
+      alert(`Planning trip to ${destination} for ${people} people for ${days} days!`);
+    }
+  </script>
 </body>
 </html>
