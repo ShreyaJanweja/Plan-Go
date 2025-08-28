@@ -88,6 +88,19 @@
 
   <!-- Script -->
   <script>
+    // ✅ Disable past dates
+    window.onload = function () {
+      const today = new Date().toISOString().split("T")[0]; 
+      document.getElementById("startDate").setAttribute("min", today);
+      document.getElementById("endDate").setAttribute("min", today);
+
+      // ✅ Ensure End Date is not before Start Date
+      document.getElementById("startDate").addEventListener("change", function () {
+        const selectedStart = this.value;
+        document.getElementById("endDate").setAttribute("min", selectedStart);
+      });
+    };
+
     function planTrip() {
       const startDate = document.getElementById("startDate").value;
       const endDate = document.getElementById("endDate").value;
