@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,10 +34,10 @@
         <option value="5-7">5 - 7 Days</option>
       </select>
 
-      <!-- Destination with API search -->
+      <!-- Destination with search -->
       <div class="destination-input">
         <input type="text" id="destination" placeholder="Search Destination">
-        <div class="suggestions" id="suggestions"></div>
+        <span class="search-icon">🔍</span>
       </div>
 
       <!-- People count -->
@@ -55,9 +57,6 @@
 
       <button onclick="planTrip()">Plan Trip</button>
     </div>
-
-    <!-- Map -->
-    <iframe id="map"></iframe>
   </section>
 
   <!-- Extra Content Section for Scroll -->
@@ -75,38 +74,40 @@
   </section>
 
   <section class="suggested-trips">
-    <h2>🌍 Suggested Trips</h2>
-    <p>Discover some of our handpicked destinations to make your travel unforgettable.</p>
-    
-    <div class="trips-container">
-      <div class="trip-card">
-        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e" alt="Maldives">
-        <h3>Maldives Getaway</h3>
-        <p>Relax at beautiful beaches, enjoy water sports and luxury resorts.</p>
-      </div>
-
-      <div class="trip-card">
-        <img src="https://images.unsplash.com/photo-1526772662000-3f88f10405ff" alt="Paris">
-        <h3>Romantic Paris</h3>
-        <p>Explore the Eiffel Tower, Louvre Museum, and charming streets of Paris.</p>
-      </div>
-
-      <div class="trip-card">
-        <img src="https://images.unsplash.com/photo-1549887534-3db1bd59dcca" alt="Tokyo">
-        <h3>Tokyo Adventure</h3>
-        <p>Experience modern culture, anime, and delicious Japanese cuisine.</p>
-      </div>
+  <h2>🌍 Suggested Trips</h2>
+  <p>Discover some of our handpicked destinations to make your travel unforgettable.</p>
+  
+  <div class="trips-container">
+    <div class="trip-card">
+      <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e" alt="Maldives">
+      <h3>Maldives Getaway</h3>
+      <p>Relax at beautiful beaches, enjoy water sports and luxury resorts.</p>
     </div>
-  </section>
 
-  <!-- Footer -->
+    <div class="trip-card">
+      <img src="https://images.unsplash.com/photo-1526772662000-3f88f10405ff" alt="Paris">
+      <h3>Romantic Paris</h3>
+      <p>Explore the Eiffel Tower, Louvre Museum, and charming streets of Paris.</p>
+    </div>
+
+    <div class="trip-card">
+      <img src="https://images.unsplash.com/photo-1549887534-3db1bd59dcca" alt="Tokyo">
+      <h3>Tokyo Adventure</h3>
+      <p>Experience modern culture, anime, and delicious Japanese cuisine.</p>
+    </div>
+  </div>
+</section>
+
+
+  <!-- Footer (Only visible when scrolling to bottom) -->
   <footer>
     <p>Contact us: planandgo@gmail.com | +91 98765 43210</p>
     <p>© 2025 Plan & Go. All rights reserved.</p>
   </footer>
 
-  <!-- JS -->
   <script src="project.js"></script>
 </body>
 </html>
+
+
 
