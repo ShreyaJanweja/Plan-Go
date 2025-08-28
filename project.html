@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,14 +23,8 @@
     <p>Your smart travel planner - simple, fast & personalized.</p>
 
     <div class="trip-form">
-      <!-- Days -->
-      <select id="days">
-        <option value="">Travel Days</option>
-        <option value="1">Single Day</option>
-        <option value="2-3">2 - 3 Days</option>
-        <option value="4-5">4 - 5 Days</option>
-        <option value="5-7">5 - 7 Days</option>
-      </select>
+      <!-- Days (generalized input instead of fixed dropdown) -->
+      <input type="number" id="days" min="1" placeholder="Enter Number of Days">
 
       <!-- Destination with search -->
       <div class="destination-input">
@@ -41,19 +33,7 @@
       </div>
 
       <!-- People count -->
-      <select id="people">
-        <option value="">People</option>
-        <option value="1">1 Person</option>
-        <option value="2">2 People</option>
-        <option value="3">3 People</option>
-        <option value="4">4 People</option>
-        <option value="5">5 People</option>
-        <option value="6">6 People</option>
-        <option value="7">7 People</option>
-        <option value="8">8 People</option>
-        <option value="9">9 People</option>
-        <option value="10">10 People</option>
-      </select>
+      <input type="number" id="people" min="1" placeholder="Number of People">
 
       <button onclick="planTrip()">Plan Trip</button>
     </div>
@@ -111,7 +91,8 @@
         return;
       }
 
-      alert(`Planning trip to ${destination} for ${people} people for ${days} days!`);
+      // Redirect user to trip-schedule page with data
+      window.location.href = `trip-schedule.html?days=${days}&destination=${destination}&people=${people}`;
     }
   </script>
 </body>
