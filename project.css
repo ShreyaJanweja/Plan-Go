@@ -156,6 +156,17 @@ body {
   flex-wrap: wrap;
 }
 
+/* Footer */
+footer {
+  background: rgba(255, 255, 255, 0.9);
+  text-align: center;
+  padding: 18px;
+  font-size: 14px;
+  color: #444;
+  margin-top: auto;
+  font-family: 'Poppins', sans-serif;
+}
+
 .card {
   background: white;
   padding: 30px 20px;
