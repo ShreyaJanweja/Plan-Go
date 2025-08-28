@@ -156,7 +156,7 @@
       const days = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1; // include both start & end day
 
       // Redirect user to trip-schedule page with query params
-      window.location.href = trip-schedule.html?start=${encodeURIComponent(startDate)}&end=${encodeURIComponent(endDate)}&days=${days}&destination=${encodeURIComponent(destination)}&people=${encodeURIComponent(people)};
+      window.location.href = `trip-schedule.html?start=${encodeURIComponent(startDate)}&end=${encodeURIComponent(endDate)}&days=${days}&destination=${encodeURIComponent(destination)}&people=${encodeURIComponent(people)}`;
     }
 
     // ✅ Fetch location suggestions from OpenStreetMap Nominatim API
@@ -170,7 +170,7 @@
         return;
       }
 
-      const url = https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&addressdetails=1&limit=5;
+      const url = "https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&addressdetails=1&limit=5";
 
       try {
         const response = await fetch(url, { headers: { "Accept-Language": "en" } });
