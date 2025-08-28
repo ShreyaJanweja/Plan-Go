@@ -85,13 +85,25 @@
     <label for="days">Enter number of days:</label>
     <input type="number" id="days" min="1" placeholder="e.g. 3">
 
-    <button onclick="generateSchedule()">Generate Schedule</button>
+    <button onclick="generateSchedule()">Generate Suggested Plan</button>
     
     <div id="schedule"></div>
     <div class="output" id="finalOutput"></div>
   </div>
 
   <script>
+    const suggestions = {
+      morning: ["Breakfast at hotel", "Visit a local café", "Morning temple visit"],
+      afternoon: ["City tour", "Lunch at restaurant", "Beach visit", "Museum"],
+      evening: ["Shopping at market", "Lake visit", "Cultural program"],
+      night: ["Dinner & stay", "Night walk", "Relax at hotel"]
+    };
+
+    function getRandomActivity(time) {
+      let arr = suggestions[time];
+      return arr[Math.floor(Math.random() * arr.length)];
+    }
+
     function generateSchedule() {
       let days = document.getElementById("days").value;
       let scheduleDiv = document.getElementById("schedule");
@@ -104,50 +116,69 @@
         return;
       }
 
+      let plan = [];
+
       for (let i = 1; i <= days; i++) {
+        let dayPlan = {
+          morning: getRandomActivity("morning"),
+          afternoon: getRandomActivity("afternoon"),
+          evening: getRandomActivity("evening"),
+          night: getRandomActivity("night")
+        };
+        plan.push(dayPlan);
+
         let card = document.createElement("div");
         card.className = "day-card";
         card.innerHTML = `
           <h3>Day ${i}</h3>
-          <label>Morning Activity:</label>
-          <input type="text" id="day${i}-morning" placeholder="e.g. Breakfast at hotel">
-          
-          <label>Afternoon Activity:</label>
-          <input type="text" id="day${i}-afternoon" placeholder="e.g. Beach visit">
-          
-          <label>Evening/Night Activity:</label>
-          <input type="text" id="day${i}-evening" placeholder="e.g. Dinner & stay">
+          <p><b>Morning:</b> ${dayPlan.morning}</p>
+          <p><b>Afternoon:</b> ${dayPlan.afternoon}</p>
+          <p><b>Evening:</b> ${dayPlan.evening}</p>
+          <p><b>Night:</b> ${dayPlan.night}</p>
         `;
         scheduleDiv.appendChild(card);
       }
 
-      // Add Save Button
+      // Save Button
       let saveBtn = document.createElement("button");
       saveBtn.textContent = "Save Trip Plan";
       saveBtn.style.marginTop = "20px";
-      saveBtn.onclick = savePlan;
+      saveBtn.onclick = () => savePlan(plan);
       scheduleDiv.appendChild(saveBtn);
     }
 
-    function savePlan() {
-      let days = document.getElementById("days").value;
+    function savePlan(plan) {
+      localStorage.setItem("savedTrip", JSON.stringify(plan));
+      alert("✅ Your trip plan has been saved!");
+      showSavedPlan();
+    }
+
+    function showSavedPlan() {
       let outputDiv = document.getElementById("finalOutput");
-      outputDiv.innerHTML = "<h2>Your Trip Itinerary</h2>";
+      let saved = localStorage.getItem("savedTrip");
 
-      for (let i = 1; i <= days; i++) {
-        let morning = document.getElementById(`day${i}-morning`).value || "Not planned";
-        let afternoon = document.getElementById(`day${i}-afternoon`).value || "Not planned";
-        let evening = document.getElementById(`day${i}-evening`).value || "Not planned";
+      if (!saved) {
+        outputDiv.innerHTML = "<p>No saved trip yet.</p>";
+        return;
+      }
 
+      let plan = JSON.parse(saved);
+      outputDiv.innerHTML = "<h2>📌 Saved Trip Itinerary</h2>";
+
+      plan.forEach((day, i) => {
         outputDiv.innerHTML += `
-          <h3>Day ${i}</h3>
-          <p><b>Morning:</b> ${morning}</p>
-          <p><b>Afternoon:</b> ${afternoon}</p>
-          <p><b>Evening/Night:</b> ${evening}</p>
+          <h3>Day ${i+1}</h3>
+          <p><b>Morning:</b> ${day.morning}</p>
+          <p><b>Afternoon:</b> ${day.afternoon}</p>
+          <p><b>Evening:</b> ${day.evening}</p>
+          <p><b>Night:</b> ${day.night}</p>
           <hr>
         `;
-      }
+      });
     }
+
+    // Show saved trip automatically on page load
+    window.onload = showSavedPlan;
   </script>
 </body>
 </html>
