@@ -217,7 +217,9 @@ footer {
   overflow: hidden;
   box-shadow: 0 6px 15px rgba(0,0,0,0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
+  text-decoration: none;
+  color: inherit;
+} 
 
 .trip-card img {
   width: 100%;
@@ -229,12 +231,14 @@ footer {
   font-size: 1.3rem;
   margin: 15px 0 8px;
   color: #0f172a;
+  text-decoration: none;
 }
 
 .trip-card p {
   padding: 0 15px 20px;
   color: #64748b;
   font-size: 0.95rem;
+  text-decoration: none;
 }
 
 .trip-card:hover {
