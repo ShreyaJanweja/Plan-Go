@@ -1,0 +1,134 @@
+
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to Manali</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #1f1c2c, #928DAB);
+      color: #fff;
+    }
+
+    header {
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+
+    .places {
+      display: flex;
+      flex-direction: column;
+      gap: 50px;
+      max-width: 1000px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+
+    .place {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      padding: 20px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease;
+    }
+
+    .place:hover {
+      transform: scale(1.03);
+    }
+
+    .place img {
+      width: 300px;
+      height: 200px;
+      border-radius: 15px;
+      object-fit: cover;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+      transition: transform 0.3s ease;
+    }
+
+    .place img:hover {
+      transform: scale(1.05);
+    }
+
+    .place-text {
+      flex: 1;
+    }
+
+    .place-text h2 {
+      margin: 0 0 10px;
+      font-size: 1.8rem;
+      color: #ffd369;
+    }
+
+    .place-text p {
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    /* alternate layout */
+    .place:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Welcome to Manali</h1>
+    <p>Discover the magical beauty of the Himalayas and adventure in Manali 🏔️</p>
+  </header>
+
+  <section class="places">
+    <div class="place">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/2/21/Hidimba_Temple_Manali.jpg" alt="Hidimba Devi Temple">
+      <div class="place-text">
+        <h2>Hidimba Devi Temple</h2>
+        <p>An ancient cave temple surrounded by cedar forests, dedicated to Hidimba Devi. A must-visit heritage site.</p>
+      </div>
+    </div>
+
+    <div class="place">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/d/de/Solang_Valley.jpg" alt="Solang Valley">
+      <div class="place-text">
+        <h2>Solang Valley</h2>
+        <p>Famous for adventure sports like paragliding, skiing, and zorbing, with breathtaking snow-clad mountains.</p>
+      </div>
+    </div>
+
+    <div class="place">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/7/72/Rohtang_Pass_Himachal.jpg" alt="Rohtang Pass">
+      <div class="place-text">
+        <h2>Rohtang Pass</h2>
+        <p>A high mountain pass with stunning glaciers and panoramic views, connecting Manali to Lahaul-Spiti.</p>
+      </div>
+    </div>
+
+    <div class="place">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/f/f9/Old_Manali.jpg" alt="Old Manali">
+      <div class="place-text">
+        <h2>Old Manali</h2>
+        <p>A charming village with wooden houses, cozy cafes, and vibrant culture—perfect for relaxing walks.</p>
+      </div>
+    </div>
+
+    <div class="place">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/f/f0/Vashisht_Temple_Manali.jpg" alt="Vashisht Hot Springs">
+      <div class="place-text">
+        <h2>Vashisht Hot Springs</h2>
+        <p>Natural hot water springs with healing properties, located near the Vashisht Temple in Manali.</p>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

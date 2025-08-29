@@ -1,0 +1,133 @@
+<!DOCTYPE html>  
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to Kashmir</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #1f1c2c, #928DAB);
+      color: #fff;
+    }
+
+    header {
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+
+    .places {
+      display: flex;
+      flex-direction: column;
+      gap: 50px;
+      max-width: 1000px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+
+    .place {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      padding: 20px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease;
+    }
+
+    .place:hover {
+      transform: scale(1.03);
+    }
+
+    .place img {
+      width: 300px;
+      height: 200px;
+      border-radius: 15px;
+      object-fit: cover;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+      transition: transform 0.3s ease;
+    }
+
+    .place img:hover {
+      transform: scale(1.05);
+    }
+
+    .place-text {
+      flex: 1;
+    }
+
+    .place-text h2 {
+      margin: 0 0 10px;
+      font-size: 1.8rem;
+      color: #ffd369;
+    }
+
+    .place-text p {
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    /* alternate layout */
+    .place:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Welcome to Kashmir</h1>
+    <p>Explore the beautiful valleys, lakes, and adventure spots of Kashmir 🌄</p>
+  </header>
+
+  <section class="places">
+    <div class="place">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/f/f6/Dal_Lake_in_Srinagar.jpg" alt="Dal Lake">
+      <div class="place-text">
+        <h2>Dal Lake</h2>
+        <p>Famous lake in Srinagar known for Shikara rides, floating gardens, and houseboats.</p>
+      </div>
+    </div>
+
+    <div class="place">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Gulmarg_Kashmir.jpg" alt="Gulmarg">
+      <div class="place-text">
+        <h2>Gulmarg</h2>
+        <p>Popular hill station and skiing destination, surrounded by beautiful meadows and snow-capped peaks.</p>
+      </div>
+    </div>
+
+    <div class="place">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/1/1e/Pahalgam.jpg" alt="Pahalgam">
+      <div class="place-text">
+        <h2>Pahalgam</h2>
+        <p>A serene town with lush green valleys, rivers, and trekking routes — perfect for nature lovers.</p>
+      </div>
+    </div>
+
+    <div class="place">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Betab_Valley.jpg" alt="Betaab Valley">
+      <div class="place-text">
+        <h2>Betaab Valley</h2>
+        <p>A scenic valley with rivers, mountains, and picnic spots. Ideal for photography and adventure enthusiasts.</p>
+      </div>
+    </div>
+
+    <div class="place">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/64/Chandigarh_Kashmir.jpg" alt="Shankaracharya Temple">
+      <div class="place-text">
+        <h2>Shankaracharya Temple</h2>
+        <p>An ancient temple on a hilltop with panoramic views of Srinagar and the surrounding valleys.</p>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

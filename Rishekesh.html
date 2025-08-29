@@ -1,0 +1,135 @@
+
+
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to Rishikesh</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #1f1c2c, #928DAB);
+      color: #fff;
+    }
+
+    header {
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+
+    .places {
+      display: flex;
+      flex-direction: column;
+      gap: 50px;
+      max-width: 1000px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+
+    .place {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      padding: 20px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease;
+    }
+
+    .place:hover {
+      transform: scale(1.03);
+    }
+
+    .place img {
+      width: 300px;
+      height: 200px;
+      border-radius: 15px;
+      object-fit: cover;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+      transition: transform 0.3s ease;
+    }
+
+    .place img:hover {
+      transform: scale(1.05);
+    }
+
+    .place-text {
+      flex: 1;
+    }
+
+    .place-text h2 {
+      margin: 0 0 10px;
+      font-size: 1.8rem;
+      color: #ffd369;
+    }
+
+    .place-text p {
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    /* alternate layout */
+    .place:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Welcome to Rishikesh</h1>
+    <p>Discover the Yoga Capital of the World and its famous attractions 🕉️</p>
+  </header>
+
+  <section class="places">
+    <div class="place">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/63/Lakshman_Jhula_Bridge%2C_Rishikesh.jpg" alt="Lakshman Jhula">
+      <div class="place-text">
+        <h2>Lakshman Jhula</h2>
+        <p>A famous suspension bridge over the Ganges River, offering scenic views and spiritual vibes.</p>
+      </div>
+    </div>
+
+    <div class="place">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Parmarth_Niketan_Ashram.jpg" alt="Parmarth Niketan">
+      <div class="place-text">
+        <h2>Parmarth Niketan</h2>
+        <p>One of the largest ashrams in Rishikesh, known for yoga, meditation, and evening Ganga Aarti.</p>
+      </div>
+    </div>
+
+    <div class="place">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/2/23/Triveni_Ghat%2C_Rishikesh.jpg" alt="Triveni Ghat">
+      <div class="place-text">
+        <h2>Triveni Ghat</h2>
+        <p>A sacred bathing ghat where pilgrims gather for holy dips and mesmerizing evening aarti.</p>
+      </div>
+    </div>
+
+    <div class="place">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/1/1f/Rafting_in_Rishikesh.jpg" alt="River Rafting">
+      <div class="place-text">
+        <h2>River Rafting</h2>
+        <p>Rishikesh is famous for thrilling white-water rafting adventures on the Ganges River.</p>
+      </div>
+    </div>
+
+    <div class="place">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/66/Neer_Garh_Waterfall.jpg" alt="Neer Garh Waterfall">
+      <div class="place-text">
+        <h2>Neer Garh Waterfall</h2>
+        <p>A beautiful natural waterfall surrounded by lush greenery, perfect for a refreshing trek.</p>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

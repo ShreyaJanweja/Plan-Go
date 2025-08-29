@@ -1,0 +1,135 @@
+
+
+<!DOCTYPE html>  
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to Mussoorie</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #1f1c2c, #928DAB);
+      color: #fff;
+    }
+
+    header {
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+
+    .places {
+      display: flex;
+      flex-direction: column;
+      gap: 50px;
+      max-width: 1000px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+
+    .place {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      padding: 20px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease;
+    }
+
+    .place:hover {
+      transform: scale(1.03);
+    }
+
+    .place img {
+      width: 300px;
+      height: 200px;
+      border-radius: 15px;
+      object-fit: cover;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+      transition: transform 0.3s ease;
+    }
+
+    .place img:hover {
+      transform: scale(1.05);
+    }
+
+    .place-text {
+      flex: 1;
+    }
+
+    .place-text h2 {
+      margin: 0 0 10px;
+      font-size: 1.8rem;
+      color: #ffd369;
+    }
+
+    .place-text p {
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    /* alternate layout */
+    .place:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Welcome to Mussoorie</h1>
+    <p>Explore the beautiful hill station and its famous spots 🌲</p>
+  </header>
+
+  <section class="places">
+    <div class="place">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/9/97/Church_Mussoorie.jpg" alt="Mussoorie Church">
+      <div class="place-text">
+        <h2>Mussoorie Church</h2>
+        <p>A beautiful colonial-era church, famous for its stunning architecture and peaceful surroundings.</p>
+      </div>
+    </div>
+
+    <div class="place">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/3/36/Mussoorie_Mall_Road.jpg" alt="Mall Road">
+      <div class="place-text">
+        <h2>Mall Road</h2>
+        <p>The main hub for shopping and local food in Mussoorie. Perfect for evening walks and street shopping.</p>
+      </div>
+    </div>
+
+    <div class="place">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/1/10/Lal_Tibba_Mussoorie.jpg" alt="Lal Tibba">
+      <div class="place-text">
+        <h2>Lal Tibba</h2>
+        <p>The highest point in Mussoorie, offering breathtaking views of the Himalayas and Doon Valley.</p>
+      </div>
+    </div>
+
+    <div class="place">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/7/71/Camel%27s_Back_Road_Mussoorie.jpg" alt="Camel's Back Road">
+      <div class="place-text">
+        <h2>Camel's Back Road</h2>
+        <p>A scenic walking path along the hills, ideal for trekking and photography enthusiasts.</p>
+      </div>
+    </div>
+
+    <div class="place">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Kempty_Falls.jpg" alt="Kempty Falls">
+      <div class="place-text">
+        <h2>Kempty Falls</h2>
+        <p>A popular waterfall surrounded by lush greenery, perfect for picnics and family outings.</p>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>  
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to Shimla</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #1f1c2c, #928DAB);
+      color: #fff;
+    }
+
+    header {
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+
+    .places {
+      display: flex;
+      flex-direction: column;
+      gap: 50px;
+      max-width: 1000px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+
+    .place {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      padding: 20px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease;
+    }
+
+    .place:hover {
+      transform: scale(1.03);
+    }
+
+    .place img {
+      width: 300px;
+      height: 200px;
+      border-radius: 15px;
+      object-fit: cover;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+      transition: transform 0.3s ease;
+    }
+
+    .place img:hover {
+      transform: scale(1.05);
+    }
+
+    .place-text {
+      flex: 1;
+    }
+
+    .place-text h2 {
+      margin: 0 0 10px;
+      font-size: 1.8rem;
+      color: #ffd369;
+    }
+
+    .place-text p {
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    /* alternate layout */
+    .place:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Welcome to Shimla</h1>
+    <p>Discover the colonial charm, hills, and famous landmarks of Shimla 🌄</p>
+  </header>
+
+  <section class="places">
+    <div class="place">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/7/7d/Christ_Church_Shimla.JPG" alt="Christ Church">
+      <div class="place-text">
+        <h2>Christ Church</h2>
+        <p>Iconic church located on the Ridge, famous for its neo-Gothic architecture and stained glass windows.</p>
+      </div>
+    </div>
+
+    <div class="place">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/9/92/Shimla_Mall_Road.jpg" alt="Mall Road">
+      <div class="place-text">
+        <h2>Mall Road</h2>
+        <p>The bustling center of Shimla with shops, cafes, and colonial buildings — perfect for strolling and shopping.</p>
+      </div>
+    </div>
+
+    <div class="place">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/3/3b/Jakhu_Temple_Shimla.JPG" alt="Jakhu Temple">
+      <div class="place-text">
+        <h2>Jakhu Temple</h2>
+        <p>Ancient temple dedicated to Lord Hanuman, situated on Jakhu Hill with panoramic views of Shimla.</p>
+      </div>
+    </div>
+
+    <div class="place">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/0/0a/Shimla_Victoria_Terminus.jpg" alt="Viceregal Lodge">
+      <div class="place-text">
+        <h2>Viceregal Lodge</h2>
+        <p>Historic building set amidst beautiful gardens, previously the residence of the British Viceroy of India.</p>
+      </div>
+    </div>
+
+    <div class="place">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/0/06/Scandal_Point_Shimla.jpg" alt="Scandal Point">
+      <div class="place-text">
+        <h2>Scandal Point</h2>
+        <p>Popular viewpoint in Shimla offering scenic vistas, shopping, and local food stalls.</p>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

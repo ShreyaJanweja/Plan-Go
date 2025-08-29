@@ -1,0 +1,139 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to Shimla</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #1f1c2c, #928DAB);
+      color: #fff;
+    }
+
+    header {
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+
+    .places {
+      display: flex;
+      flex-direction: column;
+      gap: 50px;
+      max-width: 1000px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+
+    .place {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      padding: 20px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease;
+    }
+
+    .place:hover {
+      transform: scale(1.03);
+    }
+
+    .place img {
+      width: 300px;
+      height: 200px;
+      border-radius: 15px;
+      object-fit: cover;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+      transition: transform 0.3s ease;
+    }
+
+    .place img:hover {
+      transform: scale(1.05);
+    }
+
+    .place-text {
+      flex: 1;
+    }
+
+    .place-text h2 {
+      margin: 0 0 10px;
+      font-size: 1.8rem;
+      color: #ffd369;
+    }
+
+    .place-text p {
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    /* alternate layout */
+    .place:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Welcome to Shimla</h1>
+    <p>Explore the Queen of Hills and its beautiful attractions 🏔️</p>
+    
+
+
+  </header>
+
+  <section class="places">
+    <div class="place">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/2/21/The_Ridge%2C_Shimla.jpg" alt="The Ridge">
+      <div class="place-text">
+        <h2>The Ridge</h2>
+        <p>The cultural hub of Shimla, offering stunning views of the mountains and colonial architecture.</p>
+      </div>
+    </div>
+
+    <div class="place">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Mall_Road_Shimla.jpg" alt="Mall Road Shimla">
+      <div class="place-text">
+        <h2>Mall Road</h2>
+        <p>The heart of Shimla, lined with shops, cafes, and restaurants. Perfect for evening strolls.</p>
+      </div>
+    </div>
+
+    <div class="place">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/2/25/Jakhoo_temple.jpg" alt="Jakhoo Temple">
+      <div class="place-text">
+        <h2>Jakhoo Temple</h2>
+        <p>Dedicated to Lord Hanuman, Jakhoo Temple is located on the highest peak of Shimla with breathtaking views.</p>
+      </div>
+    </div>
+
+    <div class="place">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/0/0c/Kufri_Snow_View.jpg" alt="Kufri">
+      <div class="place-text">
+        <h2>Kufri</h2>
+        <p>A small hill station near Shimla, famous for snow sports and panoramic views of the Himalayas.</p>
+      </div>
+    </div>
+
+    <div class="place">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Christ_Church_Shimla.jpg" alt="Christ Church">
+      <div class="place-text">
+        <h2>Christ Church</h2>
+        <p>One of the oldest churches in North India, known for its neo-Gothic architecture and peaceful ambience.</p>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
