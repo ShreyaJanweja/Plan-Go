@@ -1,0 +1,134 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to Mumbai</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #1f1c2c, #928DAB);
+      color: #fff;
+    }
+
+    header {
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+
+    .places {
+      display: flex;
+      flex-direction: column;
+      gap: 50px;
+      max-width: 1000px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+
+    .place {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      padding: 20px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease;
+    }
+
+    .place:hover {
+      transform: scale(1.03);
+    }
+
+    .place img {
+      width: 300px;
+      height: 200px;
+      border-radius: 15px;
+      object-fit: cover;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+      transition: transform 0.3s ease;
+    }
+
+    .place img:hover {
+      transform: scale(1.05);
+    }
+
+    .place-text {
+      flex: 1;
+    }
+
+    .place-text h2 {
+      margin: 0 0 10px;
+      font-size: 1.8rem;
+      color: #ffd369;
+    }
+
+    .place-text p {
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    /* alternate layout */
+    .place:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Welcome to Mumbai</h1>
+    <p>Discover the vibrant city of Mumbai and its iconic attractions 🌆</p>
+  </header>
+
+  <section class="places">
+    <div class="place">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/4/4d/Gateway_of_India_Mumbai_03-2016_img3.jpg" alt="Gateway of India">
+      <div class="place-text">
+        <h2>Gateway of India</h2>
+        <p>The iconic monument overlooking the Arabian Sea, symbolizing Mumbai's colonial heritage.</p>
+      </div>
+    </div>
+
+    <div class="place">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/68/Marine_Drive_Night_View.jpg" alt="Marine Drive">
+      <div class="place-text">
+        <h2>Marine Drive</h2>
+        <p>A scenic promenade along the coast, famous for sunset views and the Queen’s Necklace at night.</p>
+      </div>
+    </div>
+
+    <div class="place">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Chhatrapati_Shivaji_Terminus.jpg" alt="Chhatrapati Shivaji Terminus">
+      <div class="place-text">
+        <h2>Chhatrapati Shivaji Terminus</h2>
+        <p>A UNESCO World Heritage Site and a stunning example of Victorian Gothic architecture in India.</p>
+      </div>
+    </div>
+
+    <div class="place">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/3/37/Juhu_Beach_Mumbai.jpg" alt="Juhu Beach">
+      <div class="place-text">
+        <h2>Juhu Beach</h2>
+        <p>The bustling beach spot for locals and tourists, known for street food and sunset views.</p>
+      </div>
+    </div>
+
+    <div class="place">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/e/e8/Sanjay_Gandhi_National_Park.jpg" alt="Sanjay Gandhi National Park">
+      <div class="place-text">
+        <h2>Sanjay Gandhi National Park</h2>
+        <p>A vast green oasis within the city, featuring hiking trails, wildlife, and the ancient Kanheri Caves.</p>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
