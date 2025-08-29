@@ -41,10 +41,12 @@
       border-radius: 10px;
       cursor: pointer;
       font-weight: 600;
+      transition: 0.3s;
     }
 
     button:hover {
       background: #4d8de0;
+      transform: scale(1.05);
     }
 
     .day-card {
@@ -66,6 +68,16 @@
       background: #eef5ff;
       border-radius: 10px;
     }
+
+    .back-btn {
+      display: block;
+      margin: 20px auto;
+      text-align: center;
+      background: #ff6b6b;
+    }
+    .back-btn:hover {
+      background: #e05252;
+    }
   </style>
 </head>
 <body>
@@ -75,6 +87,9 @@
 
     <div id="schedule"></div>
     <div class="output" id="finalOutput"></div>
+
+    <!-- 🔙 Go Back Button -->
+    <button class="back-btn" onclick="window.location.href='index.html'">⬅ Plan Again</button>
   </div>
 
   <script>
@@ -133,7 +148,7 @@
 
       // Save Button
       let saveBtn = document.createElement("button");
-      saveBtn.textContent = "Save Trip Plan";
+      saveBtn.textContent = "💾 Save Trip Plan";
       saveBtn.style.marginTop = "20px";
       saveBtn.onclick = () => savePlan(plan, tripDetails);
       scheduleDiv.appendChild(saveBtn);

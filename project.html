@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,13 +8,6 @@
   <link rel="stylesheet" href="project.css">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
-
-  a {
-    text-decoration: none; /* Remove underline from links */
-    color: inherit;        /* Keep text color same as original */
-  }
-
-
     /* Suggestions dropdown style */
     .suggestions {
       border: 1px solid #ccc;
@@ -43,7 +35,7 @@
   <!-- Navbar -->
   <header class="navbar">
     <div class="logo">Plan & Go ✈</div>
-    <nav>
+    <nav id="navbar-links">
       <a href="login.html">Login</a>
       <a href="signup.html">Signup</a>
     </nav>
@@ -51,8 +43,6 @@
 
   <!-- Hero Section -->
   <section class="hero">
-
-
     <h1>Plan & Go ✈</h1>
     <p>Your smart travel planner - simple, fast & personalized.</p>
 
@@ -75,7 +65,7 @@
       <!-- People count -->
       <input type="number" id="people" min="1" placeholder="Number of People">
 
-      <button id="planTripBtn"  onclick="planTrip()">Plan Trip</button>
+      <button onclick="planTrip()">Plan Trip</button>
     </div>
   </section>
 
@@ -100,12 +90,12 @@
     <div class="trips-container">
       <!-- Shimla -->
        <a href="snowy.html">
-  <div class="trip-card">
-    <img src="Shimla.png" alt="Shimla Family Trip">
-    <h3>Best Choices for Snowy Retreat</h3>
-    <p>Perfect for families: Snowy mountains, toy train rides, and cozy stays in the hills of Himachal.</p>
-  </div>
-</a>
+        <div class="trip-card">
+          <img src="Shimla.png" alt="Shimla Family Trip">
+          <h3>Best Choices for Snowy Retreat</h3>
+          <p>Perfect for families: Snowy mountains, toy train rides, and cozy stays in the hills of Himachal.</p>
+        </div>
+      </a>
 
       <!-- Goa -->
        <a href="sunny.html">
@@ -116,50 +106,65 @@
         </div>
        </a>
 
-      
-     <!-- Paris -->
-      <a href="pilgrimage.html">
+      <!-- Paris -->
+      <a href="rain.html">
         <div class="trip-card">
           <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=800&q=80" alt="Paris Romance">
-          <h3>Best Choices for Historical Paris</h3>
+          <h3>Best Choices for Rain Retreat</h3>
           <p>Romantic Eiffel Tower views, candlelight dinners, and dreamy walks along the Seine.</p>
         </div>
       </a>
     </div>
   </section>
+
   <!-- Script -->
   <script>
-  // Snowy Retreat card click redirect
-  document.addEventListener("DOMContentLoaded", function() {
-    const tripCards = document.querySelectorAll('.trip-card');
-    tripCards.forEach(card => {
-      const title = card.querySelector('h3').innerText;
-      if(title.includes("Snowy Retreat")){
-        card.style.cursor = "pointer"; // cursor pointer
-        card.addEventListener('click', ()=>{
-          window.location.href = 'snowy-retreat.html';
-        });
-      }
+  
+// Navbar update if logged in
+document.addEventListener("DOMContentLoaded", () => {
+  const user = JSON.parse(localStorage.getItem("loggedInUser"));
+  const nav = document.getElementById("navbar-links");
+
+  if (user) {
+    nav.innerHTML = `
+      <span style="margin-right:10px;">👋 Hi, ${user.username}</span>
+      <a href="#" id="logoutBtn">Logout</a>
+    `;
+    document.getElementById("logoutBtn").addEventListener("click", () => {
+      localStorage.removeItem("loggedInUser");
+      window.location.reload();
     });
-  });
+  }
+});
+
+// Trip planner
+function planTrip() {
+  const user = JSON.parse(localStorage.getItem("loggedInUser"));
+  if (!user) {
+    alert("Please login first!");
+    return;
+  }
+
+  const startDate = document.getElementById("startDate").value;
+  const endDate = document.getElementById("endDate").value;
+  const destination = document.getElementById("destination").value;
+  const people = document.getElementById("people").value;
+
+  if (!startDate || !endDate || !destination || !people) {
+    alert("Please fill all fields!");
+    return;
+  }
+
+  // Save trip in localStorage
+  const tripData = { startDate, endDate, destination, people };
+  localStorage.setItem("currentTrip", JSON.stringify(tripData));
+
+  // Redirect to trip schedule page
+  window.location.href = "trip-schedule.html";
+}
 
 
-  document.getElementById("planTripBtn").addEventListener("click", function(e) {
-    e.preventDefault();
-
-    const isLoggedIn = localStorage.getItem("isLoggedIn");
-
-    if (!isLoggedIn) {
-      alert("⚠️ Please login first to plan your trip!");
-      window.location.href = "login.html"; // login pe bhej dega
-    } else {
-      alert("🎉 Trip Planned Successfully!");
-      // yaha tum apna trip planning ka logic likh sakti ho
-    }
-  });
-
-</script>
-
+  </script>
 
   <footer>
     <p>Contact us: planandgo@gmail.com | +91 98765 43210</p>

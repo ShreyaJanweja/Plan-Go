@@ -88,25 +88,31 @@ a:hover {
   </div>
 
   <script>
-    const loginForm = document.getElementById("loginForm");
 
-    loginForm.addEventListener("submit", (e) => {
-      e.preventDefault();
+  const loginForm = document.getElementById("loginForm");
 
-      const email = document.getElementById("email").value;
-      const password = document.getElementById("password").value;
+  loginForm.addEventListener("submit", (e) => {
+    e.preventDefault();
 
-      const savedEmail = localStorage.getItem("userEmail");
-      const savedPassword = localStorage.getItem("userPassword");
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
 
-      if (email === savedEmail && password === savedPassword) {
-        alert("🎉 Login Successful!");
-        window.location.href = "project.html"; // <-- ab yaha redirect hoga
-      } else {
-        alert("❌ Invalid Email or Password");
-      }
-    });
-    
+    const savedEmail = localStorage.getItem("userEmail");
+    const savedPassword = localStorage.getItem("userPassword");
+
+    if (email === savedEmail && password === savedPassword) {
+      // 👇 Yeh add karo
+      const user = { username: email.split("@")[0], email: email };
+      localStorage.setItem("loggedInUser", JSON.stringify(user));
+
+      alert("🎉 Login Successful!");
+      window.location.href = "project.html"; 
+    } else {
+      alert("❌ Invalid Email or Password");
+    }
+  });
+
+
   </script>
 </body>
 </html>
