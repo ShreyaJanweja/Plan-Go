@@ -1,1 +1,134 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to Amritsar</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #1f1c2c, #928DAB);
+      color: #fff;
+    }
+
+    header {
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+
+    .places {
+      display: flex;
+      flex-direction: column;
+      gap: 50px;
+      max-width: 1000px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+
+    .place {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      padding: 20px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease;
+    }
+
+    .place:hover {
+      transform: scale(1.03);
+    }
+
+    .place img {
+      width: 300px;
+      height: 200px;
+      border-radius: 15px;
+      object-fit: cover;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+      transition: transform 0.3s ease;
+    }
+
+    .place img:hover {
+      transform: scale(1.05);
+    }
+
+    .place-text {
+      flex: 1;
+    }
+
+    .place-text h2 {
+      margin: 0 0 10px;
+      font-size: 1.8rem;
+      color: #ffd369;
+    }
+
+    .place-text p {
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    /* alternate layout */
+    .place:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Welcome to Amritsar</h1>
+    <p>Explore Amritsar’s iconic landmarks and historical sites 🕌🇮🇳</p>
+  </header>
+
+  <section class="places">
+    <div class="place">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/d/d4/Golden_Temple_in_Amritsar_03-2016_img3.jpg" alt="Golden Temple">
+      <div class="place-text">
+        <h2>Golden Temple</h2>
+        <p>The holiest Gurdwara of Sikhism, famous for its stunning architecture, sacred pool, and peaceful ambiance.</p>
+      </div>
+    </div>
+
+    <div class="place">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/7/7f/Jallianwala_Bagh_Amritsar.jpg" alt="Jallianwala Bagh">
+      <div class="place-text">
+        <h2>Jallianwala Bagh</h2>
+        <p>A historical site commemorating the tragic massacre of 1919, with memorials and gardens for reflection.</p>
+      </div>
+    </div>
+
+    <div class="place">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/Wagah_Border.jpg" alt="Wagah Border">
+      <div class="place-text">
+        <h2>Wagah Border</h2>
+        <p>Famous for the daily flag-lowering ceremony between India and Pakistan, a patriotic and energetic spectacle.</p>
+      </div>
+    </div>
+
+    <div class="place">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Durgiana_Temple.jpg" alt="Durgiana Temple">
+      <div class="place-text">
+        <h2>Durgiana Temple</h2>
+        <p>A beautiful Hindu temple dedicated to Goddess Durga, often compared to the Golden Temple in architecture.</p>
+      </div>
+    </div>
+
+    <div class="place">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Partition_Museum_Amritsar.jpg" alt="Partition Museum">
+      <div class="place-text">
+        <h2>Partition Museum</h2>
+        <p>A museum dedicated to the memory of the Partition of India in 1947, showcasing stories, artifacts, and history.</p>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
