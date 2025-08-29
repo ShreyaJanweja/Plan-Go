@@ -1,1 +1,313 @@
 
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Best choices for Sunny Shores Retreat</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: linear-gradient(135deg, #e0f7fa, #e1bee7);
+      --glass: rgba(255,255,255,0.55);
+      --glass-2: rgba(255,255,255,0.25);
+      --accent: #5aa4ff;
+      --muted: #6b7280;
+      --card-shadow: 0 10px 30px rgba(18,24,38,0.08);
+      --glass-border: rgba(255,255,255,0.6);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: 'Montserrat', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      background: var(--bg);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      color:#0f172a;
+      padding:48px 20px;
+      min-height:100vh;
+      display:flex;
+      align-items:flex-start;
+      justify-content:center;
+    }
+
+    .wrap{
+      width:100%;
+      max-width:800px;
+    }
+
+    h1{
+      font-size:32px;
+      margin:0 0 24px 0;
+      font-weight:700;
+      letter-spacing:0.2px;
+      color:#07203a;
+      text-align:center;
+    }
+
+    .subtitle{
+      text-align:center;
+      color:var(--muted);
+      margin-bottom:32px;
+      font-size:16px;
+    }
+
+    .grid{
+      display:flex;
+      flex-direction:column;
+      gap:32px;
+    }
+
+    .card{
+      position:relative;
+      padding:32px;
+      border-radius:18px;
+      backdrop-filter: blur(10px) saturate(120%);
+      -webkit-backdrop-filter: blur(10px) saturate(120%);
+      background: linear-gradient(135deg, var(--glass), var(--glass-2));
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--card-shadow);
+      cursor:pointer;
+      transition:transform .28s cubic-bezier(.2,.9,.3,1), box-shadow .28s, background .28s;
+      overflow:hidden;
+      min-height:180px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      opacity:0;
+      transform: translateY(50px);
+    }
+
+    .card.show{
+      opacity:1;
+      transform: translateY(0);
+      transition: all 0.6s ease;
+    }
+
+    .card:hover{
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 18px 40px rgba(18,24,38,0.15);
+    }
+
+    .place-index{
+      display:inline-block;
+      font-weight:700;
+      font-size:15px;
+      padding:6px 12px;
+      border-radius:999px;
+      background:rgba(255,255,255,0.85);
+      border:1px solid rgba(0,0,0,0.04);
+      box-shadow: 0 4px 10px rgba(2,6,23,0.04) inset;
+      margin-bottom:14px;
+      width:max-content;
+    }
+
+    .place-title{
+      font-size:22px;
+      margin:0 0 10px 0;
+      color:#02263a;
+      letter-spacing:0.2px;
+    }
+
+    .place-desc{
+      font-size:15px;
+      color:var(--muted);
+      margin:0 0 14px 0;
+      line-height:1.45;
+    }
+
+    .more{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+    }
+
+    .more .hint{
+      font-size:14px;
+      color:#0b69d6;
+      font-weight:600;
+    }
+
+    .more .arrow{
+      font-size:20px;
+      opacity:0.9;
+      transform:translateX(0);
+      transition:transform .22s;
+    }
+    .card:hover .arrow{ transform: translateX(6px); }
+
+    .card::after{
+      content:"";
+      position:absolute;
+      inset: -40% -30%;
+      background: linear-gradient(120deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 50%, rgba(255,255,255,0.06) 100%);
+      transform: rotate(-18deg);
+      pointer-events:none;
+      mix-blend-mode: overlay;
+    }
+
+    .card .bg{
+      position:absolute;
+      inset:0;
+      border-radius:18px;
+      background: radial-gradient(600px 200px at 10% 10%, rgba(90,164,255,0.08), transparent 20%),
+                  radial-gradient(400px 140px at 90% 80%, rgba(96,255,210,0.06), transparent 25%);
+      pointer-events:none;
+      z-index:0;
+    }
+    .card .blob{
+      position:absolute;
+      width:200px;
+      height:200px;
+      right:-36px;
+      top:-30px;
+      border-radius:50%;
+      background: radial-gradient(circle at 30% 30%, rgba(90,164,255,0.88), rgba(11,105,214,0.6));
+      filter: blur(40px);
+      mix-blend-mode: screen;
+      opacity:0.9;
+      pointer-events:none;
+      z-index:0;
+    }
+    .card > div{ position:relative; z-index:2 }
+
+    /* modal */
+    .modal-backdrop{
+      position:fixed;
+      inset:0;
+      background: rgba(3,6,23,0.45);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+      z-index:60;
+    }
+    .modal{
+      width:100%;
+      max-width:720px;
+      border-radius:12px;
+      padding:22px 20px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(250,250,250,0.9));
+      box-shadow: 0 20px 50px rgba(2,6,23,0.35);
+      border:1px solid rgba(0,0,0,0.06);
+    }
+    .modal h3{margin:0 0 8px 0}
+    .modal p{color:var(--muted);line-height:1.5}
+    .close-btn{
+      display:inline-block;
+      margin-top:12px;
+      padding:8px 12px;
+      border-radius:8px;
+      background:transparent;
+      border:1px solid rgba(3,6,23,0.06);
+      cursor:pointer;
+      font-weight:700;
+    }
+
+    @media (max-width:480px){
+      h1{font-size:22px}
+      .card{min-height:150px;padding:20px}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Best choices for Sunny Shores Retreat</h1>
+    <div class="subtitle">Click any destination for more info — perfect picks for a refreshing getaway.</div>
+
+    <div class="grid" id="grid">
+      <!-- Cards inserted by JS -->
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal-backdrop" id="backdrop" role="dialog" aria-hidden="true">
+    <div class="modal" role="document" aria-labelledby="modal-title">
+      <h3 id="modal-title">Title</h3>
+      <p id="modal-body">Content</p>
+      <button class="close-btn" id="closeBtn">Close</button>
+    </div>
+  </div>
+
+  <script>
+  const places = [
+    {
+      name: 'Mumbai',
+      short: 'Sandy beaches and vibrant nightlife in India\'s city by the sea.',
+      more: 'Mumbai offers iconic beaches like Juhu and Chowpatty, Bollywood vibes, and a bustling urban culture combined with seaside relaxation.'
+    },
+    {
+      name: 'Goa',
+      short: 'Sun, sand, parties, and water sports on the western coast.',
+      more: 'Goa is famous for its pristine beaches, vibrant nightlife, Portuguese heritage, and adventure activities like parasailing and jet skiing.'
+    },
+    {
+      name: 'Chennai',
+      short: 'Cultural city beaches with long promenades and temples nearby.',
+      more: 'Chennai’s Marina Beach and Elliot’s Beach are perfect for early morning walks, seaside food, and exploring local traditions along the coast.'
+    },
+    {
+      name: 'Kerala',
+      short: 'Backwaters, serene beaches, and lush tropical surroundings.',
+      more: 'Kerala’s Kovalam and Varkala beaches offer calm waters, Ayurvedic resorts, and beautiful sunset views, perfect for relaxation and wellness.'
+    },
+    {
+      name: 'Puri',
+      short: 'Historical and spiritual beaches with cultural richness.',
+      more: 'Puri Beach in Odisha is famous for its golden sands, Jagannath Temple nearby, and traditional cultural festivals, making it ideal for spiritual and leisure visits.'
+    }
+  ];
+
+  const pages = [
+    'mumbai.html',  // Mumbai
+    'goa.html',     // Goa
+    'chennai.html', // Chennai
+    'kerala.html',  // Kerala
+    'puri.html'     // Puri
+  ];
+
+  const grid = document.getElementById('grid');
+  
+  places.forEach((p, i)=>{
+    const card = document.createElement('button');
+    card.className = 'card';
+    card.setAttribute('aria-label', p.name + ' — click for more info');
+    card.innerHTML = `
+      <div class="bg"></div>
+      <div class="blob"></div>
+      <div>
+        <span class="place-index">${i+1}</span>
+        <h4 class="place-title">${p.name}</h4>
+        <p class="place-desc">${p.short}</p>
+      </div>
+      <div class="more">
+        <div class="hint">Click for more info</div>
+        <div class="arrow">➜</div>
+      </div>
+    `;
+    grid.appendChild(card);
+
+    // Click to redirect to corresponding page
+    card.addEventListener('click', ()=>{
+      window.location.href = pages[i];
+    });
+  });
+
+  // Show on scroll effect
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('show');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+
+  document.querySelectorAll('.card').forEach(card => {
+    observer.observe(card);
+  });
+</script>
+
+</body>
+</html>
