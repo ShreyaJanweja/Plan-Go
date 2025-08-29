@@ -1,0 +1,134 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to Chennai</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #1f1c2c, #928DAB);
+      color: #fff;
+    }
+
+    header {
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+
+    .places {
+      display: flex;
+      flex-direction: column;
+      gap: 50px;
+      max-width: 1000px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+
+    .place {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      padding: 20px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease;
+    }
+
+    .place:hover {
+      transform: scale(1.03);
+    }
+
+    .place img {
+      width: 300px;
+      height: 200px;
+      border-radius: 15px;
+      object-fit: cover;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+      transition: transform 0.3s ease;
+    }
+
+    .place img:hover {
+      transform: scale(1.05);
+    }
+
+    .place-text {
+      flex: 1;
+    }
+
+    .place-text h2 {
+      margin: 0 0 10px;
+      font-size: 1.8rem;
+      color: #ffd369;
+    }
+
+    .place-text p {
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    /* alternate layout */
+    .place:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Welcome to Chennai</h1>
+    <p>Explore Chennai’s famous beaches and iconic landmarks 🌊🏖️</p>
+  </header>
+
+  <section class="places">
+    <div class="place">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6c/Marina_Beach_Chennai_India.jpg" alt="Marina Beach">
+      <div class="place-text">
+        <h2>Marina Beach</h2>
+        <p>One of the longest urban beaches in the world, famous for sunrise views, food stalls, and evening strolls.</p>
+      </div>
+    </div>
+
+    <div class="place">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/7/7d/Elliot_Beach_Chennai.jpg" alt="Elliot Beach">
+      <div class="place-text">
+        <h2>Elliot Beach</h2>
+        <p>A quieter beach in Chennai, ideal for relaxing walks and enjoying a peaceful seaside atmosphere.</p>
+      </div>
+    </div>
+
+    <div class="place">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/2/2b/Chennai_University_Building.jpg" alt="Kapaleeshwarar Temple">
+      <div class="place-text">
+        <h2>Kapaleeshwarar Temple</h2>
+        <p>A historic Hindu temple in Mylapore, dedicated to Lord Shiva and known for its Dravidian architecture.</p>
+      </div>
+    </div>
+
+    <div class="place">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/f/f0/Arignar_Kaalaignar_Cultural_Centre_02.jpg" alt="Fort St. George">
+      <div class="place-text">
+        <h2>Fort St. George</h2>
+        <p>The first British fortress in India, now housing a museum and offices, reflecting Chennai’s colonial past.</p>
+      </div>
+    </div>
+
+    <div class="place">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/2/28/St_Thomas_Basilica.jpg" alt="St. Thomas Basilica">
+      <div class="place-text">
+        <h2>St. Thomas Basilica</h2>
+        <p>One of the oldest churches in India, built over the tomb of St. Thomas, an apostle of Jesus Christ.</p>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
