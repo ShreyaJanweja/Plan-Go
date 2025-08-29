@@ -1,11 +1,10 @@
 
-
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Best choices for Snowy Retreat</title>
+  <title>Must-Visit Pilgrimage Destinations</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
     :root{
@@ -214,8 +213,8 @@
 </head>
 <body>
   <div class="wrap">
-    <h1>Best choices for Sunny Shores Retreat</h1>
-    <div class="subtitle">Click any destination for more info — perfect picks for a refreshing getaway.</div>
+    <h1>Must-Visit Pilgrimage Destinations</h1>
+    <div class="subtitle">Click any destination for more info — perfect for temple visits and spiritual journeys.</div>
 
     <div class="grid" id="grid">
       <!-- Cards inserted by JS -->
@@ -233,48 +232,40 @@
 
   <script>
   const places = [
-  {
-    name: 'Dalhousie',
-    short: 'Peaceful hill-station with colonial charm and pine forests.',
-    more: 'Dalhousie is a calm hill station in Himachal Pradesh known for its Victorian-style architecture, walking trails, and pleasant weather. Ideal for quiet nature walks, easy treks, and tea-time views.'
-  },
-  {
-    name: 'Manali',
-    short: 'Gateway to high-altitude treks, rivers, and adventure sports.',
-    more: 'Manali offers breathtaking mountain vistas, access to Solang Valley for paragliding/zipline, and routes to Rohtang Pass. Great for couples, adventure lovers, and scenic drives.'
-  },
-  {
-    name: 'Shimla',
-    short: 'Classic colonial hill capital with malls and pine-lined avenues.',
-    more: 'Shimla is the former summer capital with bustling Mall Road, the ridge, and easy day trips to nearby viewpoints. A wonderful mix of history, cafes, and hillwalks.'
-  },
-  {
-    name: 'Mussoorie',
-    short: 'Known as the Queen of Hills — pleasant walks and viewpoints.',
-    more: 'Mussoorie (spelled Mussorie by some) gives gentle hikes, Camel\'s Back Road, Kempty Falls nearby, and panoramic views of the Doon Valley. Relaxed vibe and family-friendly.'
-  },
-  {
-    name: 'Kashmir',
-    short: 'Riverside yoga, spiritual retreats and white-water rafting.',
-    more: 'Kashmir sits among beautiful valleys and rivers, offering serene landscapes, spiritual retreats, and adventure activities like white-water rafting and trekking. Perfect for a mix of wellness, spirituality, and thrill.'
-  },
-  {
-    name: 'Rishikesh',
-    short: 'Riverside yoga, spiritual retreats, and white-water rafting.',
-    more: 'Rishikesh sits along the sacred Ganga river, offering serene landscapes, yoga and meditation retreats, and thrilling adventure activities like white-water rafting and trekking. Perfect for a mix of wellness, spirituality, and adventure.'
-  }
-];
+    {
+      name: 'Amritsar',
+      short: 'Golden Temple — spiritual heart of Sikhism.',
+      more: 'Amritsar is home to the iconic Golden Temple, attracting millions of devotees for spiritual experiences, prayer, and Langar meals.'
+    },
+    {
+      name: 'Banaras',
+      short: 'Kashi Vishwanath Temple — ancient city of Shiva.',
+      more: 'Banaras (Varanasi) is a revered pilgrimage city with sacred ghats and the famous Kashi Vishwanath Temple, offering spiritual insight and rituals along the Ganga.'
+    },
+    {
+      name: 'Kedarnath',
+      short: 'One of the twelve Jyotirlingas in the Himalayas.',
+      more: 'Kedarnath is a high-altitude temple dedicated to Lord Shiva, attracting pilgrims seeking blessings amidst stunning Himalayan landscapes.'
+    },
+    {
+      name: 'Vrindavan',
+      short: 'Sacred city of Krishna temples and devotion.',
+      more: 'Vrindavan is famous for its historic Krishna temples, devotional music, and spiritual festivals, making it a key pilgrimage site in India.'
+    },
+    {
+      name: 'Salasar',
+      short: 'Salasar Balaji Temple — popular Hanuman shrine.',
+      more: 'Salasar hosts the renowned Balaji Temple, drawing devotees from across India for prayer, blessings, and religious festivities.'
+    }
+  ];
 
-//   const pages = ['dalhousie.html', 'Manali.html', 'Shim.html', 'Mussorie.html', 'kashmir.html' , 'Rishekesh.html'];
-const pages = [
-  'dalhousie.html',  // Dalhousie
-  'Manali.html',     // Manali
-  'Shim.html',       // Shimla
-  'Muss0orie.html',  // Mussoorie
-  'kashmir.html',    // Kashmir
-  'Rishekesh.html'   // Rishikesh
-];
-
+  const pages = [
+    'Amritsar.html',
+    'Banaras.html',
+    'Kedarnath.html',
+    'Vrindavan.html',
+    'Salasar.html'
+  ];
 
   const grid = document.getElementById('grid');
   
@@ -316,7 +307,7 @@ const pages = [
   document.querySelectorAll('.card').forEach(card => {
     observer.observe(card);
   });
-</script>
+  </script>
 
 </body>
 </html>
