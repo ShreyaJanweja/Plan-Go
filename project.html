@@ -180,22 +180,19 @@
   }
 
   document.addEventListener("DOMContentLoaded", () => {
-    let today = new Date().toISOString().split("T")[0]; // yyyy-mm-dd format
-    let startInput = document.getElementById("startDate");
-    let endInput = document.getElementById("endDate");
+  let today = new Date().toISOString().split("T")[0];
+  let startInput = document.getElementById("startDate");
+  let endInput = document.getElementById("endDate");
 
-    // past dates disable kar do
-    startInput.setAttribute("min", today);
-    endInput.setAttribute("min", today);
+  startInput.setAttribute("min", today);
+  endInput.setAttribute("min", today);
 
-    // jab bhi start date change ho, end date usse chhoti na ho
-    startInput.addEventListener("change", () => {
-      endInput.setAttribute("min", startInput.value);
-      if (endInput.value < startInput.value) {
-        endInput.value = startInput.value; // auto adjust end date
-      }
-    });
+  // ✅ bas min date adjust karo, auto-fill mat karo
+  startInput.addEventListener("change", () => {
+    endInput.setAttribute("min", startInput.value);
   });
+});
+
   </script>
 
   <footer>
