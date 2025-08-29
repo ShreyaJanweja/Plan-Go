@@ -1,0 +1,135 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to Kerala</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #1f1c2c, #928DAB);
+      color: #fff;
+    }
+
+    header {
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+
+    .places {
+      display: flex;
+      flex-direction: column;
+      gap: 50px;
+      max-width: 1000px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+
+    .place {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      padding: 20px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease;
+    }
+
+    .place:hover {
+      transform: scale(1.03);
+    }
+
+    .place img {
+      width: 300px;
+      height: 200px;
+      border-radius: 15px;
+      object-fit: cover;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+      transition: transform 0.3s ease;
+    }
+
+    .place img:hover {
+      transform: scale(1.05);
+    }
+
+    .place-text {
+      flex: 1;
+    }
+
+    .place-text h2 {
+      margin: 0 0 10px;
+      font-size: 1.8rem;
+      color: #ffd369;
+    }
+
+    .place-text p {
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    /* alternate layout */
+    .place:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Welcome to Kerala</h1>
+    <p>Explore Kerala’s famous beaches and cultural landmarks 🌴🏖️</p>
+  </header>
+
+  <section class="places">
+    <div class="place">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/0/01/Kovalam_Beach_view.jpg" alt="Kovalam Beach">
+      <div class="place-text">
+        <h2>Kovalam Beach</h2>
+        <p>One of Kerala's most famous beaches, known for its crescent-shaped coastline, lighthouses, and water sports.</p>
+      </div>
+    </div>
+
+    <div class="place">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/3/33/Varkala_Beach_Cliff_View.jpg" alt="Varkala Beach">
+      <div class="place-text">
+        <h2>Varkala Beach</h2>
+        <p>Famous for its dramatic cliffs, natural springs, and the tranquil Papanasam beach.</p>
+      </div>
+    </div>
+
+    <div class="place">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/8/8d/Kochi_Chinese_Fishing_Nets.jpg" alt="Fort Kochi">
+      <div class="place-text">
+        <h2>Fort Kochi</h2>
+        <p>A historic town known for colonial architecture, Chinese fishing nets, and cultural heritage.</p>
+      </div>
+    </div>
+
+    <div class="place">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/e/e3/Alleppey_Boat.jpg" alt="Alleppey Backwaters">
+      <div class="place-text">
+        <h2>Alleppey Backwaters</h2>
+        <p>Famous for houseboat cruises through the serene backwaters, surrounded by lush greenery and coconut palms.</p>
+      </div>
+    </div>
+
+    <div class="place">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Padmanabhaswamy_Temple.jpg" alt="Padmanabhaswamy Temple">
+      <div class="place-text">
+        <h2>Padmanabhaswamy Temple</h2>
+        <p>A historic Hindu temple in Thiruvananthapuram, famous for its Dravidian architecture and rich heritage.</p>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
