@@ -68,7 +68,7 @@
       <!-- People count -->
       <input type="number" id="people" min="1" placeholder="Number of People">
 
-      <button onclick="planTrip()">Plan Trip</button>
+      <button id="planTripBtn"  onclick="planTrip()">Plan Trip</button>
     </div>
   </section>
 
@@ -135,6 +135,22 @@
       }
     });
   });
+
+
+  document.getElementById("planTripBtn").addEventListener("click", function(e) {
+    e.preventDefault();
+
+    const isLoggedIn = localStorage.getItem("isLoggedIn");
+
+    if (!isLoggedIn) {
+      alert("⚠️ Please login first to plan your trip!");
+      window.location.href = "login.html"; // login pe bhej dega
+    } else {
+      alert("🎉 Trip Planned Successfully!");
+      // yaha tum apna trip planning ka logic likh sakti ho
+    }
+  });
+
 </script>
 
 
