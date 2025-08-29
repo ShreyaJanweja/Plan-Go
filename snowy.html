@@ -232,76 +232,57 @@
   </div>
 
   <script>
-    const places = [
-      {name:'Dalhousie', short:'Peaceful hill-station with colonial charm and pine forests.', more:'Dalhousie is a calm hill station in Himachal Pradesh known for its Victorian-style architecture, walking trails, and pleasant weather. Ideal for quiet nature walks, easy treks, and tea-time views.'},
-      {name:'Manali', short:'Gateway to high-altitude treks, rivers, and adventure sports.', more:'Manali offers breathtaking mountain vistas, access to Solang Valley for paragliding/zipline, and routes to Rohtang Pass. Great for couples, adventure lovers, and scenic drives.'},
-      {name:'Shimla', short:'Classic colonial hill capital with malls and pine-lined avenues.', more:'Shimla is the former summer capital with bustling Mall Road, the ridge, and easy day trips to nearby viewpoints. A wonderful mix of history, cafes, and hillwalks.'},
-      {name:'Mussoorie', short:'Known as the Queen of Hills — pleasant walks and viewpoints.', more:'Mussoorie (spelled Mussorie by some) gives gentle hikes, Camel\'s Back Road, Kempty Falls nearby, and panoramic views of the Doon Valley. Relaxed vibe and family-friendly.'},
-      {name:'Kashmir', short:'Riverside yoga, spiritual retreats and white-water rafting.', more:'Rishikesh sits on the Ganges with numerous ashrams, yoga schools, and adventure sports. Perfect for a mix of wellness, spirituality, and thrill.'}
-    ];
+  const places = [
+    {name:'Dalhousie', short:'Peaceful hill-station with colonial charm and pine forests.', more:'Dalhousie is a calm hill station in Himachal Pradesh known for its Victorian-style architecture, walking trails, and pleasant weather. Ideal for quiet nature walks, easy treks, and tea-time views.'},
+    {name:'Manali', short:'Gateway to high-altitude treks, rivers, and adventure sports.', more:'Manali offers breathtaking mountain vistas, access to Solang Valley for paragliding/zipline, and routes to Rohtang Pass. Great for couples, adventure lovers, and scenic drives.'},
+    {name:'Shimla', short:'Classic colonial hill capital with malls and pine-lined avenues.', more:'Shimla is the former summer capital with bustling Mall Road, the ridge, and easy day trips to nearby viewpoints. A wonderful mix of history, cafes, and hillwalks.'},
+    {name:'Mussoorie', short:'Known as the Queen of Hills — pleasant walks and viewpoints.', more:'Mussoorie (spelled Mussorie by some) gives gentle hikes, Camel\'s Back Road, Kempty Falls nearby, and panoramic views of the Doon Valley. Relaxed vibe and family-friendly.'},
+    {name:'Kashmir', short:'Riverside yoga, spiritual retreats and white-water rafting.', more:'Kashmir sits among beautiful valleys and rivers, offering serene landscapes, spiritual retreats, and adventure activities like white-water rafting and trekking. Perfect for a mix of wellness, spirituality, and thrill.'}
+  ];
 
-    const grid = document.getElementById('grid');
-    places.forEach((p, i)=>{
-      const card = document.createElement('button');
-      card.className = 'card';
-      card.setAttribute('aria-label', p.name + ' — click for more info');
-      card.innerHTML = `
-        <div class="bg"></div>
-        <div class="blob"></div>
-        <div>
-          <span class="place-index">${i+1}</span>
-          <h4 class="place-title">${p.name}</h4>
-          <p class="place-desc">${p.short}</p>
-        </div>
-        <div class="more">
-          <div class="hint">Click for more info</div>
-          <div class="arrow">➜</div>
-        </div>
-      `;
-      grid.appendChild(card);
+  const pages = ['snowy-retreat.html', 'manali.html', 'shimla.html', 'mussoorie.html', 'kashmir.html'];
+
+  const grid = document.getElementById('grid');
+  
+  places.forEach((p, i)=>{
+    const card = document.createElement('button');
+    card.className = 'card';
+    card.setAttribute('aria-label', p.name + ' — click for more info');
+    card.innerHTML = `
+      <div class="bg"></div>
+      <div class="blob"></div>
+      <div>
+        <span class="place-index">${i+1}</span>
+        <h4 class="place-title">${p.name}</h4>
+        <p class="place-desc">${p.short}</p>
+      </div>
+      <div class="more">
+        <div class="hint">Click for more info</div>
+        <div class="arrow">➜</div>
+      </div>
+    `;
+    grid.appendChild(card);
+
+    // Click to redirect to corresponding page
+    card.addEventListener('click', ()=>{
+      window.location.href = pages[i];
     });
+  });
 
-    // Show on scroll effect
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if(entry.isIntersecting){
-          entry.target.classList.add('show');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.2 });
-
-    document.querySelectorAll('.card').forEach(card => {
-      observer.observe(card);
+  // Show on scroll effect
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('show');
+        observer.unobserve(entry.target);
+      }
     });
+  }, { threshold: 0.2 });
 
-    // Modal controls
-    const backdrop = document.getElementById('backdrop');
-    const modalTitle = document.getElementById('modal-title');
-    const modalBody = document.getElementById('modal-body');
-    const closeBtn = document.getElementById('closeBtn');
+  document.querySelectorAll('.card').forEach(card => {
+    observer.observe(card);
+  });
+</script>
 
-    function openModal(place){
-      modalTitle.textContent = place.name;
-      modalBody.textContent = place.more;
-      backdrop.style.display = 'flex';
-      backdrop.setAttribute('aria-hidden','false');
-    }
-    function closeModal(){
-      backdrop.style.display = 'none';
-      backdrop.setAttribute('aria-hidden','true');
-    }
-    closeBtn.addEventListener('click', closeModal);
-    backdrop.addEventListener('click', (e)=>{ if(e.target===backdrop) closeModal(); });
-    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeModal(); });
-
-    // Attach click after cards created
-    setTimeout(()=>{
-      const cardEls = document.querySelectorAll('.card');
-      cardEls.forEach((card, idx)=>{
-        card.addEventListener('click', ()=> openModal(places[idx]));
-      });
-    },100);
-  </script>
 </body>
 </html>
