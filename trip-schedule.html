@@ -1,213 +1,172 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Trip Planner | Plan & Go</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+  <title>Your Trip Plan</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body {
       font-family: 'Poppins', sans-serif;
       margin: 0;
-      background: linear-gradient(135deg, #89f7fe, #66a6ff);
-      color: #333;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      min-height: 100vh;
-      padding: 20px;
+      padding: 0;
+      background: #f4f6f9;
     }
-
-    .planner-container {
-      background: white;
-      padding: 25px;
-      border-radius: 15px;
-      box-shadow: 0px 8px 25px rgba(0,0,0,0.2);
-      width: 90%;
-      max-width: 800px;
-    }
-
-    h1 {
+    header {
+      background: #4a90e2;
+      color: #fff;
       text-align: center;
-      color: #444;
-    }
-
-    button {
-      padding: 10px 18px;
-      background: #66a6ff;
-      color: white;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
+      padding: 20px;
+      font-size: 22px;
       font-weight: 600;
-      transition: 0.3s;
     }
-
-    button:hover {
-      background: #4d8de0;
-      transform: scale(1.05);
+    .container {
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
-
+    h2 {
+      color: #333;
+    }
     .day-card {
-      border: 1px solid #ccc;
-      border-radius: 12px;
+      margin: 20px 0;
       padding: 15px;
-      margin-top: 15px;
-      background: #f9f9f9;
+      border-radius: 12px;
+      background: #f9fafb;
+      border: 1px solid #ddd;
     }
-
     .day-card h3 {
       margin-top: 0;
-      color: #333;
+      color: #4a90e2;
     }
-
-    .output {
-      margin-top: 20px;
+    ul {
+      padding-left: 20px;
+    }
+    .expense-box {
+      background: #eef6ff;
       padding: 15px;
-      background: #eef5ff;
       border-radius: 10px;
+      margin-top: 20px;
+      font-weight: 500;
     }
-
     .back-btn {
-      display: block;
-      margin: 20px auto;
-      text-align: center;
-      background: #ff6b6b;
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #4a90e2;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
     }
     .back-btn:hover {
-      background: #e05252;
+      background: #357ABD;
     }
   </style>
 </head>
 <body>
-  <div class="planner-container">
-    <h1>🗓 Trip Planner</h1>
-    <p id="tripInfo"></p>
+  <header>✨ Your Personalized Trip Plan ✨</header>
 
-    <div id="schedule"></div>
-    <div class="output" id="finalOutput"></div>
-
-    <!-- 🔙 Go Back Button -->
-    <button class="back-btn" onclick="window.location.href='index.html'">⬅ Plan Again</button>
+  <div class="container" id="tripContainer">
+    <!-- Trip plan will load here -->
   </div>
 
-  <script>
-    const suggestions = {
-      morning: ["Breakfast at hotel", "Visit a local café", "Morning temple visit"],
-      afternoon: ["City tour", "Lunch at restaurant", "Beach visit", "Museum"],
-      evening: ["Shopping at market", "Lake visit", "Cultural program"],
-      night: ["Dinner & stay", "Night walk", "Relax at hotel"]
-    };
+  <div style="text-align:center;">
+    <a href="project.html" class="back-btn">← Back to Home</a>
+  </div>
 
-    function getRandomActivity(time) {
-      let arr = suggestions[time];
-      return arr[Math.floor(Math.random() * arr.length)];
+ <script>
+  // Predefined activities for some destinations
+  const activitiesList = {
+    "Manali": [
+      "Visit Hadimba Temple",
+      "Rohtang Pass Adventure",
+      "Solang Valley Paragliding",
+      "Manali Mall Road Shopping",
+      "Jogini Waterfalls Trek",
+      "Explore Old Manali Cafes",
+      "Hot Springs at Vashisht"
+    ],
+    "Shimla": [
+      "Mall Road Evening Walk",
+      "Jakhoo Temple Visit",
+      "Christ Church Tour",
+      "Kufri Snow Adventure",
+      "The Ridge Photography",
+      "Toy Train Ride",
+      "Local Market Shopping"
+    ],
+    "Kashmir": [
+      "Dal Lake Shikara Ride",
+      "Gulmarg Gondola",
+      "Sonmarg Valley Tour",
+      "Mughal Gardens Visit",
+      "Pahalgam River Rafting",
+      "Shopping in Srinagar",
+      "Sufi Shrine Hazratbal"
+    ]
+  };
+
+  function generateTrip() {
+    let tripData = JSON.parse(localStorage.getItem("tripData"));
+    const container = document.getElementById("tripContainer");
+
+    if (!tripData) {
+      container.innerHTML = "<p>No trip planned yet. Go back and create one!</p>";
+      return;
     }
 
-    // ✅ Read query parameters (start, end, days, destination, people)
-    function getQueryParams() {
-      const params = new URLSearchParams(window.location.search);
-      return {
-        start: params.get("start"),
-        end: params.get("end"),
-        days: parseInt(params.get("days")),
-        destination: params.get("destination"),
-        people: params.get("people")
-      };
+    let { destination, days, people } = tripData;
+    let activities = activitiesList[destination];
+
+    // ❌ invalid destination check
+    if (!activities) {
+      container.innerHTML = `<p>❌ Destination "${destination}" not valid. Please go back and choose a valid one!</p>`;
+      return;
     }
 
-    function generateSchedule(days, tripDetails) {
-      let scheduleDiv = document.getElementById("schedule");
-      let outputDiv = document.getElementById("finalOutput");
-      scheduleDiv.innerHTML = "";
-      outputDiv.innerHTML = "";
+    let html = `
+      <h2>📍 Destination: ${destination}</h2>
+      <p><b>Duration:</b> ${days} days | <b>Travellers:</b> ${people}</p>
+    `;
 
-      let plan = [];
+    let totalExpense = 0;
 
-      for (let i = 1; i <= days; i++) {
-        let dayPlan = {
-          morning: getRandomActivity("morning"),
-          afternoon: getRandomActivity("afternoon"),
-          evening: getRandomActivity("evening"),
-          night: getRandomActivity("night")
-        };
-        plan.push(dayPlan);
+    for (let i = 1; i <= days; i++) {
+      let dayActivities = activities.slice((i-1)*3, i*3); // 3 activities per day
+      if (dayActivities.length === 0) {
+        dayActivities = activities.slice(0,3);
+      }
 
-        let card = document.createElement("div");
-        card.className = "day-card";
-        card.innerHTML = `
+      let dailyCost = 2000 + (people * 500); // base + per person
+      totalExpense += dailyCost;
+
+      html += `
+        <div class="day-card">
           <h3>Day ${i}</h3>
-          <p><b>Morning:</b> ${dayPlan.morning}</p>
-          <p><b>Afternoon:</b> ${dayPlan.afternoon}</p>
-          <p><b>Evening:</b> ${dayPlan.evening}</p>
-          <p><b>Night:</b> ${dayPlan.night}</p>
-        `;
-        scheduleDiv.appendChild(card);
-      }
-
-      // Save Button
-      let saveBtn = document.createElement("button");
-      saveBtn.textContent = "💾 Save Trip Plan";
-      saveBtn.style.marginTop = "20px";
-      saveBtn.onclick = () => savePlan(plan, tripDetails);
-      scheduleDiv.appendChild(saveBtn);
-    }
-
-    function savePlan(plan, tripDetails) {
-      const fullPlan = { tripDetails, plan };
-      localStorage.setItem("savedTrip", JSON.stringify(fullPlan));
-      alert("✅ Your trip plan has been saved!");
-      showSavedPlan();
-    }
-
-    function showSavedPlan() {
-      let outputDiv = document.getElementById("finalOutput");
-      let saved = localStorage.getItem("savedTrip");
-
-      if (!saved) {
-        outputDiv.innerHTML = "<p>No saved trip yet.</p>";
-        return;
-      }
-
-      let { tripDetails, plan } = JSON.parse(saved);
-      outputDiv.innerHTML = `
-        <h2>📌 Saved Trip Itinerary</h2>
-        <p><b>Destination:</b> ${tripDetails.destination}</p>
-        <p><b>Travelers:</b> ${tripDetails.people}</p>
-        <p><b>From:</b> ${tripDetails.start} ➝ <b>To:</b> ${tripDetails.end} (${tripDetails.days} days)</p>
-        <hr>
+          <ul>${dayActivities.map(a => `<li>${a}</li>`).join("")}</ul>
+          <p><b>Estimated Daily Cost:</b> ₹${dailyCost}</p>
+        </div>
       `;
-
-      plan.forEach((day, i) => {
-        outputDiv.innerHTML += `
-          <h3>Day ${i+1}</h3>
-          <p><b>Morning:</b> ${day.morning}</p>
-          <p><b>Afternoon:</b> ${day.afternoon}</p>
-          <p><b>Evening:</b> ${day.evening}</p>
-          <p><b>Night:</b> ${day.night}</p>
-          <hr>
-        `;
-      });
     }
 
-    // ✅ On page load
-    window.onload = function() {
-      let tripDetails = getQueryParams();
-      if (!tripDetails.start || !tripDetails.end || !tripDetails.days) {
-        document.getElementById("tripInfo").innerHTML = "⚠ No trip details found. Please go back and plan again.";
-        return;
-      }
+    html += `
+      <div class="expense-box">
+        💰 <b>Total Estimated Trip Cost:</b> ₹${totalExpense}
+      </div>
+    `;
 
-      document.getElementById("tripInfo").innerHTML = `
-        <b>Destination:</b> ${tripDetails.destination} <br>
-        <b>Travelers:</b> ${tripDetails.people} <br>
-        <b>From:</b> ${tripDetails.start} ➝ <b>To:</b> ${tripDetails.end} (${tripDetails.days} days)
-      `;
+    container.innerHTML = html;
+  }
 
-      generateSchedule(tripDetails.days, tripDetails);
-      showSavedPlan();
-    };
-  </script>
+  // Run when page loads
+  document.addEventListener("DOMContentLoaded", generateTrip);
+</script>
+
+
 </body>
 </html>

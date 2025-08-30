@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +12,6 @@
       text-decoration: none;
       color: inherit;
     }
-    /* Suggestions dropdown style */
     .suggestions {
       border: 1px solid #ccc;
       border-radius: 5px;
@@ -46,11 +43,6 @@
     </video>
   </div>
 
-  <!-- Baaki aapka existing content (navbar, heading, form, etc.) -->
-  <div class="main-content">
-    <!-- Yaha aapka Plan & Go wala pura content rahega -->
-  </div>
-
   <!-- Navbar -->
   <header class="navbar">
     <div class="logo">Plan & Go ✈</div>
@@ -66,22 +58,18 @@
     <p>Your smart travel planner - simple, fast & personalized.</p>
 
     <div class="trip-form">
-      <!-- Start Date -->
       <label>Start Date:</label>
       <input type="date" id="startDate">
 
-      <!-- End Date -->
       <label>End Date:</label>
       <input type="date" id="endDate">
 
-      <!-- Destination with search -->
       <div class="destination-input">
         <input type="text" id="destination" placeholder="Search Destination">
         <span class="search-icon">🔍</span>
         <div id="suggestions" class="suggestions"></div>
       </div>
 
-      <!-- People count -->
       <input type="number" id="people" min="1" placeholder="Number of People">
 
       <button onclick="planTrip()">Plan Trip</button>
@@ -107,7 +95,6 @@
     <p>Discover some of our handpicked destinations to make your travel unforgettable.</p>
   
     <div class="trips-container">
-      <!-- Shimla -->
       <a href="snowy.html">
         <div class="trip-card">
           <img src="https://img.freepik.com/premium-photo/child-building-snowman-kids-build-snow-man-boy-girl-playing-outdoors-snowy-winter-day-outdoor-family-fun-christmas-vacation-mountains_1028938-177583.jpg" alt="Shimla Family Trip">
@@ -116,7 +103,6 @@
         </div>
       </a>
 
-      <!-- Goa -->
       <a href="sunny.html">
         <div class="trip-card">
           <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80" alt="Goa Adventure">
@@ -125,20 +111,19 @@
         </div>
       </a>
 
-      <!-- Mandir -->
       <a href="pilgrimage.html">
         <div class="trip-card">
           <img src="https://images.nativeplanet.com/img/2017/09/04-1504499382-8.jpg" alt="Mandi">
-          <h3>Best Choices for Pligrimage</h3>
+          <h3>Best Choices for Pilgrimage</h3>
           <p>Explore India's spiritual gems: Kedarnath, Varanasi, Golden Temple, Jagannath Puri, and Meenakshi Temple.</p>
         </div>
       </a>
     </div>
   </section>
 
-  <script>
-  // Navbar update if logged in
+ <script>
   document.addEventListener("DOMContentLoaded", () => {
+    // ✅ Navbar update if logged in
     const user = JSON.parse(localStorage.getItem("loggedInUser"));
     const nav = document.getElementById("navbar-links");
 
@@ -152,54 +137,63 @@
         window.location.reload();
       });
     }
+
+    // ✅ Date picker restriction
+    let today = new Date().toISOString().split("T")[0];
+    let startInput = document.getElementById("startDate");
+    let endInput = document.getElementById("endDate");
+
+    if (startInput && endInput) {
+      startInput.setAttribute("min", today);
+      endInput.setAttribute("min", today);
+
+      startInput.addEventListener("change", () => {
+        endInput.setAttribute("min", startInput.value);
+      });
+    }
   });
 
-  
-
-  // Trip planner
+  // ✅ Trip planner function
   function planTrip() {
     const user = JSON.parse(localStorage.getItem("loggedInUser"));
     if (!user) {
-      alert("Please login first!");
+      alert("⚠️ Please login first!");
       return;
     }
 
-    const startDate = document.getElementById("startDate").value;
-    const endDate = document.getElementById("endDate").value;
-    const destination = document.getElementById("destination").value;
-    const people = document.getElementById("people").value;
+    let destination = document.getElementById("destination").value.trim();
+    let startDate = document.getElementById("startDate").value;
+    let endDate = document.getElementById("endDate").value;
+    let people = document.getElementById("people").value;
 
-    if (!startDate || !endDate || !destination || !people) {
-      alert("Please fill all fields!");
+    if (!destination || !startDate || !endDate || !people) {
+      alert("⚠️ Please fill all fields!");
       return;
     }
 
-    // Save trip in localStorage
-    const tripData = { startDate, endDate, destination, people };
-    localStorage.setItem("currentTrip", JSON.stringify(tripData));
+    // calculate days
+    let start = new Date(startDate);
+    let end = new Date(endDate);
+    let days = Math.floor((end - start) / (1000 * 60 * 60 * 24)) + 1;
+    if (days <= 0) {
+      alert("⚠️ End date must be after start date!");
+      return;
+    }
 
-    // Redirect to trip schedule page
+    // save trip data
+    localStorage.setItem("tripData", JSON.stringify({
+      destination, days, people: parseInt(people)
+    }));
+
+    // redirect
     window.location.href = "trip-schedule.html";
   }
+</script>
 
-  document.addEventListener("DOMContentLoaded", () => {
-  let today = new Date().toISOString().split("T")[0];
-  let startInput = document.getElementById("startDate");
-  let endInput = document.getElementById("endDate");
-
-  startInput.setAttribute("min", today);
-  endInput.setAttribute("min", today);
-
-  // ✅ bas min date adjust karo, auto-fill mat karo
-  startInput.addEventListener("change", () => {
-    endInput.setAttribute("min", startInput.value);
-  });
-});
-
-  </script>
 
   <footer>
     <p>Contact us: planandgo@gmail.com | +91 98765 43210</p>
     <p>© 2025 Plan & Go. All rights reserved.</p>
   </footer>
 </body>
+</html>
