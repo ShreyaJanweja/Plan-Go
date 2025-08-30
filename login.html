@@ -4,79 +4,88 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login</title>
-  <link rel="stylesheet" href="style.css">
+  <!-- <link rel="stylesheet" href="style.css"> -->
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Poppins", sans-serif;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      /* background removed */
+    }
+    .video-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      min-width: 100vw;
+      min-height: 100vh;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -1;
+    }
+    .container {
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(15px);
+      padding: 40px;
+      border-radius: 15px;
+      text-align: center;
+      width: 350px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+    }
+    h2 {
+      margin-bottom: 10px;
+      color: white;
+    }
+    p {
+      color: rgb(78, 70, 70);
+      margin-bottom: 20px;
+    }
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: none;
+      outline: none;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 15px;
+      background: #00bfff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+    button:hover {
+      background: #0099cc;
+    }
+    a {
+      color: grey;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
-<style>
-body {
-  margin: 0;
-  padding: 0;
-  font-family: "Poppins", sans-serif;
-  background: url("https://images.pexels.com/photos/457882/pexels-photo-457882.jpeg") no-repeat center center/cover;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.container {
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(15px);
-  padding: 40px;
-  border-radius: 15px;
-  text-align: center;
-  width: 350px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-}
-
-h2 {
-  margin-bottom: 10px;
-  color: white;
-}
-
-p {
-  color: rgb(78, 70, 70);
-  margin-bottom: 20px;
-}
-
-input {
-  width: 100%;
-  padding: 12px;
-  margin: 10px 0;
-  border: none;
-  outline: none;
-  border-radius: 8px;
-  font-size: 14px;
-}
-
-button {
-  width: 100%;
-  padding: 12px;
-  margin-top: 15px;
-  background: #00bfff;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: 0.3s ease;
-}
-
-button:hover {
-  background: #0099cc;
-}
-
-a {
-  color: grey;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-</style>
-</style>
 <body>
+  <!-- Background Video -->
+  <video class="video-bg" autoplay muted loop>
+    <source src="login bg3.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
   <div class="container">
     <h2>Welcome back!</h2>
     <form id="loginForm">
@@ -88,31 +97,28 @@ a:hover {
   </div>
 
   <script>
+    const loginForm = document.getElementById("loginForm");
 
-  const loginForm = document.getElementById("loginForm");
+    loginForm.addEventListener("submit", (e) => {
+      e.preventDefault();
 
-  loginForm.addEventListener("submit", (e) => {
-    e.preventDefault();
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
 
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
+      const savedEmail = localStorage.getItem("userEmail");
+      const savedPassword = localStorage.getItem("userPassword");
 
-    const savedEmail = localStorage.getItem("userEmail");
-    const savedPassword = localStorage.getItem("userPassword");
+      if (email === savedEmail && password === savedPassword) {
+        // 👇 Yeh add karo
+        const user = { username: email.split("@")[0], email: email };
+        localStorage.setItem("loggedInUser", JSON.stringify(user));
 
-    if (email === savedEmail && password === savedPassword) {
-      // 👇 Yeh add karo
-      const user = { username: email.split("@")[0], email: email };
-      localStorage.setItem("loggedInUser", JSON.stringify(user));
-
-      alert("🎉 Login Successful!");
-      window.location.href = "project.html"; 
-    } else {
-      alert("❌ Invalid Email or Password");
-    }
-  });
-
-
+        alert("🎉 Login Successful!");
+        window.location.href = "project.html"; 
+      } else {
+        alert("❌ Invalid Email or Password");
+      }
+    });
   </script>
 </body>
 </html>
