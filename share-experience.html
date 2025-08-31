@@ -1,0 +1,272 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Share Your Experience</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: #f0f2f5;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+
+  .feedback-container {
+    background: white;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 500px;
+  }
+
+  h2 {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  p.description {
+    text-align: center;
+    color: #555;
+    margin-bottom: 25px;
+  }
+
+  label {
+    display: block;
+    margin-top: 15px;
+    font-weight: 500;
+  }
+
+  input[type="text"], input[type="email"], textarea, select {
+    width: 100%;
+    padding: 10px 12px;
+    margin-top: 5px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    box-sizing: border-box;
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 80px;
+  }
+
+  .stars {
+    display: flex;
+    gap: 5px;
+    margin-top: 5px;
+    cursor: pointer;
+  }
+
+  .stars span {
+    font-size: 25px;
+    color: #ccc;
+    transition: color 0.2s;
+  }
+
+  .stars span.selected {
+    color: #f5b50a;
+  }
+
+  select {
+    cursor: pointer;
+    margin-top: 5px;
+  }
+
+  button {
+    margin-top: 20px;
+    width: 100%;
+    padding: 12px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background: #0056b3;
+  }
+
+  .success-msg {
+    margin-top: 15px;
+    text-align: center;
+    color: green;
+    display: none;
+    font-weight: 500;
+  }
+</style>
+</head>
+<body>
+
+<div class="feedback-container">
+  <h2>Share Your Experience</h2>
+  <p class="description">Tell us about your trip and help others plan better!</p>
+
+  <label>Name</label>
+  <input type="text" id="userName" placeholder="Enter your Name">
+
+  <label>Email</label>
+  <input type="email" id="userEmail" placeholder="Enter your Emailid">
+
+  <label>Trip Destination</label>
+  <select id="tripDestination">
+    <option value="" disabled selected>Select your trip destination</option>
+    <!-- Domestic Destinations -->
+    <option value="Agra">Agra</option>
+    <option value="Ahmedabad">Ahmedabad</option>
+    <option value="Bathinda">Bathinda</option>
+    <option value="Chandigarh">Chandigarh</option>
+    <option value="Chennai">Chennai</option>
+    <option value="Darjeeling">Darjeeling</option>
+    <option value="Delhi">Delhi</option>
+    <option value="Goa">Goa</option>
+    <option value="Jaipur">Jaipur</option>
+    <option value="Jaisalmer">Jaisalmer</option>
+    <option value="Kashmir">Kashmir</option>
+    <option value="Kaziranga">Kaziranga</option>
+    <option value="Kochi">Kochi</option>
+    <option value="Kolkata">Kolkata</option>
+    <option value="Leh Ladakh">Leh Ladakh</option>
+    <option value="Manali">Manali</option>
+    <option value="Mumbai">Mumbai</option>
+    <option value="Mysore">Mysore</option>
+    <option value="Pune">Pune</option>
+    <option value="Rishikesh">Rishikesh</option>
+    <option value="Shillong">Shillong</option>
+    <option value="Shimla">Shimla</option>
+    <option value="Udaipur">Udaipur</option>
+    <option value="Varanasi">Varanasi</option>
+
+    <!-- International Destinations -->
+    <option value="Dubai">Dubai</option>
+    <option value="Paris">Paris</option>
+    <option value="London">London</option>
+    <option value="New York">New York</option>
+    <option value="Calgary">Calgary</option>
+    <option value="Surrey">Surrey</option>
+    <option value="Ontario">Ontario</option>
+    <option value="Singapore">Singapore</option>
+    <option value="Tokyo">Tokyo</option>
+    <option value="Bangkok">Bangkok</option>
+    <option value="Bali">Bali</option>
+    <option value="Maldives">Maldives</option>
+    <option value="Switzerland">Switzerland</option>
+    <option value="Rome">Rome</option>
+    <option value="Barcelona">Barcelona</option>
+    <option value="Istanbul">Istanbul</option>
+    <option value="Sydney">Sydney</option>
+    <option value="Los Angeles">Los Angeles</option>
+    <option value="Hong Kong">Hong Kong</option>
+    <option value="Cape Town">Cape Town</option>
+    <option value="Athens">Athens</option>
+    <option value="Moscow">Moscow</option>
+    <option value="Berlin">Berlin</option>
+  </select>
+
+  <label>Your Feedback</label>
+  <textarea id="feedbackText" placeholder="Write your experience here..."></textarea>
+
+  <label>Rate Your Trip (Stars)</label>
+  <div class="stars" id="starRating">
+    <span data-value="1">&#9733;</span>
+    <span data-value="2">&#9733;</span>
+    <span data-value="3">&#9733;</span>
+    <span data-value="4">&#9733;</span>
+    <span data-value="5">&#9733;</span>
+  </div>
+
+  <label>Quick Rating</label>
+  <select id="dropdownRating">
+    <option value="" disabled selected>Select rating</option>
+    <option value="3">⭐⭐⭐</option>
+    <option value="4">⭐⭐⭐⭐</option>
+    <option value="5">⭐⭐⭐⭐⭐</option>
+  </select>
+
+  <button id="submitBtn">Submit Feedback</button>
+
+  <div class="success-msg" id="successMsg">Thank you! Your feedback has been recorded.</div>
+</div>
+
+<script>
+  // Pre-fill user info only
+  const user = JSON.parse(localStorage.getItem("loggedInUser")) || {};
+
+  if(user.username) document.getElementById("userName").value = user.username;
+  if(user.email) document.getElementById("userEmail").value = user.email;
+
+  // Star rating logic
+  const stars = document.querySelectorAll("#starRating span");
+  let selectedRating = 0;
+
+  stars.forEach(star => {
+    star.addEventListener("click", () => {
+      selectedRating = parseInt(star.getAttribute("data-value"));
+      updateStars(selectedRating);
+      const dropdown = document.getElementById("dropdownRating");
+      if(selectedRating >=3 && selectedRating <=5){
+        dropdown.value = selectedRating;
+      }
+    });
+  });
+
+  function updateStars(rating){
+    stars.forEach(star => {
+      star.classList.remove("selected");
+      if(parseInt(star.getAttribute("data-value")) <= rating){
+        star.classList.add("selected");
+      }
+    });
+  }
+
+  // Dropdown sync with stars
+  const dropdown = document.getElementById("dropdownRating");
+  dropdown.addEventListener("change", () => {
+    selectedRating = parseInt(dropdown.value);
+    updateStars(selectedRating);
+  });
+
+  // Submit feedback
+  document.getElementById("submitBtn").addEventListener("click", () => {
+    const name = document.getElementById("userName").value.trim();
+    const email = document.getElementById("userEmail").value.trim();
+    const destination = document.getElementById("tripDestination").value.trim();
+    const feedbackText = document.getElementById("feedbackText").value.trim();
+
+    if(!name || !email || !feedbackText || !destination || selectedRating === 0){
+      alert("⚠️ Please fill all fields, select a destination and rating!");
+      return;
+    }
+
+    const feedback = {
+      name,
+      email,
+      destination,
+      rating: selectedRating,
+      text: feedbackText
+    };
+
+    let allFeedback = JSON.parse(localStorage.getItem("feedbackList")) || [];
+    allFeedback.push(feedback);
+    localStorage.setItem("feedbackList", JSON.stringify(allFeedback));
+
+    document.getElementById("successMsg").style.display = "block";
+    document.getElementById("feedbackText").value = "";
+    document.getElementById("tripDestination").value = ""; // reset dropdown
+    selectedRating = 0;
+    updateStars(selectedRating);
+    dropdown.value = "";
+  });
+</script>
+
+</body>
+</html>
