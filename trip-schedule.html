@@ -8,11 +8,12 @@
   <title>Your Trip Plan</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: 'Poppins', sans-serif;
+     body {
       margin: 0;
       padding: 0;
-      background: #f4f6f9;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #1f1c2c, #928DAB);
+      color: #1e1c1c;
     }
     header {
       background: #4a90e2;
@@ -79,37 +80,458 @@
     <a href="project.html" class="back-btn">← Back to Home</a>
   </div>
 
- <script>
-  // Predefined activities for some destinations
+<script>
+  // ✅ Extended activities for destinations
+ 
   const activitiesList = {
-    "Manali": [
-      "Visit Hadimba Temple",
-      "Rohtang Pass Adventure",
-      "Solang Valley Paragliding",
-      "Manali Mall Road Shopping",
-      "Jogini Waterfalls Trek",
-      "Explore Old Manali Cafes",
-      "Hot Springs at Vashisht"
-    ],
-    "Shimla": [
-      "Mall Road Evening Walk",
-      "Jakhoo Temple Visit",
-      "Christ Church Tour",
-      "Kufri Snow Adventure",
-      "The Ridge Photography",
-      "Toy Train Ride",
-      "Local Market Shopping"
-    ],
-    "Kashmir": [
-      "Dal Lake Shikara Ride",
-      "Gulmarg Gondola",
-      "Sonmarg Valley Tour",
-      "Mughal Gardens Visit",
-      "Pahalgam River Rafting",
-      "Shopping in Srinagar",
-      "Sufi Shrine Hazratbal"
+  // 🌍 Indian Destinations
+  "Manali": [
+    "Visit Hadimba Temple",
+    "Rohtang Pass Adventure",
+    "Solang Valley Paragliding",
+    "Manali Mall Road Shopping",
+    "Jogini Waterfalls Trek",
+    "Explore Old Manali Cafes",
+    "Hot Springs at Vashisht",
+    "Naggar Castle Visit",
+    "Himalayan Nyingmapa Gompa",
+    "Skiing at Rohtang"
+  ],
+  "Shimla": [
+    "Mall Road Evening Walk",
+    "Jakhoo Temple Visit",
+    "Christ Church Tour",
+    "Kufri Snow Adventure",
+    "The Ridge Photography",
+    "Toy Train Ride",
+    "Local Market Shopping",
+    "Summer Hill Trek",
+    "Annandale Army Museum",
+    "Ice Skating Rink"
+  ],
+  "Kashmir": [
+    "Dal Lake Shikara Ride",
+    "Gulmarg Gondola",
+    "Sonmarg Valley Tour",
+    "Mughal Gardens Visit",
+    "Pahalgam River Rafting",
+    "Shopping in Srinagar",
+    "Sufi Shrine Hazratbal",
+    "Betaab Valley Visit",
+    "Tulip Garden Photography",
+    "Houseboat Stay"
+  ],
+  "Goa": [
+    "Baga Beach Party",
+    "Dudhsagar Waterfalls Trek",
+    "Fort Aguada Tour",
+    "Scuba Diving",
+    "Spice Plantation Visit",
+    "Cruise on Mandovi River",
+    "Anjuna Flea Market",
+    "Chapora Fort Sunset",
+    "Candolim Beach Relax",
+    "Nightlife at Tito’s"
+  ],
+  "Delhi": [
+    "Visit India Gate",
+    "Explore Red Fort",
+    "Qutub Minar Tour",
+    "Lotus Temple Visit",
+    "Humayun’s Tomb Walk",
+    "Akshardham Temple Light Show",
+    "Chandni Chowk Street Food Tour",
+    "National Museum Exploration",
+    "Raj Ghat Memorial Visit",
+    "Shopping at Connaught Place"
+  ],
+  "Gujarat": {
+    "Ahmedabad": [
+      "Sabarmati Ashram Visit",
+      "Kite Museum Exploration",
+      "Akshardham Temple Visit",
+      "Sidi Saiyyed Mosque Photography",
+      "Calico Museum of Textiles",
+      "Manek Chowk Street Food",
+      "Auto World Vintage Car Museum",
+      "Jama Masjid Visit",
+      "Adalaj Stepwell Tour",
+      "Kankaria Lake Walk"
     ]
-  };
+  },
+  "West Bengal": {
+    "Kolkata": [
+      "Victoria Memorial Visit",
+      "Howrah Bridge Photography",
+      "Indian Museum Tour",
+      "St. Paul's Cathedral Visit",
+      "Dakshineswar Kali Temple",
+      "Princep Ghat Sunset Walk",
+      "Park Street Food & Cafe Hopping",
+      "Marble Palace Exploration",
+      "Science City Visit",
+      "Kumartuli Artist Village"
+    ]
+  },
+  "Uttar Pradesh": {
+    "Agra": [
+      "Taj Mahal Sunrise Visit",
+      "Agra Fort Tour",
+      "Mehtab Bagh Photography",
+      "Itmad-ud-Daula Tomb Visit",
+      "Fatehpur Sikri Day Trip",
+      "Shopping at Sadar Bazaar",
+      "Kalakriti Art Museum",
+      "Chini ka Rauza Visit",
+      "Local Street Food Tasting",
+      "Yamuna River Viewpoint"
+    ],
+    "Varanasi": [
+      "Ganga Aarti Ceremony",
+      "Boat Ride on Ganges",
+      "Kashi Vishwanath Temple",
+      "Sarnath Buddhist Site",
+      "Manikarnika Ghat Visit",
+      "Weavers’ Colony Tour",
+      "Ramnagar Fort",
+      "Street Food Walk",
+      "Banaras Hindu University",
+      "Morning Yoga by Ganga"
+    ]
+  },
+  "Kerala": [
+    "Backwater Houseboat Ride",
+    "Munnar Tea Gardens",
+    "Alleppey Beach Walk",
+    "Kathakali Dance Show",
+    "Periyar Wildlife Sanctuary",
+    "Kumarakom Bird Sanctuary",
+    "Varkala Cliff Trek",
+    "Athirapally Waterfalls",
+    "Fort Kochi Heritage Walk",
+    "Ayurvedic Massage"
+  ],
+  "Jaipur": [
+    "Amber Fort Tour",
+    "City Palace Visit",
+    "Hawa Mahal Photography",
+    "Jantar Mantar Exploration",
+    "Nahargarh Fort Sunset",
+    "Bapu Bazaar Shopping",
+    "Albert Hall Museum",
+    "Chokhi Dhani Village",
+    "Birla Mandir Visit",
+    "Hot Air Balloon Ride"
+  ],
+  "Leh Ladakh": [
+    "Pangong Lake Visit",
+    "Khardung La Pass Ride",
+    "Nubra Valley Camel Safari",
+    "Magnetic Hill Experience",
+    "Shanti Stupa Visit",
+    "Thiksey Monastery",
+    "Zanskar River Rafting",
+    "Tso Moriri Lake",
+    "Hall of Fame Museum",
+    "Diskit Monastery"
+  ],
+  "Rishikesh": [
+    "River Rafting on Ganga",
+    "Beatles Ashram Visit",
+    "Evening Ganga Aarti",
+    "Bungee Jumping",
+    "Lakshman Jhula Walk",
+    "Camping by River",
+    "Neer Garh Waterfall Trek",
+    "Yoga Session",
+    "Triveni Ghat Rituals",
+    "Adventure Zipline"
+  ],
+
+  // 🌍 International Destinations
+  "Dubai": [
+    "Burj Khalifa View",
+    "Desert Safari",
+    "Dubai Mall Aquarium",
+    "Palm Jumeirah Walk",
+    "Dubai Fountain Show",
+    "Gold Souk Market",
+    "Skydiving at Palm",
+    "Global Village Tour",
+    "Ferrari World Abu Dhabi",
+    "Atlantis Waterpark"
+  ],
+  "Paris": [
+    "Eiffel Tower Visit",
+    "Louvre Museum Tour",
+    "Seine River Cruise",
+    "Notre Dame Cathedral",
+    "Montmartre Exploration",
+    "Champs-Élysées Walk",
+    "Arc de Triomphe",
+    "Versailles Palace",
+    "Disneyland Paris",
+    "French Cuisine Tasting"
+  ],
+  "London": [
+    "London Eye Ride",
+    "Tower of London Tour",
+    "Buckingham Palace Visit",
+    "Big Ben Photography",
+    "Thames River Cruise",
+    "Madame Tussauds",
+    "Oxford Street Shopping",
+    "British Museum Tour",
+    "Hyde Park Walk",
+    "Camden Market Visit"
+  ],
+  "New York": [
+    "Statue of Liberty Cruise",
+    "Times Square Walk",
+    "Central Park Cycling",
+    "Empire State Building",
+    "Brooklyn Bridge Walk",
+    "Broadway Show",
+    "9/11 Memorial",
+    "Metropolitan Museum of Art",
+    "Wall Street Bull",
+    "Yankee Stadium Tour"
+  ],
+
+  "Calgary": [
+    "Calgary Stampede Visit",
+    "Calgary famous Banff ",
+    "Calgary Tower Observation Deck",
+    "Heritage Park Historical Village",
+    "Calgary Zoo Exploration",
+    "Prince's Island Park Walk",
+    "Glenbow Museum Tour",
+    "Canada Olympic Park",
+    "Stephen Avenue Shopping",  
+    "Bow River Kayaking",
+    "Inglewood Historic District"
+  ],
+  "Surrey": [
+    "Crescent Beach Stroll",
+    "Bear Creek Park Walk",
+    "Surrey Museum Visit",
+    "Historic Stewart Farm Tour",
+    "Green Timbers Urban Forest",
+    "Fraser Downs Racetrack",
+    "Guildford Town Centre Shopping",
+    "Fleetwood Community Centre Activities",
+    "South Surrey Recreation Centre Fun",
+    "Newton Cultural Walk"
+  ],
+  "Ontario": [
+    "Niagara Falls Day Trip",
+    "Toronto CN Tower Visit",
+    "Royal Ontario Museum Tour",
+    "Ripley's Aquarium Exploration",
+    "Toronto Islands Ferry Ride",
+    "St. Lawrence Market Shopping",
+    "High Park Walk",
+    "Casa Loma Castle Tour",
+    "Distillery District Exploration",
+    "Art Gallery of Ontario Visit"
+  ],
+
+
+  "Singapore": [
+    "Marina Bay Sands SkyPark",
+    "Gardens by the Bay",
+    "Sentosa Island",
+    "Singapore Zoo",
+    "Orchard Road Shopping",
+    "Chinatown Street Walk",
+    "Little India Tour",
+    "Night Safari",
+    "Universal Studios",
+    "Clarke Quay Nightlife"
+  ],
+  "Tokyo": [
+    "Tokyo Skytree View",
+    "Shibuya Crossing",
+    "Sensoji Temple",
+    "Meiji Shrine",
+    "Akihabara Anime Street",
+    "Tsukiji Fish Market",
+    "Tokyo Disneyland",
+    "Mount Fuji Day Trip",
+    "Ueno Park Walk",
+    "Odaiba Beachfront"
+  ],
+  "Bangkok": [
+    "Grand Palace Visit",
+    "Floating Market",
+    "Wat Arun Temple",
+    "Chinatown Food Tour",
+    "Chatuchak Market",
+    "Thai Massage Experience",
+    "Boat Ride on Chao Phraya",
+    "Safari World",
+    "MBK Shopping Mall",
+    "Khao San Road Nightlife"
+  ],
+  "Bali": [
+    "Uluwatu Temple Sunset",
+    "Tegallalang Rice Terrace",
+    "Kuta Beach Surfing",
+    "Ubud Monkey Forest",
+    "Mount Batur Sunrise Trek",
+    "Tanah Lot Temple",
+    "Nusa Penida Island",
+    "Seminyak Beach Relax",
+    "Balinese Dance Show",
+    "Snorkeling in Amed"
+  ],
+  "Maldives": [
+    "Overwater Villa Stay",
+    "Snorkeling with Manta Rays",
+    "Scuba Diving in Coral Reef",
+    "Private Beach Dinner",
+    "Island Hopping",
+    "Sunset Cruise",
+    "Fishing Trip",
+    "Water Sports",
+    "Dolphin Watching",
+    "Spa by the Sea"
+  ],
+  "Switzerland": [
+    "Swiss Alps Hiking",
+    "Lake Geneva Boat Ride",
+    "Matterhorn Photography",
+    "Interlaken Paragliding",
+    "Jungfraujoch Train Ride",
+    "Château de Chillon Tour",
+    "Lucerne Chapel Bridge",
+    "Rhine Falls Visit",
+    "Zürich City Walk",
+    "Swiss Cheese Tasting"
+  ],
+
+  // 🌍 More (to make 50 total)
+  "Rome": [
+    "Colosseum Tour",
+    "Vatican Museum",
+    "Trevi Fountain",
+    "Pantheon Visit",
+    "Roman Forum Walk",
+    "Spanish Steps",
+    "Sistine Chapel",
+    "Piazza Navona",
+    "Trastevere Evening",
+    "Gelato Tasting"
+  ],
+  "Barcelona": [
+    "Sagrada Familia",
+    "Park Güell",
+    "Casa Batlló",
+    "La Rambla Walk",
+    "Camp Nou Stadium",
+    "Gothic Quarter",
+    "Montjuïc Cable Car",
+    "Magic Fountain Show",
+    "Beachfront Relax",
+    "Tapas Food Tour"
+  ],
+  "Istanbul": [
+    "Hagia Sophia",
+    "Blue Mosque",
+    "Topkapi Palace",
+    "Grand Bazaar",
+    "Bosphorus Cruise",
+    "Spice Bazaar",
+    "Galata Tower",
+    "Dolmabahce Palace",
+    "Istiklal Street",
+    "Turkish Hammam"
+  ],
+  "Sydney": [
+    "Sydney Opera House",
+    "Harbour Bridge Climb",
+    "Bondi Beach Surfing",
+    "Taronga Zoo",
+    "Darling Harbour",
+    "Blue Mountains Trip",
+    "Circular Quay",
+    "Royal Botanic Gardens",
+    "Manly Beach Ferry",
+    "Sea Life Aquarium"
+  ],
+  "Los Angeles": [
+    "Hollywood Walk of Fame",
+    "Universal Studios",
+    "Santa Monica Pier",
+    "Griffith Observatory",
+    "Rodeo Drive Shopping",
+    "Venice Beach",
+    "Beverly Hills Tour",
+    "LACMA Museum",
+    "Dodger Stadium",
+    "Sunset Boulevard"
+  ],
+  "Hong Kong": [
+    "Victoria Peak Tram",
+    "Disneyland Hong Kong",
+    "Ngong Ping 360 Cable Car",
+    "Big Buddha Visit",
+    "Temple Street Market",
+    "Ocean Park",
+    "Star Ferry Ride",
+    "Tsim Sha Tsui Promenade",
+    "Ladies Market",
+    "Symphony of Lights Show"
+  ],
+  "Cape Town": [
+    "Table Mountain Cable Car",
+    "Robben Island Tour",
+    "Cape of Good Hope",
+    "Boulders Beach Penguins",
+    "V&A Waterfront",
+    "Kirstenbosch Gardens",
+    "Long Street Nightlife",
+    "Seal Island Cruise",
+    "Hout Bay Market",
+    "Wine Tasting in Stellenbosch"
+  ],
+  "Athens": [
+    "Acropolis Tour",
+    "Parthenon Visit",
+    "Ancient Agora",
+    "Plaka Neighborhood",
+    "Temple of Olympian Zeus",
+    "National Archaeological Museum",
+    "Mount Lycabettus",
+    "Syntagma Square",
+    "Greek Tavern Dinner",
+    "Cape Sounion Sunset"
+  ],
+  "Moscow": [
+    "Red Square Walk",
+    "Kremlin Tour",
+    "St. Basil’s Cathedral",
+    "Bolshoi Theatre",
+    "Moscow Metro Tour",
+    "Tretyakov Gallery",
+    "GUM Shopping Mall",
+    "Izmailovsky Market",
+    "Arbat Street Walk",
+    "Moscow River Cruise"
+  ],
+  "Berlin": [
+    "Berlin Wall Memorial",
+    "Brandenburg Gate",
+    "Checkpoint Charlie",
+    "Reichstag Building",
+    "Museum Island",
+    "Berlin Cathedral",
+    "Alexanderplatz",
+    "East Side Gallery",
+    "Potsdamer Platz",
+    "Berlin Zoo"
+  ]
+};
 
   function generateTrip() {
     let tripData = JSON.parse(localStorage.getItem("tripData"));
@@ -135,14 +557,16 @@
     `;
 
     let totalExpense = 0;
+    let activityIndex = 0; // track activities used
 
     for (let i = 1; i <= days; i++) {
-      let dayActivities = activities.slice((i-1)*3, i*3); // 3 activities per day
-      if (dayActivities.length === 0) {
-        dayActivities = activities.slice(0,3);
-      }
+      // per day max 3 activities
+      let dayActivities = activities.slice(activityIndex, activityIndex + 3);
+      activityIndex += 3;
 
-      let dailyCost = 2000 + (people * 500); // base + per person
+      if (dayActivities.length === 0) break; // agar activities khatam ho jaye
+
+      let dailyCost = 2000 + (people * 500);
       totalExpense += dailyCost;
 
       html += `
