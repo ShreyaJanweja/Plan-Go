@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,33 +7,6 @@
   <title>Plan & Go ✈</title>
   <link rel="stylesheet" href="project.css">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
-
-  <style>
-    /* a {
-      text-decoration: none;
-      color: inherit;
-    }
-    .suggestions {
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      background: white;
-      max-height: 200px;
-      overflow-y: auto;
-      position: absolute;
-      width: calc(100% - 40px);
-      z-index: 1000;
-    }
-    .suggestions div {
-      padding: 8px;
-      cursor: pointer;
-    }
-    .suggestions div:hover {
-      background: #f0f0f0;
-    }
-    .destination-input {
-      position: relative;
-    } */
-  </style>
 </head>
 <body>
 
@@ -66,11 +38,48 @@
       <label>End Date:</label>
       <input type="date" id="endDate">
 
-      <div class="destination-input">
-        <input type="text" id="destination" placeholder="Search Destination">
-        <span class="search-icon">🔍</span>
-        <div id="suggestions" class="suggestions"></div>
-      </div>
+      <label for="destinationSelect"></label>
+      <select id="destinationSelect">
+        <option value="" disabled selected>Choose a destination</option>
+        <!-- Indian Destinations -->
+        <option value="Manali">Manali</option>
+        <option value="Shimla">Shimla</option>
+        <option value="Kashmir">Kashmir</option>
+        <option value="Goa">Goa</option>
+        <option value="Delhi">Delhi</option>
+        <option value="Ahmedabad">Ahmedabad</option>
+        <option value="Kolkata">Kolkata</option>
+        <option value="Agra">Agra</option>
+        <option value="Varanasi">Varanasi</option>
+        <option value="Kerala">Kerala</option>
+        <option value="Jaipur">Jaipur</option>
+        <option value="Leh Ladakh">Leh Ladakh</option>
+        <option value="Rishikesh">Rishikesh</option>
+        <!-- International Destinations -->
+        <option value="Dubai">Dubai</option>
+        <option value="Paris">Paris</option>
+        <option value="London">London</option>
+        <option value="New York">New York</option>
+        <option value="Calgary">Calgary</option>
+        <option value="Surrey">Surrey</option>
+        <option value="Ontario">Ontario</option>
+        <option value="Singapore">Singapore</option>
+        <option value="Tokyo">Tokyo</option>
+        <option value="Bangkok">Bangkok</option>
+        <option value="Bali">Bali</option>
+        <option value="Maldives">Maldives</option>
+        <option value="Switzerland">Switzerland</option>
+        <option value="Rome">Rome</option>
+        <option value="Barcelona">Barcelona</option>
+        <option value="Istanbul">Istanbul</option>
+        <option value="Sydney">Sydney</option>
+        <option value="Los Angeles">Los Angeles</option>
+        <option value="Hong Kong">Hong Kong</option>
+        <option value="Cape Town">Cape Town</option>
+        <option value="Athens">Athens</option>
+        <option value="Moscow">Moscow</option>
+        <option value="Berlin">Berlin</option>
+      </select>
 
       <input type="number" id="people" min="1" placeholder="Number of People">
 
@@ -81,11 +90,11 @@
   <!-- About Section -->
   <section class="about">
     <h2>Why Choose Plan & Go?</h2>
-    <p>Plan & Go helps you create personalized travel itineraries, track expenses, check weather forecasts, 
+    <p>Plan & Go helps you create personalized travel plans, track expenses, check weather forecasts, 
     and share your trips with friends. Our simple design makes travel planning smooth and fun!</p>
 
     <div class="features">
-      <div class="card">💰 Track Expenses</div>
+      <div class="card"> About us </div>
       <div class="card">☀ Get Weather Updates</div>
       <div class="card">🤝 Share Experience</div>
     </div>
@@ -123,79 +132,78 @@
     </div>
   </section>
 
- <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    // ✅ Navbar update if logged in
-    const user = JSON.parse(localStorage.getItem("loggedInUser"));
-    const nav = document.getElementById("navbar-links");
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  // ✅ Navbar update if logged in
+  const user = JSON.parse(localStorage.getItem("loggedInUser"));
+  const nav = document.getElementById("navbar-links");
 
-    if (user) {
-      nav.innerHTML = `
-        <span style="margin-right:10px;">👋 Hi, ${user.username}</span>
-        <a href="#" id="logoutBtn">Logout</a>
-      `;
-      document.getElementById("logoutBtn").addEventListener("click", () => {
-        localStorage.removeItem("loggedInUser");
-        window.location.reload();
-      });
-    }
-
-    // ✅ Date picker restriction
-    let today = new Date().toISOString().split("T")[0];
-    let startInput = document.getElementById("startDate");
-    let endInput = document.getElementById("endDate");
-
-    if (startInput && endInput) {
-      startInput.setAttribute("min", today);
-      endInput.setAttribute("min", today);
-
-      startInput.addEventListener("change", () => {
-        endInput.setAttribute("min", startInput.value);
-      });
-    }
-  });
-
-  // ✅ Trip planner function
-  function planTrip() {
-    const user = JSON.parse(localStorage.getItem("loggedInUser"));
-    if (!user) {
-      alert("⚠️ Please login first!");
-      return;
-    }
-
-    let destination = document.getElementById("destination").value.trim();
-    let startDate = document.getElementById("startDate").value;
-    let endDate = document.getElementById("endDate").value;
-    let people = document.getElementById("people").value;
-
-    if (!destination || !startDate || !endDate || !people) {
-      alert("⚠️ Please fill all fields!");
-      return;
-    }
-
-    // calculate days
-    let start = new Date(startDate);
-    let end = new Date(endDate);
-    let days = Math.floor((end - start) / (1000 * 60 * 60 * 24)) + 1;
-    if (days <= 0) {
-      alert("⚠️ End date must be after start date!");
-      return;
-    }
-
-    // save trip data
-    localStorage.setItem("tripData", JSON.stringify({
-      destination, days, people: parseInt(people)
-    }));
-
-    // redirect
-    window.location.href = "trip-schedule.html";
+  if (user) {
+    nav.innerHTML = `
+      <span style="margin-right:10px;">👋 Hi, ${user.username}</span>
+      <a href="#" id="logoutBtn">Logout</a>
+    `;
+    document.getElementById("logoutBtn").addEventListener("click", () => {
+      localStorage.removeItem("loggedInUser");
+      window.location.reload();
+    });
   }
+
+  // ✅ Date picker restriction
+  let today = new Date().toISOString().split("T")[0];
+  let startInput = document.getElementById("startDate");
+  let endInput = document.getElementById("endDate");
+
+  if (startInput && endInput) {
+    startInput.setAttribute("min", today);
+    endInput.setAttribute("min", today);
+
+    startInput.addEventListener("change", () => {
+      endInput.setAttribute("min", startInput.value);
+    });
+  }
+});
+
+// ✅ Trip planner function
+function planTrip() {
+  const user = JSON.parse(localStorage.getItem("loggedInUser"));
+  if (!user) {
+    alert("⚠️ Please login first!");
+    return;
+  }
+
+  let destination = document.getElementById("destinationSelect").value;
+  let startDate = document.getElementById("startDate").value;
+  let endDate = document.getElementById("endDate").value;
+  let people = document.getElementById("people").value;
+
+  if (!destination || !startDate || !endDate || !people) {
+    alert("⚠️ Please fill all fields!");
+    return;
+  }
+
+  // calculate days
+  let start = new Date(startDate);
+  let end = new Date(endDate);
+  let days = Math.floor((end - start) / (1000 * 60 * 60 * 24)) + 1;
+  if (days <= 0) {
+    alert("⚠️ End date must be after start date!");
+    return;
+  }
+
+  // save trip data
+  localStorage.setItem("tripData", JSON.stringify({
+    destination, days, people: parseInt(people)
+  }));
+
+  // redirect
+  window.location.href = "trip-schedule.html";
+}
 </script>
 
-
-  <footer>
-    <p>Contact us: planandgo@gmail.com | +91 98765 43210</p>
-    <p>© 2025 Plan & Go. All rights reserved.</p>
-  </footer>
+<footer>
+  <p>Contact us: planandgo@gmail.com | +91 98765 43210</p>
+  <p>© 2025 Plan & Go. All rights reserved.</p>
+</footer>
 </body>
 </html>

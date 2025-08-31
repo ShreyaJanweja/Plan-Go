@@ -279,3 +279,33 @@ footer {
   transform: translateY(-8px);
   box-shadow: 0 10px 20px rgba(0,0,0,0.2);
 }
+
+
+
+/*
+  <style>
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    .suggestions {
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background: white;
+      max-height: 200px;
+      overflow-y: auto;
+      position: absolute;
+      width: calc(100% - 40px);
+      z-index: 1000;
+    }
+    .suggestions div {
+      padding: 8px;
+      cursor: pointer;
+    }
+    .suggestions div:hover {
+      background: #f0f0f0;
+    }
+    .destination-input {
+      position: relative;
+    }
+  </style> */
