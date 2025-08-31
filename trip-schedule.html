@@ -1,76 +1,128 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Your Trip Plan</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
-     body {
+    :root {
+      --glass: rgba(255,255,255,0.55);
+      --glass-2: rgba(255,255,255,0.25);
+      --glass-border: rgba(255,255,255,0.6);
+      --card-shadow: 0 10px 30px rgba(18,24,38,0.08);
+      --accent: #4a90e2;
+    }
+    body {
       margin: 0;
       padding: 0;
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #1f1c2c, #928DAB);
+      font-family: 'Poppins', 'Montserrat', sans-serif;
+      background: url('suggested bg.png') no-repeat center center fixed;
+      background-size: cover;
       color: #1e1c1c;
+      min-height: 100vh;
     }
-    header {
-      background: #4a90e2;
-      color: #fff;
-      text-align: center;
-      padding: 20px;
-      font-size: 22px;
-      font-weight: 600;
+    /* Navbar styling (same as project.html) */
+    .navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 50px;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(12px);
+  font-family: 'Montserrat', sans-serif;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+    .navbar .logo {
+      font-size: 26px;
+  font-weight: 700;
+  color: #2A7B9B;
+  letter-spacing: 1px;
     }
+    /* Glassmorphism effect for trip container */
     .container {
       max-width: 900px;
-      margin: 20px auto;
-      padding: 20px;
-      background: #fff;
-      border-radius: 15px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      margin: 40px auto 20px auto;
+      padding: 32px 24px;
+      border-radius: 22px;
+      background: linear-gradient(135deg, var(--glass), var(--glass-2));
+      backdrop-filter: blur(18px) saturate(120%);
+      -webkit-backdrop-filter: blur(18px) saturate(120%);
+      border: 1.5px solid var(--glass-border);
+      box-shadow: var(--card-shadow), 0 8px 32px rgba(18,24,38,0.10);
+      position: relative;
     }
     h2 {
-      color: #333;
+      color: #222b45;
+      font-family: 'Montserrat', 'Poppins', sans-serif;
+      font-weight: 700;
+      margin-top: 0;
     }
     .day-card {
-      margin: 20px 0;
-      padding: 15px;
-      border-radius: 12px;
-      background: #f9fafb;
-      border: 1px solid #ddd;
+      margin: 24px 0;
+      padding: 18px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.22);
+      border: 1px solid rgba(255,255,255,0.25);
+      box-shadow: 0 2px 12px rgba(18,24,38,0.04);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      transition: box-shadow 0.2s;
     }
     .day-card h3 {
       margin-top: 0;
-      color: #4a90e2;
+      color: var(--accent);
+      font-family: 'Montserrat', 'Poppins', sans-serif;
+      font-weight: 600;
     }
     ul {
       padding-left: 20px;
     }
     .expense-box {
-      background: #eef6ff;
-      padding: 15px;
-      border-radius: 10px;
-      margin-top: 20px;
-      font-weight: 500;
+      background: rgba(74,144,226,0.08);
+      padding: 18px;
+      border-radius: 12px;
+      margin-top: 28px;
+      font-weight: 600;
+      color: #1e1c1c;
+      border: 1px solid rgba(74,144,226,0.18);
+      font-family: 'Montserrat', 'Poppins', sans-serif;
     }
     .back-btn {
       display: inline-block;
       margin-top: 20px;
-      padding: 10px 20px;
-      background: #4a90e2;
+      padding: 10px 22px;
+      background: var(--accent);
       color: #fff;
       text-decoration: none;
       border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      font-family: 'Montserrat', 'Poppins', sans-serif;
+      box-shadow: 0 2px 8px rgba(74,144,226,0.10);
+      transition: background 0.2s;
     }
     .back-btn:hover {
       background: #357ABD;
     }
+    @media (max-width: 600px) {
+      .container {
+        padding: 14px 4vw;
+        margin: 24px 2vw 12px 2vw;
+      }
+      .navbar {
+        font-size: 1.1rem;
+        padding-left: 12px;
+        height: 54px;
+      }
+    }
   </style>
 </head>
 <body>
-  <header>✨ Your Personalized Trip Plan ✨</header>
+  <!-- Navbar (like project.html) -->
+  <header class="navbar">
+    <div class="logo">Plan & Go ✈</div>
+  </header>
 
   <div class="container" id="tripContainer">
     <!-- Trip plan will load here -->
@@ -80,7 +132,7 @@
     <a href="project.html" class="back-btn">← Back to Home</a>
   </div>
 
-<script>
+  <script>
   // ✅ Extended activities for destinations
  
   const activitiesList = {
@@ -590,7 +642,5 @@
   // Run when page loads
   document.addEventListener("DOMContentLoaded", generateTrip);
 </script>
-
-
 </body>
 </html>
