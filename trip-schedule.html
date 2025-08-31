@@ -591,57 +591,95 @@
     const container = document.getElementById("tripContainer");
 
     if (!tripData) {
-      container.innerHTML = "<p>No trip planned yet. Go back and create one!</p>";
-      return;
+        container.innerHTML = "<p>No trip planned yet. Go back and create one!</p>";
+        return;
     }
 
     let { destination, days, people } = tripData;
     let activities = activitiesList[destination];
 
-    // ❌ invalid destination check
     if (!activities) {
-      container.innerHTML = `<p>❌ Destination "${destination}" not valid. Please go back and choose a valid one!</p>`;
-      return;
+        container.innerHTML = `<p>❌ Destination "${destination}" not valid. Please go back and choose a valid one!</p>`;
+        return;
     }
 
+    // Define international destinations and their per-day cost in USD
+    const internationalCostsUSD = {
+        "Dubai": 200,
+        "Paris": 250,
+        "London": 230,
+        "New York": 300,
+        "Calgary": 250,
+        "Surrey": 4000,
+        "Ontario": 350,
+        "Singapore": 220,
+        "Tokyo": 280,
+        "Bangkok": 200,
+        "Bali": 180,
+        "Maldives": 300,
+        "Switzerland": 320,
+        "Rome": 250,
+        "Barcelona": 240,
+        "Istanbul": 200,
+        "Sydney": 300,
+        "Los Angeles": 280,
+        "Hong Kong": 220,
+        "Cape Town": 200,
+        "Athens": 180,
+        "Moscow": 250,
+        "Berlin": 200
+    };
+
+    const isInternational = destination in internationalCostsUSD;
+    let totalExpense = 0;
+    let activityIndex = 0;
+
     let html = `
-      <h2>📍 Destination: ${destination}</h2>
-      <p><b>Duration:</b> ${days} days | <b>Travellers:</b> ${people}</p>
+        <h2>📍 Destination: ${destination}</h2>
+        <p><b>Duration:</b> ${days} days | <b>Travellers:</b> ${people}</p>
     `;
 
-    let totalExpense = 0;
-    let activityIndex = 0; // track activities used
-
     for (let i = 1; i <= days; i++) {
-      // per day max 3 activities
-      let dayActivities = activities.slice(activityIndex, activityIndex + 3);
-      activityIndex += 3;
+        let dayActivities = activities.slice(activityIndex, activityIndex + 3);
+        activityIndex += 3;
+        if (dayActivities.length === 0) break;
 
-      if (dayActivities.length === 0) break; // agar activities khatam ho jaye
-
-      let dailyCost = 2000 + (people * 500);
-      totalExpense += dailyCost;
-
-      html += `
-        <div class="day-card">
-          <h3>Day ${i}</h3>
-          <ul>${dayActivities.map(a => `<li>${a}</li>`).join("")}</ul>
-          <p><b>Estimated Daily Cost:</b> ₹${dailyCost}</p>
-        </div>
-      `;
+        let dailyCost;
+        if (isInternational) {
+            // Multiply by number of people for international trips
+            dailyCost = internationalCostsUSD[destination] * people;
+            totalExpense += dailyCost;
+            html += `
+                <div class="day-card">
+                    <h3>Day ${i}</h3>
+                    <ul>${dayActivities.map(a => `<li>${a}</li>`).join("")}</ul>
+                    <p><b>Estimated Daily Cost:</b> $${dailyCost.toLocaleString()}</p>
+                </div>
+            `;
+        } else {
+            dailyCost = 2000 + (people * 500);
+            totalExpense += dailyCost;
+            html += `
+                <div class="day-card">
+                    <h3>Day ${i}</h3>
+                    <ul>${dayActivities.map(a => `<li>${a}</li>`).join("")}</ul>
+                    <p><b>Estimated Daily Cost:</b> ₹${dailyCost.toLocaleString()}</p>
+                </div>
+            `;
+        }
     }
 
     html += `
-      <div class="expense-box">
-        💰 <b>Total Estimated Trip Cost:</b> ₹${totalExpense}
-      </div>
+        <div class="expense-box">
+            💰 <b>Total Estimated Trip Cost:</b> ${isInternational ? '$' + totalExpense.toLocaleString() : '₹' + totalExpense.toLocaleString()}
+        </div>
     `;
 
     container.innerHTML = html;
-  }
+}
 
-  // Run when page loads
-  document.addEventListener("DOMContentLoaded", generateTrip);
+document.addEventListener("DOMContentLoaded", generateTrip);
+
 </script>
 </body>
 </html>
