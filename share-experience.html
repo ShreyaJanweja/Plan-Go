@@ -1,103 +1,215 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Share Your Experience</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="aboutus.css">
 <style>
   body {
-    font-family: 'Poppins', sans-serif;
-    background: #f0f2f5;
+    font-family: 'Poppins', 'Montserrat', sans-serif;
     margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     min-height: 100vh;
+    background: linear-gradient(135deg, #a8edea, #fed6e3); /* same as aboutus.css */
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Navbar (same as aboutus.html/aboutus.css) */
+  .navbar {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.75);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 36px;
+    height: 64px;
+    box-sizing: border-box;
+    font-family: 'Montserrat', 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    position: relative;
+  }
+  .navbar .logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #2A7B9B;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    font-family: 'Montserrat', 'Poppins', sans-serif;
+    text-decoration: none;
+  }
+  .navbar nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 28px;
+  }
+  .navbar nav ul li {
+    display: inline-block;
+  }
+  .navbar nav ul li a {
+    color: #2A7B9B;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: 'Montserrat', 'Poppins', sans-serif;
+    padding: 8px 16px;
+    border-radius: 6px;
+    transition: background 0.18s;
+  }
+  .navbar nav ul li a:hover {
+    background: rgba(255,255,255,0.13);
+  }
+  @media (max-width: 600px) {
+    .navbar {
+      font-size: 1.1rem;
+      padding: 0 10px;
+      height: 54px;
+    }
+    .navbar nav ul {
+      gap: 10px;
+    }
+    .navbar .logo {
+      font-size: 1.1rem;
+    }
   }
 
   .feedback-container {
-    background: white;
-    padding: 30px 40px;
-    border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  background: linear-gradient(135deg, rgba(255,255,255,0.55), rgba(255,255,255,0.25));
+  backdrop-filter: blur(14px) saturate(120%);
+  -webkit-backdrop-filter: blur(14px) saturate(120%);
+  border: 1.5px solid rgba(255,255,255,0.6);
+  padding: 20px 25px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.10);
+  width: 100%;
+  max-width: 600px;  
+  margin: 30px auto;
+}
+  
+input[type="text"],
+input[type="email"],
+textarea,
+select,
+button {
+  width: 100%;          /* container ke full width tak stretch */
+  box-sizing: border-box;  /* padding bhi width mei count hogi */
+}
+h2 {
+  text-align: center;
+  margin-bottom: 6px;   /* kam spacing */
+  font-size: 1.4rem;    /* thoda chhota heading */
+}
+
+p.description {
+  text-align: center;
+  color: #555;
+  margin-bottom: 12px;  /* kam spacing */
+  font-size: 0.9rem;    /* chhoti description */
+}
+
+label {
+  display: block;
+  margin-top: 8px;     /* kam gap */
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+input, select, textarea {
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    padding: 10px;
     width: 100%;
-    max-width: 500px;
-  }
-
-  h2 {
-    text-align: center;
-    margin-bottom: 10px;
-  }
-
-  p.description {
-    text-align: center;
-    color: #555;
-    margin-bottom: 25px;
-  }
-
-  label {
-    display: block;
-    margin-top: 15px;
-    font-weight: 500;
-  }
-
-  input[type="text"], input[type="email"], textarea, select {
-    width: 100%;
-    padding: 10px 12px;
-    margin-top: 5px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    font-size: 14px;
     box-sizing: border-box;
-  }
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    transition: all 0.3s ease-in-out;
+}
 
-  textarea {
-    resize: vertical;
-    min-height: 80px;
-  }
+input:focus, select:focus, textarea:focus {
+    border-color: #4a90e2;
+    box-shadow: 0 0 8px rgba(74,144,226,0.3);
+    outline: none;
+}
 
-  .stars {
-    display: flex;
-    gap: 5px;
-    margin-top: 5px;
-    cursor: pointer;
-  }
+input[type="text"], input[type="email"], textarea, select {
+  padding: 6px 8px;    /* input fields ki height kam */
+  font-size: 14px;
+}
 
-  .stars span {
-    font-size: 25px;
-    color: #ccc;
-    transition: color 0.2s;
-  }
+textarea {
+  min-height: 60px;   /* kam height */
+}
+.stars {
+  display: flex;
+  gap: 5px;
+  font-size: 25px;
+  cursor: pointer;
+}
+.star {
+  color: lightgray;
+  transition: color 0.2s;
+}
+.star.selected {
+  color: gold;
+}
 
-  .stars span.selected {
-    color: #f5b50a;
-  }
 
-  select {
-    cursor: pointer;
-    margin-top: 5px;
-  }
+.stars span {
+  font-size: 20px;    /* stars chhote */
+}
+.star-rating span {
+    cursor: default !important;   /* sirf arrow dikhega */
+    text-decoration: none !important; /* underline nahi aayegi */
+}
 
-  button {
-    margin-top: 20px;
-    width: 100%;
-    padding: 12px;
-    background: #007bff;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    cursor: pointer;
-  }
+/* .star-rating label, 
+.star-rating a {
+    cursor: default !important;
+    text-decoration: none !important;
+} */
 
-  button:hover {
+.star-rating span:hover,
+.star-rating span:hover ~ span {
+  color: gold;   /* hover pe highlight */
+  text-decoration: none;
+}
+
+button {
+  border-radius: 10px;               /* rounded edges */
+  padding: 12px 20px;                /* spacing */
+  border: none;  
+  background: #2A7B9B;
+  margin-top: 12px;
+  /* padding: 8px; */
+  font-size: 14px;
+  color: white;                      /* text color */
+    font-size: 16px;                   /* bigger font */
+    font-weight: bold;
+    cursor: pointer;                   /* hand cursor for button */
+    transition: all 0.3s ease-in-out;  /* smooth hover */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* soft shadow */
+}
+
+  button:hover, input[type="submit"]:hover {
     background: #0056b3;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    transform: translateY(-2px); /* thoda upar lift effect */
   }
 
   .success-msg {
-    margin-top: 15px;
+    margin-top: 12px;
     text-align: center;
     color: green;
     display: none;
@@ -106,17 +218,27 @@
 </style>
 </head>
 <body>
+  <!-- Navbar (same as aboutus.html) -->
+  <header class="navbar">
+    <a href="project.html" class="logo">Plan & Go ✈</a>
+    <nav>
+      <ul>
+        <li><a href="project.html">Home</a></li>
+      </ul>
+    </nav>
+  </header>
 
-<div class="feedback-container">
-  <h2>Share Your Experience</h2>
-  <p class="description">Tell us about your trip and help others plan better!</p>
+  <div class="feedback-container">
+    <h2>Share Your Experience</h2>
+    <p class="description">Tell us about your trip and help others plan better!</p>
 
-  <label>Name</label>
-  <input type="text" id="userName" placeholder="Enter your Name">
+    <label>Name</label>
+    <input type="text" id="userName" placeholder="Enter your Name">
 
-  <label>Email</label>
-  <input type="email" id="userEmail" placeholder="Enter your Emailid">
+    <label>Email</label>
+    <input type="email" id="userEmail" placeholder="Enter your Emailid">
 
+<<<<<<< HEAD
   <label>Trip Destination</label>
   <select id="tripDestination">
     <option value="" disabled selected>Select your trip destination</option>
@@ -170,31 +292,88 @@
     <option value="Moscow">Moscow</option>
     <option value="Berlin">Berlin</option>
   </select>
+=======
+    <label>Trip Destination</label>
+    <select id="tripDestination">
+      <option value="" disabled selected>Select your trip destination</option>
+      <!-- Domestic Destinations -->
+      <option value="Agra">Agra</option>
+      <option value="Ahmedabad">Ahmedabad</option>
+      <option value="Bathinda">Bathinda</option>
+      <option value="Chandigarh">Chandigarh</option>
+      <option value="Chennai">Chennai</option>
+      <option value="Darjeeling">Darjeeling</option>
+      <option value="Delhi">Delhi</option>
+      <option value="Goa">Goa</option>
+      <option value="Jaipur">Jaipur</option>
+      <option value="Jaisalmer">Jaisalmer</option>
+      <option value="Kashmir">Kashmir</option>
+      <option value="Kaziranga">Kaziranga</option>
+      <option value="Kochi">Kochi</option>
+      <option value="Kolkata">Kolkata</option>
+      <option value="Leh Ladakh">Leh Ladakh</option>
+      <option value="Manali">Manali</option>
+      <option value="Mumbai">Mumbai</option>
+      <option value="Mysore">Mysore</option>
+      <option value="Pune">Pune</option>
+      <option value="Rishikesh">Rishikesh</option>
+      <option value="Shillong">Shillong</option>
+      <option value="Shimla">Shimla</option>
+      <option value="Udaipur">Udaipur</option>
+      <option value="Varanasi">Varanasi</option>
+      <!-- International Destinations -->
+      <option value="Dubai">Dubai</option>
+      <option value="Paris">Paris</option>
+      <option value="London">London</option>
+      <option value="New York">New York</option>
+      <option value="Calgary">Calgary</option>
+      <option value="Surrey">Surrey</option>
+      <option value="Ontario">Ontario</option>
+      <option value="Singapore">Singapore</option>
+      <option value="Tokyo">Tokyo</option>
+      <option value="Bangkok">Bangkok</option>
+      <option value="Bali">Bali</option>
+      <option value="Maldives">Maldives</option>
+      <option value="Switzerland">Switzerland</option>
+      <option value="Rome">Rome</option>
+      <option value="Barcelona">Barcelona</option>
+      <option value="Istanbul">Istanbul</option>
+      <option value="Sydney">Sydney</option>
+      <option value="Los Angeles">Los Angeles</option>
+      <option value="Hong Kong">Hong Kong</option>
+      <option value="Cape Town">Cape Town</option>
+      <option value="Athens">Athens</option>
+      <option value="Moscow">Moscow</option>
+      <option value="Berlin">Berlin</option>
+    </select>
 
-  <label>Your Feedback</label>
-  <textarea id="feedbackText" placeholder="Write your experience here..."></textarea>
+    <label>Your Feedback</label>
+    <textarea id="feedbackText" placeholder="Write your experience here..."></textarea>
+>>>>>>> 85f11e83c562deb880e9f8718acddbb91c659555
 
-  <label>Rate Your Trip (Stars)</label>
-  <div class="stars" id="starRating">
-    <span data-value="1">&#9733;</span>
-    <span data-value="2">&#9733;</span>
-    <span data-value="3">&#9733;</span>
-    <span data-value="4">&#9733;</span>
-    <span data-value="5">&#9733;</span>
-  </div>
-
-  <label>Quick Rating</label>
-  <select id="dropdownRating">
-    <option value="" disabled selected>Select rating</option>
-    <option value="3">⭐⭐⭐</option>
-    <option value="4">⭐⭐⭐⭐</option>
-    <option value="5">⭐⭐⭐⭐⭐</option>
-  </select>
-
-  <button id="submitBtn">Submit Feedback</button>
-
-  <div class="success-msg" id="successMsg">Thank you! Your feedback has been recorded.</div>
+    <label>Rate Your Trip (Stars)</label>
+    <div class="stars" id="starRating">
+  <span class="star" data-value="1">&#9733;</span>
+  <span class="star" data-value="2">&#9733;</span>
+  <span class="star" data-value="3">&#9733;</span>
+  <span class="star" data-value="4">&#9733;</span>
+  <span class="star" data-value="5">&#9733;</span>
 </div>
+<input type="hidden" name="rating" id="ratingValue">
+
+
+    <label>Quick Rating</label>
+    <select id="dropdownRating">
+      <option value="" disabled selected>Select rating</option>
+      <option value="3">⭐⭐⭐</option>
+      <option value="4">⭐⭐⭐⭐</option>
+      <option value="5">⭐⭐⭐⭐⭐</option>
+    </select>
+
+    <button id="submitBtn">Submit Feedback</button>
+
+    <div class="success-msg" id="successMsg">Thank you! Your feedback has been recorded.</div>
+  </div>
 
 <script>
 
