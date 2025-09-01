@@ -137,7 +137,7 @@
   </div>
 
   <script>
-  // ✅ Extended activities for destinations
+
  
   const activitiesList = {
   // 🌍 Indian Destinations
@@ -736,7 +736,6 @@
         return;
     }
 
-    // Define international destinations and their per-day cost in USD
     const internationalCostsUSD = {
         "Dubai": 200,
         "Paris": 250,
@@ -765,6 +764,11 @@
 
     const isInternational = destination in internationalCostsUSD;
     let totalExpense = 0;
+
+    // 🔑 per day activities count auto adjust
+    let activitiesPerDay = Math.floor(activities.length / days);
+    if (activitiesPerDay < 1) activitiesPerDay = 1;
+
     let activityIndex = 0;
 
     let html = `
@@ -773,13 +777,16 @@
     `;
 
     for (let i = 1; i <= days; i++) {
-        let dayActivities = activities.slice(activityIndex, activityIndex + 3);
-        activityIndex += 3;
-        if (dayActivities.length === 0) break;
+        let dayActivities = activities.slice(activityIndex, activityIndex + activitiesPerDay);
+        activityIndex += activitiesPerDay;
+
+        // agar activities khatam ho jayein toh baaki days blank activities
+        if (dayActivities.length === 0) {
+            dayActivities = ["Free day / Leisure"];
+        }
 
         let dailyCost;
         if (isInternational) {
-            // Multiply by number of people for international trips
             dailyCost = internationalCostsUSD[destination] * people;
             totalExpense += dailyCost;
             html += `
