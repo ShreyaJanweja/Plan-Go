@@ -299,13 +299,15 @@ const pages = [
         <div class="arrow">➜</div>
       </div>
     `;
+
     grid.appendChild(card);
 
-    // Click to redirect to corresponding page
+    
     card.addEventListener('click', ()=>{
       window.location.href = pages[i];
     });
   });
+
 
   // Show on scroll effect
   const observer = new IntersectionObserver(entries => {
@@ -317,9 +319,10 @@ const pages = [
     });
   }, { threshold: 0.2 });
 
+  
   document.querySelectorAll('.card').forEach(card => {
     observer.observe(card);
   });
-</script>
 
+</script>
 </body>
