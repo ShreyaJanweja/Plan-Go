@@ -125,13 +125,14 @@
   </style>
 </head>
 <body>
-  <!-- Navbar (like project.html) -->
+
+
   <header class="navbar">
     <div class="logo">Plan & Go ✈</div>
   </header>
 
   <div class="container" id="tripContainer">
-    <!-- Trip plan will load here -->
+ 
   </div>
 
   <div style="text-align:center;">
@@ -1425,33 +1426,32 @@
     "Paris": 2500,
     "London": 2300,
     "New York": 3000,
-    "Calgary": 2500,
-    "Surrey": 4000,   // tumne pehle hi 4000 rakha tha
+    "Calgary": 5000,
+    "Surrey": 4000,   
     "Ontario": 3500,
     "Singapore": 2200,
     "Tokyo": 2800,
     "Bangkok": 2000,
-    "Bali": 1800,
+    "Bali": 2800,
     "Maldives": 3000,
     "Switzerland": 3200,
     "Rome": 2500,
     "Barcelona": 2400,
     "Istanbul": 2000,
-    "Sydney": 3000,
-    "Los Angeles": 2800,
+    "Sydney": 4000,
+    "Los Angeles": 5800,
     "Hong Kong": 2200,
     "Cape Town": 2000,
     "Athens": 1800,
     "Moscow": 2500,
     "Berlin": 2000,
 
-    // ✅ Added New Places (thousands me updated)
     "Amsterdam": 2400,
     "Vienna": 2400,
     "Seoul": 2300,
     "Kuala Lumpur": 2100,
     "Doha": 2200,
-    "Cairo": 1900,
+    "Cairo": 2900,
     "Mexico City": 2000,
     "Rio de Janeiro": 2200,
     "San Francisco": 2700,
@@ -1474,7 +1474,7 @@
         let dayActivities = activities.slice(activityIndex, activityIndex + activitiesPerDay);
         activityIndex += activitiesPerDay;
 
-        // agar activities khatam ho jaye toh repeat from start
+
         if (dayActivities.length === 0) {
             activityIndex = 0;
             dayActivities = activities.slice(activityIndex, activityIndex + activitiesPerDay);
