@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,7 +40,7 @@
       <input type="date" id="endDate">
 
       <label for="destinationSelect"></label>
-      <select id="destinationSelect">
+      <select id="destinationSelect" required>
         <option value="" disabled selected>Choose destination</option>
         <!-- Indian Destinations -->
         <option disabled>──Indian Destinations ──</option>
@@ -125,9 +126,9 @@
     and share your trips with friends. Our simple design makes travel planning smooth and fun!</p>
 
     <div class="features">
-      <a href="http://127.0.0.1:5501/aboutus.html" class="card"> 👥 About us </a>
+      <a href="aboutus.html" class="card"> 👥 About us </a>
       <div class="card">☀ Get Weather Updates</div>
-      <a href="http://127.0.0.1:5501/share-experience.html" class="card">🤝 Share Experience</a>
+      <a href="share-experience.html" class="card">🤝 Share Experience</a>
     </div>
   </section>
 
@@ -137,7 +138,7 @@
     <p>Discover some of our handpicked destinations to make your travel unforgettable.</p>
   
     <div class="trips-container">
-      <a href="http://127.0.0.1:5501/snowy.html">
+      <a href="snowy.html">
         <div class="trip-card">
           <img src="https://img.freepik.com/premium-photo/child-building-snowman-kids-build-snow-man-boy-girl-playing-outdoors-snowy-winter-day-outdoor-family-fun-christmas-vacation-mountains_1028938-177583.jpg" alt="Shimla Family Trip">
           <h3>Best Choices for Snowy Retreat</h3>
@@ -145,7 +146,7 @@
         </div>
       </a>
 
-      <a href="http://127.0.0.1:5501/sunny.html">
+      <a href="sunny.html">
         <div class="trip-card">
           <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80" alt="Goa Adventure">
           <h3>Best Choices for Sunny Shores </h3><br>
@@ -153,7 +154,7 @@
         </div>
       </a>
 
-      <a href="http://127.0.0.1:5501/pilgrimage.html">
+      <a href="pilgrimage.html">
         <div class="trip-card">
           <img src="https://images.nativeplanet.com/img/2017/09/04-1504499382-8.jpg" alt="Mandi">
           <h3>Best Choices for Pilgrimage</h3>
@@ -165,13 +166,13 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-  // ✅ Navbar update if logged in
-  const user = localStorage.getItem("loggedInUser"); // string, not JSON
+
+  const user = JSON.parse(localStorage.getItem("loggedInUser")); 
   const nav = document.getElementById("navbar-links");
 
   if (user) {
     nav.innerHTML = `
-      <span style="margin-right:10px;">👋 Hi, ${user}</span>
+      <span style="margin-right:10px;">👋 Hi, ${user.fullname}</span>
       <a href="#" id="logoutBtn">Logout</a>
     `;
     document.getElementById("logoutBtn").addEventListener("click", () => {
@@ -197,19 +198,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // ✅ Trip planner function
 function planTrip() {
-  const user = localStorage.getItem("loggedInUser");
-  if (!user) {
+  const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+
+  if (!loggedInUser) {
     alert("⚠️ Please login first!");
     window.location.href = "login.html";
     return;
   }
-
+  
   let destination = document.getElementById("destinationSelect").value;
   let startDate = document.getElementById("startDate").value;
   let endDate = document.getElementById("endDate").value;
   let people = document.getElementById("people").value;
 
-  if (!destination || !startDate || !endDate || !people) {
+  // ✅ Fix: check destination properly
+  if (!destination || destination === "") {
+    alert("⚠️ Please select a destination!");
+    return;
+  }
+
+  if (!startDate || !endDate || !people) {
     alert("⚠️ Please fill all fields!");
     return;
   }

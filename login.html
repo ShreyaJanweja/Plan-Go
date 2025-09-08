@@ -94,36 +94,35 @@
   </div>
 
   <script>
-    window.onload = () => {
-      const loginForm = document.getElementById("loginForm");
+  window.onload = () => {
+    const loginForm = document.getElementById("loginForm");
 
-      loginForm.addEventListener("submit", (e) => {
-        e.preventDefault();
+    loginForm.addEventListener("submit", (e) => {
+      e.preventDefault();
 
-        const email = document.getElementById("email").value.trim();
-        const password = document.getElementById("password").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value.trim();
 
-        const savedEmail = localStorage.getItem("userEmail");
-        const savedPassword = localStorage.getItem("userPassword");
+      const savedEmail = localStorage.getItem("userEmail");
+      const savedPassword = localStorage.getItem("userPassword");
+      const savedFullName = localStorage.getItem("userFullName"); // ✅ fullname bhi lao
 
-        console.log("👉 Entered Email:", email);
-        console.log("👉 Saved Email:", savedEmail);
-        console.log("👉 Entered Password:", password);
-        console.log("👉 Saved Password:", savedPassword);
+      if (email === savedEmail && password === savedPassword) {
+        alert("🎉 Login Successful!");
 
-     if (email === savedEmail && password === savedPassword) {
-  alert("🎉 Login Successful!");
+        // ✅ Active user ko save karo
+        localStorage.setItem("loggedInUser", JSON.stringify({
+          email: savedEmail,
+          fullname: savedFullName
+        }));
 
-  // ✅ active user set karo
-  localStorage.setItem("loggedInUser", JSON.stringify({ email: savedEmail, username: savedUsername }));
+        window.location.href = "project.html";
+      } else {
+        alert("❌ Invalid Email or Password");
+      }
+    });
+  }
+</script>
 
-  window.location.href = "project.html";
-} else {
-  alert("❌ Invalid Email or Password");
-}
-
-      });
-    }
-  </script>
 </body>
 </html>
