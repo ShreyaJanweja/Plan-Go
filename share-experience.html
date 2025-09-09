@@ -205,7 +205,7 @@ button {
   button:hover, input[type="submit"]:hover {
     background: #0056b3;
     box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-    transform: translateY(-2px); /* thoda upar lift effect */
+    transform: translateY(-2px); 
   }
 
   .success-msg {
@@ -343,6 +343,7 @@ button {
   </div>
 
 <script>
+
   // Pre-fill user info only
   const user = JSON.parse(localStorage.getItem("loggedInUser")) || {};
 
@@ -406,11 +407,13 @@ button {
 
     document.getElementById("successMsg").style.display = "block";
     document.getElementById("feedbackText").value = "";
-    document.getElementById("tripDestination").value = ""; // reset dropdown
+    document.getElementById("tripDestination").value = ""; 
     selectedRating = 0;
     updateStars(selectedRating);
     dropdown.value = "";
   });
+
+  
 </script>
 
 </body>

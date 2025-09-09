@@ -42,8 +42,10 @@
       <label for="destinationSelect"></label>
       <select id="destinationSelect" required>
         <option value="" disabled selected>Choose destination</option>
+
         <!-- Indian Destinations -->
         <option disabled>──Indian Destinations ──</option>
+        
         <option value="Agra">Agra</option>
         <option value="Ahmedabad">Ahmedabad</option>
         <option value="Amritsar">Amritsar</option>
@@ -165,6 +167,7 @@
   </section>
 
 <script>
+
 document.addEventListener("DOMContentLoaded", () => {
 
   const user = JSON.parse(localStorage.getItem("loggedInUser")); 
@@ -181,7 +184,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // ✅ Date picker restriction
   let today = new Date().toISOString().split("T")[0];
   let startInput = document.getElementById("startDate");
   let endInput = document.getElementById("endDate");
@@ -242,7 +244,7 @@ function planTrip() {
 </script>
 
 <footer>
-  <p>Contact us: planandgo@gmail.com | +91 98765 43210</p>
+  <p>Contact us: plan&go@gmail.com | +91 98765 43210</p>
   <p>© 2025 Plan & Go. All rights reserved.</p>
 </footer>
 </body>
