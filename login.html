@@ -77,7 +77,7 @@
   </style>
 </head>
 <body>
-  <!-- Background Video -->
+ 
   <video class="video-bg" autoplay muted loop>
     <source src="login bg3.mp4" type="video/mp4">
     Your browser does not support the video tag.
@@ -105,12 +105,12 @@
 
       const savedEmail = localStorage.getItem("userEmail");
       const savedPassword = localStorage.getItem("userPassword");
-      const savedFullName = localStorage.getItem("userFullName"); // ✅ fullname bhi lao
+      const savedFullName = localStorage.getItem("userFullName");  
 
       if (email === savedEmail && password === savedPassword) {
         alert("🎉 Login Successful!");
 
-        // ✅ Active user ko save karo
+       
         localStorage.setItem("loggedInUser", JSON.stringify({
           email: savedEmail,
           fullname: savedFullName
