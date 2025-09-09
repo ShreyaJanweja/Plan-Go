@@ -196,7 +196,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// ✅ Trip planner function
+
 function planTrip() {
   const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
 
@@ -211,7 +211,7 @@ function planTrip() {
   let endDate = document.getElementById("endDate").value;
   let people = document.getElementById("people").value;
 
-  // ✅ Fix: check destination properly
+  
   if (!destination || destination === "") {
     alert("⚠️ Please select a destination!");
     return;
