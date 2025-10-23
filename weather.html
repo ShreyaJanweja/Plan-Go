@@ -1,174 +1,374 @@
 
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Weather Updates 🌤️</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plan & Go Weather 🌤️</title>
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: "Poppins", sans-serif;
-    }
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
-    body {
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: linear-gradient(135deg, #74ABE2, #5563DE);
-      color: #fff;
-    }
+  body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #c0f0f9, #fcd9e5);
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
-    .container {
-      width: 350px;
-      padding: 20px;
-      background: rgba(255, 255, 255, 0.15);
-      border-radius: 20px;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-      backdrop-filter: blur(10px);
-      text-align: center;
-    }
+  /* ---------------- NAVBAR ---------------- */
+  header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 60px;
+    background: rgba(255,255,255,0.8);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
 
-    h2 {
-      font-size: 24px;
-      margin-bottom: 10px;
-    }
+  .logo {
+    font-size: 26px;
+    font-weight: 600;
+    color: #2c7a99;
+    letter-spacing: 1px;
+  }
 
-    .search-box {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 20px;
-    }
+  nav a {
+    text-decoration: none;
+    color: #2c7a99;
+    margin-left: 25px;
+    font-weight: 500;
+    transition: 0.3s;
+  }
 
-    .search-box input {
-      padding: 10px;
-      border: none;
-      border-radius: 10px 0 0 10px;
-      outline: none;
-      width: 200px;
-    }
+  nav a:hover {
+    color: #055e85;
+  }
 
-    .search-box button {
-      padding: 10px;
-      border: none;
-      background: #0d6efd;
-      color: white;
-      border-radius: 0 10px 10px 0;
-      cursor: pointer;
-      transition: 0.3s;
-    }
+  /* ---------------- HERO ---------------- */
+  .hero {
+    text-align: center;
+    margin: 50px 20px 30px 20px;
+    max-width: 800px;
+  }
 
-    .search-box button:hover {
-      background: #0b5ed7;
-    }
+  .hero h1 {
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: #055e85;
+  }
 
-    .weather-card {
-      display: none;
-      margin-top: 20px;
-    }
+  .hero p {
+    color: #333;
+    margin-top: 15px;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
 
-    .weather-card img {
-      width: 100px;
-    }
+  /* ---------------- WEATHER CARD ---------------- */
+  .container {
+    width: 420px;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    text-align: center;
+    padding: 30px 25px;
+    transition: transform 0.3s ease;
+  }
 
-    .temp {
-      font-size: 40px;
-      font-weight: 600;
-    }
+  .container:hover {
+    transform: translateY(-5px);
+  }
 
-    .desc {
-      font-size: 20px;
-      text-transform: capitalize;
-    }
+  h2 {
+    color: #2c7a99;
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+  }
 
-    .extra {
-      margin-top: 10px;
-      font-size: 14px;
-    }
+  .search-box {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
 
-    .error {
-      color: #ffdddd;
-      margin-top: 10px;
-      font-size: 14px;
-    }
-  </style>
+  .search-box input {
+    padding: 10px;
+    border: none;
+    border-radius: 10px 0 0 10px;
+    outline: none;
+    width: 70%;
+    font-size: 1rem;
+    background: #f1f5f9;
+    color: #333;
+  }
+
+  .search-box button {
+    padding: 10px 15px;
+    border: none;
+    background: #2c7a99;
+    color: white;
+    border-radius: 0 10px 10px 0;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  .search-box button:hover {
+    background: #055e85;
+  }
+
+  .weather-card {
+    display: none;
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  .weather-card img {
+    width: 90px;
+    border-radius: 12px;
+  }
+
+  .temp {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #055e85;
+  }
+
+  .desc {
+    font-size: 1.1rem;
+    color: #333;
+    text-transform: capitalize;
+  }
+
+  .extra {
+    margin-top: 10px;
+    font-size: 0.95rem;
+    color: #555;
+  }
+
+  .forecast {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    overflow-x: auto;
+    gap: 10px;
+  }
+
+  .day {
+    background: #e0f4fa;
+    border-radius: 10px;
+    padding: 10px;
+    min-width: 75px;
+    text-align: center;
+  }
+
+  .pin-btn {
+    background: none;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+    color: #2c7a99;
+  }
+
+  .pinned {
+    margin-top: 20px;
+  }
+
+  .pinned button {
+    margin: 5px;
+    background: #2c7a99;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 8px 12px;
+    cursor: pointer;
+  }
+
+  .error {
+    color: #ff5252;
+    font-size: 14px;
+    margin-top: 10px;
+  }
+
+  footer {
+    margin-top: 60px;
+    color: #555;
+    font-size: 0.9rem;
+    text-align: center;
+    padding-bottom: 20px;
+  }
+</style>
 </head>
 <body>
 
-  <div class="container">
-    <h2>🌍 Weather Updates</h2>
+<header>
+  <div class="logo">Plan & Go 🌤️</div>
+  <nav>
+    <!-- <a href="project.html">Home</a> -->
+  </nav>
+</header>
 
-    <div class="search-box">
-      <input type="text" id="cityInput" placeholder="Enter city name..." />
-      <button onclick="getWeather()">🔍</button>
-    </div>
+<div class="hero">
+  <h1>Check Weather Before You Travel ✈️</h1>
+  <p>
+    Knowing the temperature and climate of your destination helps you plan smarter trips.  
+    Whether it's a sunny beach or a chilly hill station, this tool helps you decide  
+    when and where to go for the best experience 🌍.
+  </p>
+</div>
 
-    <div class="weather-card" id="weatherCard">
-      <h3 id="cityName"></h3>
-      <img id="weatherIcon" src="" alt="Weather Icon" />
-      <div class="temp" id="temperature"></div>
-      <div class="desc" id="description"></div>
-      <div class="extra" id="extraInfo"></div>
-    </div>
-
-    <div class="error" id="errorMsg"></div>
+<div class="container">
+  <h2>Find Weather Updates</h2>
+  <div class="search-box">
+    <input type="text" id="cityInput" placeholder="Enter city name..." />
+    <button onclick="getWeather()">🔍</button>
   </div>
 
-  <script>
-    const apiKey = "906b62a656e3c335f223d39e7e5b32dc"; // 🔑 Replace with your OpenWeatherMap API key
+  <div class="weather-card" id="weatherCard">
+    <h3 id="cityName"></h3>
+    <img id="weatherIcon" src="" alt="Weather Icon" />
+    <div class="temp" id="temperature"></div>
+    <div class="desc" id="description"></div>
+    <div class="extra" id="extraInfo"></div>
+    <div class="extra" id="localTime"></div>
+    <button class="pin-btn" onclick="pinCity()">📌</button>
+    <div class="forecast" id="forecast"></div>
+  </div>
 
-    async function getWeather() {
-      const city = document.getElementById("cityInput").value.trim();
-      const weatherCard = document.getElementById("weatherCard");
-      const errorMsg = document.getElementById("errorMsg");
+  <div class="pinned" id="pinnedCities"></div>
+  <div class="error" id="errorMsg"></div>
+</div>
 
-      if (city === "") {
-        errorMsg.textContent = "Please enter a city name!";
-        weatherCard.style.display = "none";
-        return;
-      }
+<footer>
+  © 2025 Plan & Go | Smart Travel Planning 🌍
+</footer>
 
-      const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_API_KEY&libraries=places"></script>
 
-      try {
-        const response = await fetch(url);
-        const data = await response.json();
+<script>
+  const apiKey = "906b62a656e3c335f223d39e7e5b32dc";
+  const weatherCard = document.getElementById("weatherCard");
+  const errorMsg = document.getElementById("errorMsg");
+  const pinnedCitiesDiv = document.getElementById("pinnedCities");
+  let autocomplete;
 
-        if (data.cod === "404") {
-          errorMsg.textContent = "City not found. Try again!";
-          weatherCard.style.display = "none";
-          return;
-        }
+  // ---------------- GOOGLE PLACE AUTOCOMPLETE ----------------
+  function initAutocomplete() {
+    const input = document.getElementById("cityInput");
+    autocomplete = new google.maps.places.Autocomplete(input, {
+      types: ["(cities)"],
+    });
 
-        errorMsg.textContent = "";
-        weatherCard.style.display = "block";
+    autocomplete.addListener("place_changed", () => {
+      const place = autocomplete.getPlace();
+      if (!place.address_components) return;
 
-        document.getElementById("cityName").textContent =
-          `${data.name}, ${data.sys.country}`;
-        document.getElementById("temperature").textContent =
-          `${Math.round(data.main.temp)}°C`;
-        document.getElementById("description").textContent =
-          data.weather[0].description;
-        document.getElementById("weatherIcon").src =
-          `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
-        document.getElementById("extraInfo").textContent =
-          `Humidity: ${data.main.humidity}% | Wind: ${data.wind.speed} m/s`;
-      } catch (error) {
-        errorMsg.textContent = "Error fetching data. Try again later!";
-        weatherCard.style.display = "none";
-      }
+      let city, state, country;
+      place.address_components.forEach(component => {
+        const types = component.types;
+        if (types.includes("locality")) city = component.long_name;
+        if (types.includes("administrative_area_level_1")) state = component.long_name;
+        if (types.includes("country")) country = component.long_name;
+      });
+
+      // Fill input as "City, State, Country"
+      input.value = `${city}${state ? ", " + state : ""}, ${country}`;
+    });
+  }
+
+  // ---------------- FETCH WEATHER ----------------
+  async function getWeather(cityName) {
+    const city = cityName || document.getElementById("cityInput").value.trim();
+    if (!city) {
+      errorMsg.textContent = "Please enter a city name!";
+      weatherCard.style.display = "none";
+      return;
     }
 
-    // Optional: Fetch weather on "Enter" key press
-    document.getElementById("cityInput").addEventListener("keypress", (e) => {
-      if (e.key === "Enter") getWeather();
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    try {
+      const res = await fetch(url);
+      const data = await res.json();
+      if (data.cod !== 200) throw new Error(data.message);
+
+      errorMsg.textContent = "";
+      weatherCard.style.display = "block";
+      document.getElementById("cityName").textContent = `${data.name}, ${data.sys.country}`;
+      document.getElementById("temperature").textContent = `${Math.round(data.main.temp)}°C`;
+      document.getElementById("description").textContent = data.weather[0].description;
+      document.getElementById("weatherIcon").src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+      document.getElementById("extraInfo").textContent = `Humidity: ${data.main.humidity}% | Wind: ${data.wind.speed} m/s`;
+      const localTime = new Date((data.dt + data.timezone) * 1000);
+      document.getElementById("localTime").textContent = `🕐 Local Time: ${localTime.toUTCString().slice(17,22)}`;
+
+      getForecast(data.coord.lat, data.coord.lon);
+    } catch {
+      errorMsg.textContent = "Error fetching data. Try again later!";
+      weatherCard.style.display = "none";
+    }
+  }
+
+  // ---------------- FORECAST ----------------
+  async function getForecast(lat, lon) {
+    const forecastContainer = document.getElementById("forecast");
+    forecastContainer.innerHTML = "";
+    const url = `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&exclude=hourly,minutely&appid=${apiKey}&units=metric`;
+    const res = await fetch(url);
+    const data = await res.json();
+
+    data.daily.slice(1, 6).forEach(day => {
+      const date = new Date(day.dt * 1000);
+      const div = document.createElement("div");
+      div.classList.add("day");
+      div.innerHTML = `<p>${date.toLocaleDateString("en-IN",{weekday:"short"})}</p>
+                       <img src="https://openweathermap.org/img/wn/${day.weather[0].icon}.png"/>
+                       <p>${Math.round(day.temp.day)}°C</p>`;
+      forecastContainer.appendChild(div);
     });
-  </script>
+  }
+
+  // ---------------- PIN CITIES ----------------
+  function pinCity() {
+    const city = document.getElementById("cityName").textContent;
+    if (!city) return;
+    let pinned = JSON.parse(localStorage.getItem("pinnedCities")) || [];
+    if (!pinned.includes(city)) pinned.push(city);
+    localStorage.setItem("pinnedCities", JSON.stringify(pinned));
+    showPinnedCities();
+  }
+
+  function showPinnedCities() {
+    pinnedCitiesDiv.innerHTML = "";
+    let pinned = JSON.parse(localStorage.getItem("pinnedCities")) || [];
+    pinned.forEach(city => {
+      const btn = document.createElement("button");
+      btn.textContent = city;
+      btn.onclick = () => getWeather(city);
+      pinnedCitiesDiv.appendChild(btn);
+    });
+  }
+
+  // ---------------- EVENT LISTENERS ----------------
+  document.getElementById("cityInput").addEventListener("keypress", e => {
+    if (e.key === "Enter") getWeather();
+  });
+
+  window.onload = () => {
+    initAutocomplete();
+    showPinnedCities();
+  };
+</script>
+
 
 </body>
 </html>
