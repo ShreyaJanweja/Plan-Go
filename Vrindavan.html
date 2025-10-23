@@ -1,133 +1,264 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Welcome to Vrindavan</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #1f1c2c, #928DAB);
-      color: #fff;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vrindavan - The Land of Krishna</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <style>
+        /* --- Color Variables for Dark Neon Theme --- */
+        :root {
+            --dark-bg-start: #1f1c2c;
+            --dark-bg-end: #928DAB;
+            --text-light: #f0f8ff;
+            --text-muted: #d1d5db;
+            --neon-pink: #ff69b4; /* A Krishna/Radha themed neon color */
+            --neon-purple: #bb86fc; 
+            --card-dark: rgba(30, 27, 38, 0.9); /* Slightly transparent dark */
+            --card-border: rgba(255, 255, 255, 0.1);
+            --accent-glow: 0 0 15px rgba(255, 105, 180, 0.6);
+        }
 
-    header {
-      text-align: center;
-      padding: 40px 20px;
-    }
+        /* Base Styles: Keeping the user's requested background */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--dark-bg-start), var(--dark-bg-end));
+            color: var(--text-light);
+            min-height: 100vh;
+        }
 
-    header h1 {
-      font-size: 3rem;
-      margin-bottom: 10px;
-    }
+        .wrap {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
 
-    .places {
-      display: flex;
-      flex-direction: column;
-      gap: 50px;
-      max-width: 1000px;
-      margin: auto;
-      padding: 40px 20px;
-    }
+        /* --- Header/Back Button Styles --- */
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            margin: 30px 0;
+            color: var(--neon-pink);
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: color 0.3s;
+            text-decoration: none;
+        }
+        .back-btn:hover {
+            color: var(--neon-purple);
+        }
+        .back-btn span {
+            margin-right: 8px;
+            font-size: 20px;
+        }
 
-    .place {
-      display: flex;
-      align-items: center;
-      gap: 30px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 20px;
-      backdrop-filter: blur(10px);
-      padding: 20px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.3);
-      transition: transform 0.3s ease;
-    }
+        header {
+            text-align: center;
+            padding: 40px 20px 60px;
+        }
 
-    .place:hover {
-      transform: scale(1.03);
-    }
+        header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3.5rem;
+            margin: 0 0 10px;
+            color: var(--neon-pink);
+            text-shadow: 0 0 15px rgba(255, 105, 180, 0.8);
+            font-weight: 700;
+        }
 
-    .place img {
-      width: 300px;
-      height: 200px;
-      border-radius: 15px;
-      object-fit: cover;
-      box-shadow: 0 0 15px rgba(0,0,0,0.5);
-      transition: transform 0.3s ease;
-    }
+        header p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 800px; /* Added for better readability on large screens */
+            margin: 10px auto 0;
+            line-height: 1.6;
+        }
 
-    .place img:hover {
-      transform: scale(1.05);
-    }
+        /* --- New Card Grid Layout --- */
+        .places-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 20px 0;
+        }
 
-    .place-text {
-      flex: 1;
-    }
+        .place-card {
+            background: var(--card-dark);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+            border: 1px solid var(--card-border);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            min-height: 400px; /* Uniform height */
+        }
 
-    .place-text h2 {
-      margin: 0 0 10px;
-      font-size: 1.8rem;
-      color: #ffd369;
-    }
+        .place-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--accent-glow), 0 15px 40px rgba(0, 0, 0, 0.8);
+        }
 
-    .place-text p {
-      margin: 0;
-      line-height: 1.5;
-    }
+        .card-image-container {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
 
-    /* alternate layout */
-    .place:nth-child(even) {
-      flex-direction: row-reverse;
-    }
-  </style>
+        .card-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .place-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .card-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-content h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.6rem;
+            margin: 0 0 10px;
+            color: var(--neon-pink);
+        }
+
+        .card-content p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            line-height: 1.5;
+            flex-grow: 1;
+        }
+
+        .explore-link {
+            display: inline-block;
+            background: var(--neon-purple);
+            color: var(--dark-bg-start);
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: background 0.3s, transform 0.3s;
+            align-self: flex-start;
+        }
+
+        .explore-link:hover {
+            background: #ffc0cb; /* Lighter pink on hover */
+            transform: scale(1.05);
+        }
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+            .places-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>Welcome to Vrindavan</h1>
-    <p>Explore the sacred city of Lord Krishna and its iconic temples 🌺🕉️</p>
-  </header>
+    <div class="wrap">
+        <a href="pilgrimage.html" class="back-btn">
+            <span>←</span> Back to Pilgrimage Destinations
+        </a>
 
-  <section class="places">
-    <div class="place">
-      <img src="bakey.png" alt="Bankey Bihari Temple">
-      <div class="place-text">
-        <h2>Bankey Bihari Temple</h2>
-        <p>One of the most famous Krishna temples in Vrindavan, known for its beautiful idol and devotional atmosphere.</p>
-      </div>
-    </div>
+        <header data-aos="fade-down">
+            <h1>वृंदावन - श्री कृष्ण की लीला भूमि 🏞️</h1>
+            <p>यह वह पवित्र भूमि है जहाँ **राधा और कृष्ण** ने अपनी शाश्वत प्रेम लीलाएँ रचीं। हर कोने में आपको भगवान कृष्ण की उपस्थिति और भक्ति का अनुभव होगा। यहाँ कदम रखते ही ऐसा लगता है जैसे आप सीधे द्वापर युग में आ गए हैं! **जय श्री कृष्ण!** 🚩</p>
+        </header>
 
-    <div class="place">
-      <img src="radha.png" alt="ISKCON Temple">
-      <div class="place-text">
-        <h2>ISKCON Temple</h2>
-        <p>A modern temple dedicated to Lord Krishna, known for spiritual activities, bhajans, and cultural programs.</p>
-      </div>
-    </div>
+        <section class="places-grid">
+            
+            <div class="place-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+                <div class="card-image-container">
+                    <img src="bakey.png" alt="Bankey Bihari Temple">
+                </div>
+                <div class="card-content">
+                    <h3>Bankey Bihari Temple</h3>
+                    <p>One of the most revered and famous Krishna temples in Vrindavan, known for its charismatic idol, unique curtain tradition, and intense devotional atmosphere.</p>
+                    <a href="#" class="explore-link">Explore Temple</a>
+                </div>
+            </div>
 
-    <div class="place">
-      <img src="radhaR.png" alt="Radha Rani Temple">
-      <div class="place-text">
-        <h2>Radha Rani Temple</h2>
-        <p>An ancient temple devoted to Goddess Radha, attracting devotees with its rich history and spiritual ambiance.</p>
-      </div>
-    </div>
+            <div class="place-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+                <div class="card-image-container">
+                    <img src="radha.png" alt="ISKCON Temple">
+                </div>
+                <div class="card-content">
+                    <h3>Krishna-Balaram Mandir (ISKCON)</h3>
+                    <p>A beautifully constructed modern temple and spiritual center, globally known for its peaceful environment, captivating 'kirtans' (chanting), and extensive cultural programs.</p>
+                    <a href="#" class="explore-link">Explore Temple</a>
+                </div>
+            </div>
 
-    <div class="place">
-      <img src="ghat.png" alt="Yamuna Ghat">
-      <div class="place-text">
-        <h2>Yamuna Ghat</h2>
-        <p>The holy ghats along the Yamuna River, where devotees perform rituals, aarti, and take holy dips.</p>
-      </div>
-    </div>
+            <div class="place-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">
+                <div class="card-image-container">
+                    <img src="radhaR.png" alt="Radha Raman Temple">
+                </div>
+                <div class="card-content">
+                    <h3>Radha Raman Temple</h3>
+                    <p>Home to a self-manifested deity of Krishna, this temple is highly respected and known for its simple yet powerful spiritual vibrations and historical importance.</p>
+                    <a href="#" class="explore-link">Explore Temple</a>
+                </div>
+            </div>
 
-    <div class="place">
-      <img src="nidhivan.png" alt="Nidhivan">
-      <div class="place-text">
-        <h2>Nidhivan</h2>
-        <p>A sacred grove associated with Lord Krishna's pastimes, famous for its mystical stories and spiritual aura.</p>
-      </div>
+            <div class="place-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
+                <div class="card-image-container">
+                    <img src="ghat.png" alt="Keshi Ghat on Yamuna River">
+                </div>
+                <div class="card-content">
+                    <h3>Keshi Ghat (Yamuna River)</h3>
+                    <p>The main ghat on the banks of the sacred Yamuna River. It is the perfect spot for ritual bathing, evening 'aarti', and serene reflection during sunset.</p>
+                    <a href="#" class="explore-link">View Aarti Schedule</a>
+                </div>
+            </div>
+            
+            <div class="place-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="500">
+                <div class="card-image-container">
+                    <img src="nidhivan.png" alt="Nidhivan Sacred Grove">
+                </div>
+                <div class="card-content">
+                    <h3>Nidhivan</h3>
+                    <p>A mysterious and sacred grove believed to be the place where Radha and Krishna perform their 'rasa lila' every night. It offers a dense, spiritual, and mystical aura during the day.</p>
+                    <a href="#" class="explore-link">Visit Details</a>
+                </div>
+            </div>
+
+             <div class="place-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="600">
+                <div class="card-image-container">
+                    <img src="https://up.yimg.com/ib/th/id/OIP.swexb_-iDCbh_esX0ORf_gHaFj?pid=Api&rs=1&c=1&qlt=95&w=150&h=112 alt="Prem Mandir - Temple of Divine Love">
+                </div>
+                <div class="card-content">
+                    <h3>Prem Mandir</h3>
+                    <p>The 'Temple of Divine Love' is a breathtakingly beautiful marble temple dedicated to Radha-Krishna and Sita-Ram. Famous for its intricate carvings and spectacular lighting displays.</p>
+                    <a href="#" class="explore-link">View Illumination Timings</a>
+                </div>
+            </div>
+
+        </section>
     </div>
-  </section>
+    
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true // Animation will run once
+        });
+    </script>
 </body>
 </html>
