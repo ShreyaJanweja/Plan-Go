@@ -1,0 +1,264 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bodh Gaya - Site of Enlightenment</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <style>
+        /* --- Color Variables for Dark Neon Theme (Adjusted for Buddhist/Peace theme) --- */
+        :root {
+            --dark-bg-start: #1f1c2c; /* Deep Dark */
+            --dark-bg-end: #928DAB; /* Dark Grey/Purple */
+            --text-light: #f0f8ff;
+            --text-muted: #d1d5db;
+            --neon-saffron: #FFD700; /* Golden Yellow for Saffron/Enlightenment */
+            --neon-maroon: #800000; /* Deep Maroon/Red for depth */
+            --card-dark: rgba(30, 27, 38, 0.9);
+            --card-border: rgba(255, 255, 255, 0.1);
+            --accent-glow: 0 0 15px rgba(255, 215, 0, 0.7);
+        }
+
+        /* Base Styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--dark-bg-start), var(--dark-bg-end));
+            color: var(--text-light);
+            min-height: 100vh;
+        }
+
+        .wrap {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        /* --- Header/Back Button Styles --- */
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            margin: 30px 0;
+            color: var(--neon-saffron);
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: color 0.3s;
+            text-decoration: none;
+        }
+        .back-btn:hover {
+            color: var(--neon-maroon);
+        }
+        .back-btn span {
+            margin-right: 8px;
+            font-size: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 20px 60px;
+        }
+
+        header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3.5rem;
+            margin: 0 0 10px;
+            color: var(--neon-saffron);
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 800px;
+            margin: 10px auto 0;
+            line-height: 1.6;
+        }
+
+        /* --- New Card Grid Layout --- */
+        .places-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 20px 0;
+        }
+
+        .place-card {
+            background: var(--card-dark);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+            border: 1px solid var(--card-border);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            min-height: 400px; /* Uniform height */
+        }
+
+        .place-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--accent-glow), 0 15px 40px rgba(0, 0, 0, 0.8);
+        }
+
+        .card-image-container {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .place-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .card-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-content h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.6rem;
+            margin: 0 0 10px;
+            color: var(--neon-saffron);
+        }
+
+        .card-content p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            line-height: 1.5;
+            flex-grow: 1;
+        }
+
+        .explore-link {
+            display: inline-block;
+            background: var(--neon-maroon);
+            color: var(--text-light);
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: background 0.3s, transform 0.3s;
+            align-self: flex-start;
+        }
+
+        .explore-link:hover {
+            background: #a52a2a; /* Brown/Maroon on hover */
+            transform: scale(1.05);
+        }
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+            .places-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <a href="pilgrimage.html" class="back-btn">
+            <span>←</span> Back to Pilgrimage Destinations
+        </a>
+
+        <header data-aos="fade-down">
+            <h1>बोधगया - बुद्धत्व की भूमि 🧘</h1>
+            <p>यह वह पवित्र स्थान है जहाँ राजकुमार **सिद्धार्थ गौतम** ने बोधि वृक्ष के नीचे ज्ञान (Enlightenment) प्राप्त किया और भगवान बुद्ध कहलाए। यह दुनिया भर के बौद्धों के लिए शांति, ध्यान और आध्यात्मिकता का केंद्र है। **बुद्धं शरणं गच्छामि** ☸️</p>
+        </header>
+
+        <section class="places-grid">
+            
+            <div class="place-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+                <div class="card-image-container">
+                    <img src="https://tse2.mm.bing.net/th/id/OIP.xm3LsqlcSTWnLYBp4Uz53wHaE7?pid=Api&P=0&h=180" alt="Mahabodhi Temple">
+                </div>
+                <div class="card-content">
+                    <h3>Mahabodhi Temple</h3>
+                    <p>A UNESCO World Heritage site and the primary temple marking the exact spot where Buddha attained enlightenment. Its ancient architecture is deeply revered globally.</p>
+                    <a href="#" class="explore-link">Temple Darshan</a>
+                </div>
+            </div>
+
+            <div class="place-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+                <div class="card-image-container">
+                    <img src="https://tse4.mm.bing.net/th/id/OIP.tVQxJuTtkDEtqLyVNsaDjQHaE8?pid=Api&P=0&h=180" alt="Bodhi Tree">
+                </div>
+                <div class="card-content">
+                    <h3>The Sacred Bodhi Tree</h3>
+                    <p>A descendant of the original tree under which Siddhartha Gautama meditated and achieved 'Bodhi' (Enlightenment). The area is constantly filled with meditating monks and devotees.</p>
+                    <a href="#" class="explore-link">Meditation Spot</a>
+                </div>
+            </div>
+
+            <div class="place-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">
+                <div class="card-image-container">
+                    <img src="https://tse4.mm.bing.net/th/id/OIP.-rxqMYK0TmiUi2Pn3KfOiwHaE3?pid=Api&P=0&h=180" alt="Great Buddha Statue">
+                </div>
+                <div class="card-content">
+                    <h3>Great Buddha Statue (80-foot)</h3>
+                    <p>An impressive 80-foot high statue of the Buddha in a meditative posture, inaugurated by the 14th Dalai Lama. It is a major landmark and a stunning piece of modern art.</p>
+                    <a href="#" class="explore-link">Statue Details</a>
+                </div>
+            </div>
+
+            <div class="place-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
+                <div class="card-image-container">
+                    <img src="https://tse4.mm.bing.net/th/id/OIP.z33fLcm-f_m-AtfvE2qXiAAAAA?pid=Api&P=0&h=180"  alt="Vishnupad Temple">
+                </div>
+                <div class="card-content">
+                    <h3>Vishnupad Temple (Gaya)</h3>
+                    <p>Located nearby in Gaya, this famous Hindu temple contains the footprint of Lord Vishnu. It is an important site for Pind Daan rituals, highlighting the area's rich pilgrimage history.</p>
+                    <a href="#" class="explore-link">Gaya Pilgrimage</a>
+                </div>
+            </div>
+            
+            <div class="place-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="500">
+                <div class="card-image-container">
+                    <img src="https://tse3.mm.bing.net/th/id/OIP.sX41SQgjmGGDmig2Tjq2jwHaFX?pid=Api&P=0&h=180" alt="International Monasteries">
+                </div>
+                <div class="card-content">
+                    <h3>International Monasteries</h3>
+                    <p>Bodh Gaya hosts monasteries built by various Buddhist countries (Japan, Thailand, Tibet, etc.), each showcasing unique architectural styles and cultural traditions.</p>
+                    <a href="#" class="explore-link">Monastery Tour</a>
+                </div>
+            </div>
+
+             <div class="place-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="600">
+                <div class="card-image-container">
+                    <img src="https://tse3.mm.bing.net/th/id/OIP.UMhvLAEoHM9e0r1uL0FKEwHaE7?pid=Api&P=0&h=180" alt="Sujata Stupa">
+                </div>
+                <div class="card-content">
+                    <h3>Sujata Stupa</h3>
+                    <p>Built in honor of Sujata, the village woman who offered milk-rice to Siddhartha Gautama, ending his severe austerity and leading him to the middle path to Enlightenment.</p>
+                    <a href="#" class="explore-link">Stupa History</a>
+                </div>
+            </div>
+
+        </section>
+    </div>
+    
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true 
+        });
+    </script>
+</body>
+</html>

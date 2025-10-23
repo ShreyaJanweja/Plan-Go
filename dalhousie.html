@@ -1,135 +1,267 @@
 
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Welcome to Dalhousie</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #1f1c2c, #928DAB);
-      color: #fff;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore Dalhousie - Serene Retreat</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <style>
+        /* --- Consistent Color Variables (Snowy Retreat Theme) --- */
+        :root {
+            --dark-bg: #1A1E29; 
+            --section-bg: #272C3D; 
+            --text-light: #f0f8ff;
+            --text-muted: #aeb8c9;
+            --neon-blue: #00e0ff; /* Bright Blue */
+            --neon-purple: #bb86fc; /* Slightly brighter purple */
+            --card-dark: #33384a; /* Darker card background for depth */
+            --accent-glow: 0 0 15px rgba(0, 224, 255, 0.7);
+        }
 
-    header {
-      text-align: center;
-      padding: 40px 20px;
-    }
+        /* --- Base Styles: Applying the Dark/Neon Theme --- */
+        * {box-sizing: border-box;}
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            /* Using the gradient background from the Salasar example's base CSS */
+            background: linear-gradient(135deg, #1f1c2c, #928DAB); 
+            color: var(--text-light);
+            min-height: 100vh;
+        }
 
-    header h1 {
-      font-size: 3rem;
-      margin-bottom: 10px;
-    }
+        .wrap {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
 
-    .places {
-      display: flex;
-      flex-direction: column;
-      gap: 50px;
-      max-width: 1000px;
-      margin: auto;
-      padding: 40px 20px;
-    }
+        /* --- Header/Back Button Styles --- */
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            margin: 30px 0;
+            color: var(--neon-blue); /* Blue for Snowy theme */
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: color 0.3s;
+            text-decoration: none;
+        }
+        .back-btn:hover {
+            color: var(--neon-purple);
+        }
+        .back-btn span {
+            margin-right: 8px;
+            font-size: 20px;
+        }
 
-    .place {
-      display: flex;
-      align-items: center;
-      gap: 30px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 20px;
-      backdrop-filter: blur(10px);
-      padding: 20px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.3);
-      transition: transform 0.3s ease;
-    }
+        header {
+            text-align: center;
+            padding: 40px 20px 60px;
+        }
 
-    .place:hover {
-      transform: scale(1.03);
-    }
+        header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3.5rem;
+            margin: 0 0 10px;
+            color: var(--neon-blue);
+            text-shadow: 0 0 15px rgba(0, 224, 255, 0.8);
+            font-weight: 700;
+        }
 
-    .place img {
-      width: 300px;
-      height: 200px;
-      border-radius: 15px;
-      object-fit: cover;
-      box-shadow: 0 0 15px rgba(0,0,0,0.5);
-      transition: transform 0.3s ease;
-    }
+        header p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 800px;
+            margin: 10px auto 0;
+            line-height: 1.6;
+        }
 
-    .place img:hover {
-      transform: scale(1.05);
-    }
+        /* --- Card Grid Layout (Copied from Salasar) --- */
+        .places-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 20px 0;
+        }
 
-    .place-text {
-      flex: 1;
-    }
+        .place-card {
+            background: var(--card-dark);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(0, 224, 255, 0.4); /* Blue border */
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            min-height: 400px; 
+        }
 
-    .place-text h2 {
-      margin: 0 0 10px;
-      font-size: 1.8rem;
-      color: #ffd369;
-    }
+        .place-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 25px var(--neon-purple), 0 15px 40px rgba(0, 0, 0, 0.8); /* Purple glow on hover */
+        }
 
-    .place-text p {
-      margin: 0;
-      line-height: 1.5;
-    }
+        .card-image-container {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
 
-    /* alternate layout */
-    .place:nth-child(even) {
-      flex-direction: row-reverse;
-    }
-  </style>
+        .card-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .place-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .card-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-content h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.6rem;
+            margin: 0 0 10px;
+            color: var(--neon-blue); /* Blue heading */
+        }
+
+        .card-content p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            line-height: 1.5;
+            flex-grow: 1;
+        }
+
+        .explore-link {
+            display: inline-block;
+            background: var(--neon-purple); /* Purple accent for buttons */
+            color: var(--dark-bg);
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: background 0.3s, transform 0.3s;
+            align-self: flex-start;
+        }
+
+        .explore-link:hover {
+            background: #d5a6ff; /* Lighter purple on hover */
+            transform: scale(1.05);
+        }
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+            .places-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>Welcome to Dalhousie</h1>
-    <p>Explore the serene hill station and its beautiful attractions 🏔️</p>
-  </header>
+    <div class="wrap">
+        <a href="snowy.html".html" class="back-btn">
+            <span>←</span> Back to Snowy Retreats
+        </a>
 
-  <section class="places">
-    <div class="place">
-      <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/01/42/68/primary-as-you-look-into.jpg?w=500&h=400&s=1" alt="Dalhousie View">
-      <div class="place-text">
-        <h2>Panorama View</h2>
-        <p>Breathtaking views of the Dhauladhar ranges and lush pine forests surround Dalhousie.</p>
-      </div>
-    </div>
+        <header data-aos="fade-down">
+            <h1>Welcome to Dalhousie</h1>
+            <p>Explore the serene hill station and its beautiful attractions, a perfect blend of natural beauty and colonial charm. ❄️</p>
+        </header>
 
-    <div class="place">
-      <img src="https://media.istockphoto.com/id/655678660/photo/st-johns-church-dalhousie.jpg?s=170667a&w=0&k=20&c=1F5jlUo2p79SzxcGZ7_FpN9FVckar9nbOXFfgvedIxw=" alt="St. John's Church">
-      <div class="place-text">
-        <h2>St. John's Church</h2>
-        <p>Historic colonial church built during the British era, known for its peaceful ambience.</p>
-      </div>
-    </div>
+        <section class="places-grid">
+            
+            <div class="place-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+                <div class="card-image-container">
+                    <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/01/42/68/primary-as-you-look-into.jpg?w=500&h=400&s=1" alt="Panchpula waterfall">
+                </div>
+                <div class="card-content">
+                    <h3>Panchpula (Five Bridges)</h3>
+                    <p>Panchpula is a picturesque picnic spot featuring a mesmerizing waterfall and five small bridges over natural streams. It is a memorial dedicated to the great freedom fighter, Sardar Ajit Singh. It's perfect for short hikes and relaxing by the water.</p>
+                    <a href="#" class="explore-link">Get Directions</a>
+                </div>
+            </div>
 
-    <div class="place">
-      <img src="https://thrilltourism.com/storage/4682/81wZTQMJbcvWTqDx4MV4CQ2f337DVBZjRaWGuFeD.jpg" alt="Panchpula">
-      <div class="place-text">
-        <h2>Panchpula</h2>
-        <p>A famous picnic spot surrounded by scenic landscapes, named after five water springs.</p>
-      </div>
-    </div>
+            <div class="place-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+                <div class="card-image-container">
+                    <img src="https://media.istockphoto.com/id/655678660/photo/st-johns-church-dalhousie.jpg?s=170667a&w=0&k=20&c=1F5jlUo2p79SzxcGZ7_FpN9FVckar9nbOXFfgvedIxw=" alt="St. John's Church">
+                </div>
+                <div class="card-content">
+                    <h3>St. John's Church</h3>
+                    <p>This historic colonial church, situated on the beautiful Mall Road, is a major landmark. Built in 1863, it showcases classic Victorian architecture and provides a peaceful retreat from the bustle of the town. Don't miss the rare photographs inside.</p>
+                    <a href="#" class="explore-link">View History</a>
+                </div>
+            </div>
 
-    <div class="place">
-      <img src="https://static2.tripoto.com/media/filter/tst/img/1225867/SpotDocument/1566650755_1566650745743.jpg.webp" alt="Khajjiar">
-      <div class="place-text">
-        <h2>Khajjiar</h2>
-        <p>Often called the "Mini Switzerland of India," this valley offers lush meadows and a peaceful lake.</p>
-      </div>
-    </div>
+            <div class="place-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">
+                <div class="card-image-container">
+                    <img src="https://thrilltourism.com/storage/4682/81wZTQMJbcvWTqDx4MV4CQ2f337DVBZjRaWGuFeD.jpg" alt="Kalatop Wildlife Sanctuary">
+                </div>
+                <div class="card-content">
+                    <h3>Kalatop Wildlife Sanctuary</h3>
+                    <p>Located a short drive from the town, **Kalatop** offers stunning views, dense deodar and fir forests, and a chance to spot Himalayan wildlife. It is an ideal place for a quiet nature walk or trekking, especially the scenic route to Khajjiar.</p>
+                    <a href="#" class="explore-link">Plan Trek</a>
+                </div>
+            </div>
 
-    <div class="place">
-      <img src="https://www.breezewoodwonders.com/images1/dalhusie%20mall%20road.jpeg" alt="Mall Road Dalhousie">
-      <div class="place-text">
-        <h2>Mall Road</h2>
-        <p>The bustling heart of Dalhousie with shops, cafes, and a perfect spot for leisurely strolls.</p>
-      </div>
+            <div class="place-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
+                <div class="card-image-container">
+                    <img src="https://static2.tripoto.com/media/filter/tst/img/1225867/SpotDocument/1566650755_1566650745743.jpg.webp" alt="Khajjiar meadow">
+                </div>
+                <div class="card-content">
+                    <h3>Khajjiar (Mini Switzerland)</h3>
+                    <p>Often referred to as the "**Mini Switzerland of India**," Khajjiar is a small picturesque plateau nestled in the foothills of the Dhauladhar range. It is famous for its lush green meadows, dense cedar forests, and the peaceful Khajjiar Lake at its center. Perfect for paragliding and zorbing.</p>
+                    <a href="#" class="explore-link">Things To Do</a>
+                </div>
+            </div>
+
+            <div class="place-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="500">
+                <div class="card-image-container">
+                    <img src="https://www.breezewoodwonders.com/images1/dalhusie%20mall%20road.jpeg" alt="GPO Gandhi Chowk">
+                </div>
+                <div class="card-content">
+                    <h3>GPO & Gandhi Chowk</h3>
+                    <p>Gandhi Chowk, the upper end of the town's **Mall Road**, is the bustling commercial hub. Here you'll find the main Post Office (GPO), numerous shops selling local handicrafts, woollens, and small cafes. It's the best spot for evening leisurely strolls and shopping.</p>
+                    <a href="#" class="explore-link">Check Stores</a>
+                </div>
+            </div>
+            
+            <div class="place-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="600">
+                <div class="card-image-container">
+                    <img src="https://tse4.mm.bing.net/th/id/OIP.uXr0e3DXB23ovO6rVg19gQHaE8?pid=Api&P=0&h=180" alt="Dhauladhar Range">
+                </div>
+                <div class="card-content">
+                    <h3>Dainkund Peak</h3>
+                    <p>Known as the "Singing Hill," Dainkund is the highest peak in Dalhousie, offering spectacular **360-degree panoramic views** of the entire valley, the pine forests, and the majestic Dhauladhar ranges. It's a short, rewarding trek.</p>
+                    <a href="#" class="explore-link">View Trek Details</a>
+                </div>
+            </div>
+
+        </section>
     </div>
-  </section>
+    
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true // Animation will run once
+        });
+    </script>
 </body>
 </html>
