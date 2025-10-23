@@ -1,11 +1,9 @@
 
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Plan & Go Weather 🌤️</title>
 
 <style>
@@ -22,14 +20,13 @@
     align-items: center;
   }
 
-  /* ---------------- NAVBAR ---------------- */
   header {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px 60px;
-    background: rgba(255,255,255,0.8);
+    background: rgba(255, 255, 255, 0.8);
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     position: sticky;
     top: 0;
@@ -55,7 +52,6 @@
     color: #055e85;
   }
 
-  /* ---------------- HERO ---------------- */
   .hero {
     text-align: center;
     margin: 50px 20px 30px 20px;
@@ -75,7 +71,6 @@
     line-height: 1.5;
   }
 
-  /* ---------------- WEATHER CARD ---------------- */
   .container {
     width: 420px;
     background: rgba(255, 255, 255, 0.85);
@@ -213,16 +208,13 @@
 
 <header>
   <div class="logo">Plan & Go 🌤️</div>
-  <nav>
-    <!-- <a href="project.html">Home</a> -->
-  </nav>
 </header>
 
 <div class="hero">
   <h1>Check Weather Before You Travel ✈️</h1>
   <p>
-    Knowing the temperature and climate of your destination helps you plan smarter trips.  
-    Whether it's a sunny beach or a chilly hill station, this tool helps you decide  
+    Knowing the temperature and climate of your destination helps you plan smarter trips.
+    Whether it's a sunny beach or a chilly hill station, this tool helps you decide
     when and where to go for the best experience 🌍.
   </p>
 </div>
@@ -253,122 +245,121 @@
   © 2025 Plan & Go | Smart Travel Planning 🌍
 </footer>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_API_KEY&libraries=places"></script>
+<!-- ✅ FIXED Google Maps Script (no callback, no lag) -->
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_API_KEY&libraries=places" async defer></script>
 
 <script>
-  const apiKey = "906b62a656e3c335f223d39e7e5b32dc";
-  const weatherCard = document.getElementById("weatherCard");
-  const errorMsg = document.getElementById("errorMsg");
-  const pinnedCitiesDiv = document.getElementById("pinnedCities");
-  let autocomplete;
+const apiKey = "906b62a656e3c335f223d39e7e5b32dc";
+const weatherCard = document.getElementById("weatherCard");
+const errorMsg = document.getElementById("errorMsg");
+const pinnedCitiesDiv = document.getElementById("pinnedCities");
+let autocomplete;
 
-  // ---------------- GOOGLE PLACE AUTOCOMPLETE ----------------
-  function initAutocomplete() {
-    const input = document.getElementById("cityInput");
-    autocomplete = new google.maps.places.Autocomplete(input, {
-      types: ["(cities)"],
-    });
-
-    autocomplete.addListener("place_changed", () => {
-      const place = autocomplete.getPlace();
-      if (!place.address_components) return;
-
-      let city, state, country;
-      place.address_components.forEach(component => {
-        const types = component.types;
-        if (types.includes("locality")) city = component.long_name;
-        if (types.includes("administrative_area_level_1")) state = component.long_name;
-        if (types.includes("country")) country = component.long_name;
-      });
-
-      // Fill input as "City, State, Country"
-      input.value = `${city}${state ? ", " + state : ""}, ${country}`;
-    });
-  }
-
-  // ---------------- FETCH WEATHER ----------------
-  async function getWeather(cityName) {
-    const city = cityName || document.getElementById("cityInput").value.trim();
-    if (!city) {
-      errorMsg.textContent = "Please enter a city name!";
-      weatherCard.style.display = "none";
-      return;
-    }
-
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-    try {
-      const res = await fetch(url);
-      const data = await res.json();
-      if (data.cod !== 200) throw new Error(data.message);
-
-      errorMsg.textContent = "";
-      weatherCard.style.display = "block";
-      document.getElementById("cityName").textContent = `${data.name}, ${data.sys.country}`;
-      document.getElementById("temperature").textContent = `${Math.round(data.main.temp)}°C`;
-      document.getElementById("description").textContent = data.weather[0].description;
-      document.getElementById("weatherIcon").src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
-      document.getElementById("extraInfo").textContent = `Humidity: ${data.main.humidity}% | Wind: ${data.wind.speed} m/s`;
-      const localTime = new Date((data.dt + data.timezone) * 1000);
-      document.getElementById("localTime").textContent = `🕐 Local Time: ${localTime.toUTCString().slice(17,22)}`;
-
-      getForecast(data.coord.lat, data.coord.lon);
-    } catch {
-      errorMsg.textContent = "Error fetching data. Try again later!";
-      weatherCard.style.display = "none";
-    }
-  }
-
-  // ---------------- FORECAST ----------------
-  async function getForecast(lat, lon) {
-    const forecastContainer = document.getElementById("forecast");
-    forecastContainer.innerHTML = "";
-    const url = `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&exclude=hourly,minutely&appid=${apiKey}&units=metric`;
-    const res = await fetch(url);
-    const data = await res.json();
-
-    data.daily.slice(1, 6).forEach(day => {
-      const date = new Date(day.dt * 1000);
-      const div = document.createElement("div");
-      div.classList.add("day");
-      div.innerHTML = `<p>${date.toLocaleDateString("en-IN",{weekday:"short"})}</p>
-                       <img src="https://openweathermap.org/img/wn/${day.weather[0].icon}.png"/>
-                       <p>${Math.round(day.temp.day)}°C</p>`;
-      forecastContainer.appendChild(div);
-    });
-  }
-
-  // ---------------- PIN CITIES ----------------
-  function pinCity() {
-    const city = document.getElementById("cityName").textContent;
-    if (!city) return;
-    let pinned = JSON.parse(localStorage.getItem("pinnedCities")) || [];
-    if (!pinned.includes(city)) pinned.push(city);
-    localStorage.setItem("pinnedCities", JSON.stringify(pinned));
-    showPinnedCities();
-  }
-
-  function showPinnedCities() {
-    pinnedCitiesDiv.innerHTML = "";
-    let pinned = JSON.parse(localStorage.getItem("pinnedCities")) || [];
-    pinned.forEach(city => {
-      const btn = document.createElement("button");
-      btn.textContent = city;
-      btn.onclick = () => getWeather(city);
-      pinnedCitiesDiv.appendChild(btn);
-    });
-  }
-
-  // ---------------- EVENT LISTENERS ----------------
-  document.getElementById("cityInput").addEventListener("keypress", e => {
-    if (e.key === "Enter") getWeather();
+// ---------------- GOOGLE PLACE AUTOCOMPLETE ----------------
+function initAutocomplete() {
+  const input = document.getElementById("cityInput");
+  autocomplete = new google.maps.places.Autocomplete(input, {
+    types: ["(cities)"]
   });
 
-  window.onload = () => {
-    initAutocomplete();
-    showPinnedCities();
-  };
-</script>
+  autocomplete.addListener("place_changed", () => {
+    const place = autocomplete.getPlace();
+    if (!place.address_components) return;
 
+    let city, state, country;
+    place.address_components.forEach(component => {
+      const types = component.types;
+      if (types.includes("locality")) city = component.long_name;
+      if (types.includes("administrative_area_level_1")) state = component.long_name;
+      if (types.includes("country")) country = component.long_name;
+    });
+
+    input.value = `${city || ""}${state ? ", " + state : ""}${country ? ", " + country : ""}`;
+  });
+}
+
+// ---------------- FETCH WEATHER ----------------
+async function getWeather(cityName) {
+  const city = cityName || document.getElementById("cityInput").value.trim();
+  if (!city) {
+    errorMsg.textContent = "Please enter a city name!";
+    weatherCard.style.display = "none";
+    return;
+  }
+
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  try {
+    const res = await fetch(url);
+    const data = await res.json();
+    if (data.cod !== 200) throw new Error(data.message);
+
+    errorMsg.textContent = "";
+    weatherCard.style.display = "block";
+    document.getElementById("cityName").textContent = `${data.name}, ${data.sys.country}`;
+    document.getElementById("temperature").textContent = `${Math.round(data.main.temp)}°C`;
+    document.getElementById("description").textContent = data.weather[0].description;
+    document.getElementById("weatherIcon").src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+    document.getElementById("extraInfo").textContent = `Humidity: ${data.main.humidity}% | Wind: ${data.wind.speed} m/s`;
+    const localTime = new Date((data.dt + data.timezone) * 1000);
+    document.getElementById("localTime").textContent = `🕐 Local Time: ${localTime.toUTCString().slice(17,22)}`;
+
+    getForecast(data.coord.lat, data.coord.lon);
+  } catch {
+    errorMsg.textContent = "Error fetching data. Try again later!";
+    weatherCard.style.display = "none";
+  }
+}
+
+// ---------------- FORECAST ----------------
+async function getForecast(lat, lon) {
+  const forecastContainer = document.getElementById("forecast");
+  forecastContainer.innerHTML = "";
+  const url = `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&exclude=hourly,minutely&appid=${apiKey}&units=metric`;
+  const res = await fetch(url);
+  const data = await res.json();
+
+  data.daily.slice(1, 6).forEach(day => {
+    const date = new Date(day.dt * 1000);
+    const div = document.createElement("div");
+    div.classList.add("day");
+    div.innerHTML = `<p>${date.toLocaleDateString("en-IN",{weekday:"short"})}</p>
+                     <img src="https://openweathermap.org/img/wn/${day.weather[0].icon}.png"/>
+                     <p>${Math.round(day.temp.day)}°C</p>`;
+    forecastContainer.appendChild(div);
+  });
+}
+
+// ---------------- PIN CITIES ----------------
+function pinCity() {
+  const city = document.getElementById("cityName").textContent;
+  if (!city) return;
+  let pinned = JSON.parse(localStorage.getItem("pinnedCities")) || [];
+  if (!pinned.includes(city)) pinned.push(city);
+  localStorage.setItem("pinnedCities", JSON.stringify(pinned));
+  showPinnedCities();
+}
+
+function showPinnedCities() {
+  pinnedCitiesDiv.innerHTML = "";
+  let pinned = JSON.parse(localStorage.getItem("pinnedCities")) || [];
+  pinned.forEach(city => {
+    const btn = document.createElement("button");
+    btn.textContent = city;
+    btn.onclick = () => getWeather(city);
+    pinnedCitiesDiv.appendChild(btn);
+  });
+}
+
+// ---------------- EVENT LISTENERS ----------------
+document.getElementById("cityInput").addEventListener("keypress", e => {
+  if (e.key === "Enter") getWeather();
+});
+
+window.addEventListener("load", () => {
+  if (window.google) initAutocomplete();
+  showPinnedCities();
+});
+</script>
 
 </body>
 </html>
