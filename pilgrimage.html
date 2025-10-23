@@ -1,317 +1,467 @@
 
-
 <!Doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Must-Visit Pilgrimage Destinations</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <style>
-   :root{
-      --bg: url('suggested bg.png') no-repeat center center fixed;
-      --glass: rgba(255,255,255,0.55);
-      --glass-2: rgba(255,255,255,0.25);
-      --accent: #5aa4ff;
-      --muted: #6b7280;
-      --card-shadow: 0 10px 30px rgba(18,24,38,0.08);
-      --glass-border: rgba(255,255,255,0.6);
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family: 'Montserrat', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-      background: var(--bg);
-      background-size: cover;
-      background-attachment: fixed;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      color:#0f172a;
-      padding:48px 20px;
-      min-height:100vh;
-      display:flex;
-      align-items:flex-start;
-      justify-content:center;
-    }
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Must-Visit Pilgrimage Destinations</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <style>
+        /* --- Color Variables: Adjusted for Spiritual Theme --- */
+        :root {
+            --dark-bg: #1A1E29; 
+            --section-bg: #272C3D; 
+            --text-light: #f0f8ff;
+            --text-muted: #aeb8c9;
+            --neon-blue: #00e0ff; /* Retained Blue for Neon Pop */
+            --neon-purple: #bb86fc; /* Retained Purple for Contrast */
+            --card-dark: #33384a; 
+            --spirit-accent: #FF5722; /* Warm, Saffron/Ochre accent color */
+            --spirit-shadow: rgba(255, 87, 34, 0.5);
+        }
+        
+        /* Base Styles: Consistent with previous pages */
+        *{box-sizing:border-box}
+        body{
+            margin:0;
+            background: var(--dark-bg); 
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-light);
+            min-height:100vh;
+            display:flex;
+            flex-direction: column; /* Changed to column for feature section */
+            align-items:center;
+            padding-bottom: 40px; 
+            -webkit-font-smoothing:antialiased;
+            -moz-osx-font-smoothing:grayscale;
+        }
 
+        /* --- Global Wrapper --- */
+        .wrap{
+            width:100%;
+            max-width:1100px; /* Made wrap wider for the new section */
+            padding: 0 20px;
+            padding-top: 30px;
+        }
+        
+        /* Consistent Back Button Style */
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            margin: 30px 0;
+            color: var(--neon-blue);
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        .back-btn:hover {
+            color: var(--neon-purple);
+        }
+        .back-btn span {
+            margin-right: 8px;
+            font-size: 20px;
+        }
+        
+        /* --- NEW: Feature Highlights Section (Spiritual Theme) --- */
+        .feature-highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            padding: 40px 0;
+            margin-bottom: 20px;
+            text-align: center;
+        }
 
-    .wrap{
-      width:100%;
-      max-width:800px;
-    }
+        .feature-card {
+            background: var(--card-dark);
+            padding: 30px 20px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 87, 34, 0.3); /* Spiritual accent border */
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
 
-    h1{
-      font-size:32px;
-      margin:0 0 24px 0;
-      font-weight:700;
-      letter-spacing:0.2px;
-      color:#07203a;
-      text-align:center;
-    }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 25px var(--spirit-accent), inset 0 0 10px rgba(255, 87, 34, 0.7);
+        }
 
-    .subtitle{
-      text-align:center;
-      color: #fff;
-      margin-bottom:32px;
-      font-size:16px;
-    }
+        .feature-card .icon {
+            font-size: 40px;
+            color: var(--spirit-accent); /* Saffron/Ochre icon */
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px var(--spirit-accent);
+        }
 
-    .grid{
-      display:flex;
-      flex-direction:column;
-      gap:32px;
-    }
+        .feature-card h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 20px;
+            color: var(--text-light);
+            margin-bottom: 8px;
+        }
 
-    .card{
-      position:relative;
-      padding:32px;
-      border-radius:18px;
-      backdrop-filter: blur(10px) saturate(120%);
-      -webkit-backdrop-filter: blur(10px) saturate(120%);
-      background: linear-gradient(135deg, var(--glass), var(--glass-2));
-      border: 1px solid var(--glass-border);
-      box-shadow: var(--card-shadow);
-      cursor:pointer;
-      transition:transform .28s cubic-bezier(.2,.9,.3,1), box-shadow .28s, background .28s;
-      overflow:hidden;
-      min-height:180px;
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-      opacity:0;
-      transform: translateY(50px);
-    }
+        .feature-card p {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+        /* --- END Feature Highlights Section --- */
 
-    .card.show{
-      opacity:1;
-      transform: translateY(0);
-      transition: all 0.6s ease;
-    }
+        /* Heading Styles */
+        h1{
+            font-family: 'Montserrat', sans-serif;
+            font-size: 40px;
+            margin:0 0 10px 0;
+            font-weight:700;
+            letter-spacing:0.5px;
+            text-align:center;
+            color: var(--neon-blue); 
+            text-shadow: 0 0 8px rgba(0, 224, 255, 0.6);
+        }
 
-    .card:hover{
-      transform: translateY(-8px) scale(1.02);
-      box-shadow: 0 18px 40px rgba(18,24,38,0.15);
-    }
+        .subtitle{
+            text-align:center;
+            color: var(--text-muted);
+            margin-bottom:40px;
+            font-size:18px;
+            font-weight: 400;
+        }
 
-    .place-index{
-      display:inline-block;
-      font-weight:700;
-      font-size:15px;
-      padding:6px 12px;
-      border-radius:999px;
-      background:rgba(255,255,255,0.85);
-      border:1px solid rgba(0,0,0,0.04);
-      box-shadow: 0 4px 10px rgba(2,6,23,0.04) inset;
-      margin-bottom:14px;
-      width:max-content;
-    }
+        .grid{
+            display:grid; /* Changed to grid for better control */
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap:25px;
+        }
 
-    .place-title{
-      font-size:22px;
-      margin:0 0 10px 0;
-      color:#02263a;
-      letter-spacing:0.2px;
-    }
+        /* Card Styling: Dark Neon Look (Consistent) */
+        .card{
+            position:relative;
+            padding:30px;
+            border-radius:15px;
+            background: var(--card-dark); 
+            border: 1px solid rgba(0, 224, 255, 0.4); 
+            box-shadow: 0 0 15px rgba(187, 134, 252, 0.3); 
+            cursor:pointer;
+            transition:transform .3s ease, box-shadow .3s ease;
+            overflow:hidden;
+            min-height:180px;
+            display:flex;
+            flex-direction:column;
+            justify-content:space-between;
+            opacity:0;
+            transform: translateY(50px);
+        }
 
-    .place-desc{
-      font-size:15px;
-      color: #fff;
-      margin:0 0 14px 0;
-      line-height:1.45;
-    }
+        .card.show{
+            opacity:1;
+            transform: translateY(0);
+            transition: all 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+        }
 
-    .more{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-    }
+        .card:hover{
+            transform: translateY(-8px) scale(1.01);
+            box-shadow: 0 0 25px var(--neon-blue); 
+        }
 
-    .more .hint{
-      font-size:14px;
-      color:#0b69d6;
-      font-weight:600;
-    }
+        .place-index{
+            /* Adjusted color to be the warm spirit accent color */
+            background: var(--spirit-accent); 
+            color: var(--dark-bg);
+            /* ... (rest is same) ... */
+            display:inline-block;
+            font-family: 'Montserrat', sans-serif;
+            font-weight:700;
+            font-size:15px;
+            padding:8px 14px;
+            border-radius:999px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            margin-bottom:14px;
+            width:max-content;
+        }
 
-    .more .arrow{
-      font-size:20px;
-      opacity:0.9;
-      transform:translateX(0);
-      transition:transform .22s;
-    }
-    .card:hover .arrow{ transform: translateX(6px); }
+        .place-title{
+            font-size:24px;
+            font-weight: 600;
+            margin:0 0 8px 0;
+            color:var(--text-light);
+            letter-spacing:0.5px;
+            font-family: 'Montserrat', sans-serif;
+        }
 
-    .card::after{
-      content:"";
-      position:absolute;
-      inset: -40% -30%;
-      background: linear-gradient(120deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 50%, rgba(255,255,255,0.06) 100%);
-      transform: rotate(-18deg);
-      pointer-events:none;
-      mix-blend-mode: overlay;
-    }
+        .place-desc{
+            font-size:16px;
+            color:var(--text-muted);
+            margin:0 0 14px 0;
+            line-height:1.6;
+        }
 
-    .card .bg{
-      position:absolute;
-      inset:0;
-      border-radius:18px;
-      background: radial-gradient(600px 200px at 10% 10%, rgba(90,164,255,0.08), transparent 20%),
-                  radial-gradient(400px 140px at 90% 80%, rgba(96,255,210,0.06), transparent 25%);
-      pointer-events:none;
-      z-index:0;
-    }
-    .card .blob{
-      position:absolute;
-      width:200px;
-      height:200px;
-      right:-36px;
-      top:-30px;
-      border-radius:50%;
-      background: radial-gradient(circle at 30% 30%, rgba(90,164,255,0.88), rgba(11,105,214,0.6));
-      filter: blur(40px);
-      mix-blend-mode: screen;
-      opacity:0.9;
-      pointer-events:none;
-      z-index:0;
-    }
-    .card > div{ position:relative; z-index:2 }
+        .more{
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            gap:12px;
+        }
 
-    /* modal */
-    .modal-backdrop{
-      position:fixed;
-      inset:0;
-      background: rgba(3,6,23,0.45);
-      display:none;
-      align-items:center;
-      justify-content:center;
-      padding:24px;
-      z-index:60;
-    }
-    .modal{
-      width:100%;
-      max-width:720px;
-      border-radius:12px;
-      padding:22px 20px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(250,250,250,0.9));
-      box-shadow: 0 20px 50px rgba(2,6,23,0.35);
-      border:1px solid rgba(0,0,0,0.06);
-    }
-    .modal h3{margin:0 0 8px 0}
-    .modal p{color:var(--muted);line-height:1.5}
-    .close-btn{
-      display:inline-block;
-      margin-top:12px;
-      padding:8px 12px;
-      border-radius:8px;
-      background:transparent;
-      border:1px solid rgba(3,6,23,0.06);
-      cursor:pointer;
-      font-weight:700;
-    }
+        .more .hint{
+            font-size:15px;
+            color:var(--neon-blue);
+            font-weight:600;
+        }
 
-    @media (max-width:480px){
-      h1{font-size:22px}
-      .card{min-height:150px;padding:20px}
-    }
-  </style>
+        .more .arrow{
+            font-size:24px;
+            opacity:0.9;
+            color: var(--neon-blue);
+            transform:translateX(0);
+            transition:transform .22s;
+        }
+        .card:hover .arrow{ transform: translateX(8px); }
+
+        .card > div{ position:relative; z-index:2 }
+
+        /* Modal Styling (Updated with Explore Button and correct closing logic) */
+        .modal-backdrop{
+            position:fixed;
+            inset:0;
+            background: rgba(3,6,23,0.8); 
+            display:none;
+            align-items:center;
+            justify-content:center;
+            padding:24px;
+            z-index:60;
+        }
+        .modal{
+            width:100%;
+            max-width:550px;
+            border-radius:15px;
+            padding:30px;
+            background: var(--section-bg); 
+            box-shadow: 0 0 30px rgba(0, 224, 255, 0.5); 
+            border:1px solid var(--neon-blue);
+            color: var(--text-light);
+            transform: scale(0.9);
+            transition: transform 0.3s;
+        }
+        .modal.open {
+            transform: scale(1);
+        }
+        .modal h3{
+            margin:0 0 10px 0;
+            color: var(--neon-blue);
+            font-size: 28px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .modal p{
+            color:var(--text-muted);
+            line-height:1.6;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        .modal-buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+        .modal-btn{
+            padding:10px 18px;
+            border-radius:8px;
+            border:none;
+            cursor:pointer;
+            font-weight:700;
+            transition: transform 0.2s, box-shadow 0.3s;
+        }
+        .close-btn {
+            background: var(--card-dark);
+            color: var(--text-muted);
+            border: 1px solid var(--text-muted);
+        }
+        .explore-btn {
+            background: var(--neon-purple); 
+            color: var(--dark-bg);
+            box-shadow: 0 0 15px rgba(187, 134, 252, 0.5);
+        }
+        .explore-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(187, 134, 252, 0.8);
+        }
+
+        @media (max-width:768px){
+            .feature-highlights {
+                grid-template-columns: 1fr;
+            }
+        }
+        @media (max-width:480px){
+            .feature-highlights { padding: 20px 0; }
+            .feature-card h3 { font-size: 18px; }
+            h1{font-size:28px}
+            .card{min-height:150px;padding:20px}
+            .place-title { font-size: 20px; }
+        }
+    </style>
 </head>
 <body>
-  <div class="wrap">
-    <h1>Must-Visit Pilgrimage Destinations</h1>
-    <div class="subtitle">Click any destination for more info — perfect for temple visits and spiritual journeys.</div>
+    <div class="wrap">
+        <a href="project.html" class="back-btn">
+            <span>←</span> Back to Home
+        </a>
+        
+        <section class="feature-highlights">
+            <div class="feature-card" data-aos="fade-right" data-aos-duration="800">
+                <div class="icon">🙏</div>
+                <h3>Divine Connections</h3>
+                <p>Visit ancient temples and sacred sites for spiritual peace.</p>
+            </div>
+            <div class="feature-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+                <div class="icon">⛰️</div>
+                <h3>Sacred Journeys</h3>
+                <p>Organised trips to high-altitude and geographically challenging holy places.</p>
+            </div>
+            <div class="feature-card" data-aos="fade-left" data-aos-duration="800" data-aos-delay="400">
+                <div class="icon">🧘</div>
+                <h3>Peace & Reflection</h3>
+                <p>Find quietude and opportunities for meditation and self-discovery.</p>
+            </div>
+        </section>
 
-    <div class="grid" id="grid">
-      <!-- Cards inserted by JS -->
+
+        <h1>Must-Visit Pilgrimage Destinations</h1>
+        <div class="subtitle">Find your spiritual path. Click any destination for travel and itinerary details.</div>
+
+        <div class="grid" id="grid">
+        </div>
     </div>
-  </div>
 
-  <!-- Modal -->
-  <div class="modal-backdrop" id="backdrop" role="dialog" aria-hidden="true">
-    <div class="modal" role="document" aria-labelledby="modal-title">
-      <h3 id="modal-title">Title</h3>
-      <p id="modal-body">Content</p>
-      <button class="close-btn" id="closeBtn">Close</button>
+    <div class="modal-backdrop" id="backdrop" role="dialog" aria-hidden="true">
+        <div class="modal" id="infoModal" role="document" aria-labelledby="modal-title">
+            <h3 id="modal-title">Title</h3>
+            <p id="modal-body">Content</p>
+            <div class="modal-buttons">
+                <button class="modal-btn close-btn" id="closeBtn">Cancel</button>
+                <button class="modal-btn explore-btn" id="exploreBtn">Explore Trip →</button>
+            </div>
+        </div>
     </div>
-  </div>
 
-  <script>
-  const places = [
-    {
-      name: 'Amritsar',
-      short: 'Golden Temple — spiritual heart of Sikhism.',
-      more: 'Amritsar is home to the iconic Golden Temple, attracting millions of devotees for spiritual experiences, prayer, and Langar meals.'
-    },
-    {
-      name: 'Banaras',
-      short: 'Kashi Vishwanath Temple — ancient city of Shiva.',
-      more: 'Banaras (Varanasi) is a revered pilgrimage city with sacred ghats and the famous Kashi Vishwanath Temple, offering spiritual insight and rituals along the Ganga.'
-    },
-    {
-      name: 'Kedarnath',
-      short: 'One of the twelve Jyotirlingas in the Himalayas.',
-      more: 'Kedarnath is a high-altitude temple dedicated to Lord Shiva, attracting pilgrims seeking blessings amidst stunning Himalayan landscapes.'
-    },
-    {
-      name: 'Vrindavan',
-      short: 'Sacred city of Krishna temples and devotion.',
-      more: 'Vrindavan is famous for its historic Krishna temples, devotional music, and spiritual festivals, making it a key pilgrimage site in India.'
-    },
-    {
-      name: 'Salasar',
-      short: 'Salasar Balaji Temple — popular Hanuman shrine.',
-      more: 'Salasar hosts the renowned Balaji Temple, drawing devotees from across India for prayer, blessings, and religious festivities.'
-    }
-  ];
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 
-  const pages = [
-    'Amritsar.html',
-    'Banaras.html',
-    'Kedarnath.html',
-    'Vrindavan.html',
-    'Salasar.html'
-  ];
+    <script>
+        // AOS Initialization
+        AOS.init({
+            once: true // Animation will run once
+        });
 
-  const grid = document.getElementById('grid');
-  
-  places.forEach((p, i)=>{
-    const card = document.createElement('button');
-    card.className = 'card';
-    card.setAttribute('aria-label', p.name + ' — click for more info');
-    card.innerHTML = `
-      <div class="bg"></div>
-      <div class="blob"></div>
-      <div>
-        <span class="place-index">${i+1}</span>
-        <h4 class="place-title">${p.name}</h4>
-        <p class="place-desc">${p.short}</p>
-      </div>
-      <div class="more">
-        <div class="hint">Click for more info</div>
-        <div class="arrow">➜</div>
-      </div>
-    `;
-    grid.appendChild(card);
+        // Setup Intersection Observer for scroll animation
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting){
+                    entry.target.classList.add('show');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2 });
 
-    // Click to redirect to corresponding page
-    card.addEventListener('click', ()=>{
-      window.location.href = pages[i];
-    });
-  });
 
-  // Show on scroll effect
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if(entry.isIntersecting){
-        entry.target.classList.add('show');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.2 });
+        const places = [
+            {
+                name: 'Amritsar',
+                short: 'Golden Temple — spiritual heart of Sikhism.',
+                more: 'Amritsar is home to the iconic Golden Temple, attracting millions of devotees for spiritual experiences, prayer, and Langar meals.',
+                page: 'Amritsar.html'
+            },
+            {
+                name: 'Banaras (Varanasi)',
+                short: 'Kashi Vishwanath Temple — ancient city of Shiva.',
+                more: 'Banaras (Varanasi) is a revered pilgrimage city with sacred ghats and the famous Kashi Vishwanath Temple, offering spiritual insight and rituals along the Ganga.',
+                page: 'Banaras.html'
+            },
+            {
+                name: 'Kedarnath',
+                short: 'One of the twelve Jyotirlingas in the Himalayas.',
+                more: 'Kedarnath is a high-altitude temple dedicated to Lord Shiva, attracting pilgrims seeking blessings amidst stunning Himalayan landscapes.',
+                page: 'Kedarnath.html'
+            },
+            {
+                name: 'Vrindavan',
+                short: 'Sacred city of Krishna temples and devotion.',
+                more: 'Vrindavan is famous for its historic Krishna temples, devotional music, and spiritual festivals, making it a key pilgrimage site in India.',
+                page: 'Vrindavan.html'
+            },
+            {
+                name: 'Salasar',
+                short: 'Salasar Balaji Temple — popular Hanuman shrine.',
+                more: 'Salasar hosts the renowned Balaji Temple, drawing devotees from across India for prayer, blessings, and religious festivities.',
+                page: 'Salasar.html'
+            },
+            // NEW 6th Card Added Here
+            {
+                name: 'Bodh Gaya',
+                short: 'Mahabodhi Temple — site of Buddha\'s enlightenment.',
+                more: 'Bodh Gaya is the most sacred site in Buddhism, featuring the Mahabodhi Temple and the Bodhi Tree, where Siddhartha Gautama attained enlightenment. A hub for peace and meditation.',
+                page: 'Bodhgaya.html'
+            }
+        ];
 
-  document.querySelectorAll('.card').forEach(card => {
-    observer.observe(card);
-  });
-  </script>
+        const grid = document.getElementById('grid');
+        const modalBackdrop = document.getElementById('backdrop');
+        const infoModal = document.getElementById('infoModal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalBody = document.getElementById('modal-body');
+        const closeBtn = document.getElementById('closeBtn');
+        const exploreBtn = document.getElementById('exploreBtn');
 
+        places.forEach((p, i)=>{
+            const card = document.createElement('button');
+            card.className = 'card';
+            card.setAttribute('aria-label', p.name + ' — click for more info');
+            
+            card.innerHTML = `
+                <div>
+                    <span class="place-index">${i+1}</span>
+                    <h4 class="place-title">${p.name}</h4>
+                    <p class="place-desc">${p.short}</p>
+                </div>
+                <div class="more">
+                    <div class="hint">View Details</div>
+                    <div class="arrow">➜</div>
+                </div>
+            `;
+
+            grid.appendChild(card);
+
+            // Apply show-on-scroll animation and stagger the animation
+            card.setAttribute('data-aos', 'fade-up');
+            card.setAttribute('data-aos-duration', '700');
+            card.setAttribute('data-aos-delay', (i * 100).toString());
+            observer.observe(card);
+
+            card.addEventListener('click', (e)=>{
+                // Modal Logic
+                modalTitle.textContent = p.name;
+                modalBody.textContent = p.more;
+                exploreBtn.onclick = () => {
+                    window.location.href = p.page; // Redirect on Explore
+                };
+                
+                modalBackdrop.style.display = 'flex';
+                // Delay adding 'open' class for animation
+                setTimeout(() => infoModal.classList.add('open'), 10);
+            });
+        });
+
+        // Modal close functionality
+        const closeModal = () => {
+            infoModal.classList.remove('open');
+            setTimeout(() => modalBackdrop.style.display = 'none', 300); // Wait for transition
+        };
+
+        closeBtn.addEventListener('click', closeModal);
+        modalBackdrop.addEventListener('click', (e) => {
+            if (e.target === modalBackdrop) {
+                closeModal();
+            }
+        });
+
+    </script>
 </body>
 </html>

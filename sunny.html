@@ -2,314 +2,470 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Best choices for Sunny Shores Retreat</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --bg: url('suggested bg.png') no-repeat center center fixed;
-      --glass: rgba(255,255,255,0.55);
-      --glass-2: rgba(255,255,255,0.25);
-      --accent: #5aa4ff;
-      --muted: #6b7280;
-      --card-shadow: 0 10px 30px rgba(18,24,38,0.08);
-      --glass-border: rgba(255,255,255,0.6);
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family: 'Montserrat', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-      background: var(--bg);
-      background-size: cover;
-      background-attachment: fixed;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      color:#0f172a;
-      padding:48px 20px;
-      min-height:100vh;
-      display:flex;
-      align-items:flex-start;
-      justify-content:center;
-    }
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Best choices for Sunny Shores Retreat</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <style>
+        /* --- Color Variables: Adjusted for Beach Theme --- */
+        :root {
+            --dark-bg: #1A1E29; 
+            --section-bg: #272C3D; 
+            --text-light: #f0f8ff;
+            --text-muted: #aeb8c9;
+            --neon-blue: #00e0ff; /* Retained Blue for Neon Pop */
+            --neon-purple: #bb86fc; /* Retained Purple for Contrast */
+            --card-dark: #33384a; /* Darker card background */
+            --beach-accent: #FFD700; /* Gold/Sun-like accent color */
+            --beach-shadow: rgba(255, 215, 0, 0.5);
+        }
+        
+        /* Base Styles: Consistent with previous files */
+        *{box-sizing:border-box}
+        body{
+            margin:0;
+            background: var(--dark-bg); 
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-light);
+            min-height:100vh;
+            display:flex;
+            flex-direction: column; 
+            align-items:center;
+            padding-bottom: 40px; 
+            -webkit-font-smoothing:antialiased;
+            -moz-osx-font-smoothing:grayscale;
+        }
 
-    .wrap{
-      width:100%;
-      max-width:800px;
-    }
+        /* --- Global Wrapper --- */
+        .wrap{
+            width:100%;
+            max-width:1100px;
+            padding: 0 20px;
+            padding-top: 30px;
+        }
+        
+        /* Consistent Back Button Style */
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            margin: 30px 0;
+            color: var(--neon-blue);
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        .back-btn:hover {
+            color: var(--neon-purple);
+        }
+        .back-btn span {
+            margin-right: 8px;
+            font-size: 20px;
+        }
+        
+        /* --- NEW: Feature Highlights Section (Coastal Vibes) --- */
+        .feature-highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            padding: 40px 0;
+            margin-bottom: 20px;
+            text-align: center;
+        }
 
-    h1{
-      font-size:32px;
-      margin:0 0 24px 0;
-      font-weight:700;
-      letter-spacing:0.2px;
-      color:#07203a;
-      text-align:center;
-    }
+        .feature-card {
+            background: var(--card-dark);
+            padding: 30px 20px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 215, 0, 0.3); /* Beach accent border */
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
 
-    .subtitle{
-      text-align:center;
-      color: #fff;
-      margin-bottom:32px;
-      font-size:16px;
-    }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 25px var(--beach-accent), inset 0 0 10px rgba(255, 215, 0, 0.7);
+        }
 
-    .grid{
-      display:flex;
-      flex-direction:column;
-      gap:32px;
-    }
+        .feature-card .icon {
+            font-size: 40px;
+            color: var(--beach-accent); /* Gold icon */
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px var(--beach-accent);
+        }
 
-    .card{
-      position:relative;
-      padding:32px;
-      border-radius:18px;
-      backdrop-filter: blur(10px) saturate(120%);
-      -webkit-backdrop-filter: blur(10px) saturate(120%);
-      background: linear-gradient(135deg, var(--glass), var(--glass-2));
-      border: 1px solid var(--glass-border);
-      box-shadow: var(--card-shadow);
-      cursor:pointer;
-      transition:transform .28s cubic-bezier(.2,.9,.3,1), box-shadow .28s, background .28s;
-      overflow:hidden;
-      min-height:180px;
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-      opacity:0;
-      transform: translateY(50px);
-    }
+        .feature-card h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 20px;
+            color: var(--text-light);
+            margin-bottom: 8px;
+        }
 
-    .card.show{
-      opacity:1;
-      transform: translateY(0);
-      transition: all 0.6s ease;
-    }
+        .feature-card p {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+        /* --- END Feature Highlights Section --- */
 
-    .card:hover{
-      transform: translateY(-8px) scale(1.02);
-      box-shadow: 0 18px 40px rgba(18,24,38,0.15);
-    }
+        /* Heading Styles */
+        h1{
+            font-family: 'Montserrat', sans-serif;
+            font-size: 40px;
+            margin:0 0 10px 0;
+            font-weight:700;
+            letter-spacing:0.5px;
+            text-align:center;
+            color: var(--neon-blue); 
+            text-shadow: 0 0 8px rgba(0, 224, 255, 0.6);
+        }
 
-    .place-index{
-      display:inline-block;
-      font-weight:700;
-      font-size:15px;
-      padding:6px 12px;
-      border-radius:999px;
-      background:rgba(255,255,255,0.85);
-      border:1px solid rgba(0,0,0,0.04);
-      box-shadow: 0 4px 10px rgba(2,6,23,0.04) inset;
-      margin-bottom:14px;
-      width:max-content;
-    }
+        .subtitle{
+            text-align:center;
+            color: var(--text-muted);
+            margin-bottom:40px;
+            font-size:18px;
+            font-weight: 400;
+        }
 
-    .place-title{
-      font-size:22px;
-      margin:0 0 10px 0;
-      color:#02263a;
-      letter-spacing:0.2px;
-    }
+        .grid{
+            display:grid; /* Changed to grid for better control */
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap:25px;
+        }
 
-    .place-desc{
-      font-size:15px;
-      color: #fff;
-      margin:0 0 14px 0;
-      line-height:1.45;
-    }
+        /* Card Styling: Dark Neon Look */
+        .card{
+            position:relative;
+            padding:30px;
+            border-radius:15px;
+            background: var(--card-dark); 
+            border: 1px solid rgba(0, 224, 255, 0.4); 
+            box-shadow: 0 0 15px rgba(187, 134, 252, 0.3); 
+            cursor:pointer;
+            transition:transform .3s ease, box-shadow .3s ease;
+            overflow:hidden;
+            min-height:180px;
+            display:flex;
+            flex-direction:column;
+            justify-content:space-between;
+            opacity:0;
+            transform: translateY(50px);
+        }
 
-    .more{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-    }
+        .card.show{
+            opacity:1;
+            transform: translateY(0);
+            transition: all 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+        }
 
-    .more .hint{
-      font-size:14px;
-      color:#0b69d6;
-      font-weight:600;
-    }
+        .card:hover{
+            transform: translateY(-8px) scale(1.01);
+            box-shadow: 0 0 25px var(--neon-blue); 
+        }
 
-    .more .arrow{
-      font-size:20px;
-      opacity:0.9;
-      transform:translateX(0);
-      transition:transform .22s;
-    }
-    .card:hover .arrow{ transform: translateX(6px); }
+        .place-index{
+            /* Adjusted color to be a little warmer for the beach theme */
+            background: var(--beach-accent); 
+            color: var(--dark-bg);
+            /* ... (rest is same) ... */
+            display:inline-block;
+            font-family: 'Montserrat', sans-serif;
+            font-weight:700;
+            font-size:15px;
+            padding:8px 14px;
+            border-radius:999px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            margin-bottom:14px;
+            width:max-content;
+        }
 
-    .card::after{
-      content:"";
-      position:absolute;
-      inset: -40% -30%;
-      background: linear-gradient(120deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 50%, rgba(255,255,255,0.06) 100%);
-      transform: rotate(-18deg);
-      pointer-events:none;
-      mix-blend-mode: overlay;
-    }
+        .place-title{
+            font-size:24px;
+            font-weight: 600;
+            margin:0 0 8px 0;
+            color:var(--text-light);
+            letter-spacing:0.5px;
+            font-family: 'Montserrat', sans-serif;
+        }
 
-    .card .bg{
-      position:absolute;
-      inset:0;
-      border-radius:18px;
-      background: radial-gradient(600px 200px at 10% 10%, rgba(90,164,255,0.08), transparent 20%),
-                  radial-gradient(400px 140px at 90% 80%, rgba(96,255,210,0.06), transparent 25%);
-      pointer-events:none;
-      z-index:0;
-    }
-    .card .blob{
-      position:absolute;
-      width:200px;
-      height:200px;
-      right:-36px;
-      top:-30px;
-      border-radius:50%;
-      background: radial-gradient(circle at 30% 30%, rgba(90,164,255,0.88), rgba(11,105,214,0.6));
-      filter: blur(40px);
-      mix-blend-mode: screen;
-      opacity:0.9;
-      pointer-events:none;
-      z-index:0;
-    }
-    .card > div{ position:relative; z-index:2 }
+        .place-desc{
+            font-size:16px;
+            color:var(--text-muted);
+            margin:0 0 14px 0;
+            line-height:1.6;
+        }
 
-    /* modal */
-    .modal-backdrop{
-      position:fixed;
-      inset:0;
-      background: rgba(3,6,23,0.45);
-      display:none;
-      align-items:center;
-      justify-content:center;
-      padding:24px;
-      z-index:60;
-    }
-    .modal{
-      width:100%;
-      max-width:720px;
-      border-radius:12px;
-      padding:22px 20px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(250,250,250,0.9));
-      box-shadow: 0 20px 50px rgba(2,6,23,0.35);
-      border:1px solid rgba(0,0,0,0.06);
-    }
-    .modal h3{margin:0 0 8px 0}
-    .modal p{color:var(--muted);line-height:1.5}
-    .close-btn{
-      display:inline-block;
-      margin-top:12px;
-      padding:8px 12px;
-      border-radius:8px;
-      background:transparent;
-      border:1px solid rgba(3,6,23,0.06);
-      cursor:pointer;
-      font-weight:700;
-    }
+        .more{
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            gap:12px;
+        }
 
-    @media (max-width:480px){
-      h1{font-size:22px}
-      .card{min-height:150px;padding:20px}
-    }
-  </style>
+        .more .hint{
+            font-size:15px;
+            color:var(--neon-blue);
+            font-weight:600;
+        }
+
+        .more .arrow{
+            font-size:24px;
+            opacity:0.9;
+            color: var(--neon-blue);
+            transform:translateX(0);
+            transition:transform .22s;
+        }
+        .card:hover .arrow{ transform: translateX(8px); }
+        
+        .card > div{ position:relative; z-index:2 }
+
+
+        /* Modal Styling (Updated to include Explore Button) */
+        .modal-backdrop{
+            position:fixed;
+            inset:0;
+            background: rgba(3,6,23,0.8); 
+            display:none;
+            align-items:center;
+            justify-content:center;
+            padding:24px;
+            z-index:60;
+        }
+        .modal{
+            width:100%;
+            max-width:550px;
+            border-radius:15px;
+            padding:30px;
+            background: var(--section-bg); 
+            box-shadow: 0 0 30px rgba(0, 224, 255, 0.5); 
+            border:1px solid var(--neon-blue);
+            color: var(--text-light);
+            transform: scale(0.9);
+            transition: transform 0.3s;
+        }
+        .modal.open {
+            transform: scale(1);
+        }
+        .modal h3{
+            margin:0 0 10px 0;
+            color: var(--neon-blue);
+            font-size: 28px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .modal p{
+            color:var(--text-muted);
+            line-height:1.6;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        .modal-buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+        .modal-btn{
+            padding:10px 18px;
+            border-radius:8px;
+            border:none;
+            cursor:pointer;
+            font-weight:700;
+            transition: transform 0.2s, box-shadow 0.3s;
+        }
+        .close-btn {
+            background: var(--card-dark);
+            color: var(--text-muted);
+            border: 1px solid var(--text-muted);
+        }
+        .explore-btn {
+            background: var(--neon-purple); 
+            color: var(--dark-bg);
+            box-shadow: 0 0 15px rgba(187, 134, 252, 0.5);
+        }
+        .explore-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(187, 134, 252, 0.8);
+        }
+
+
+        @media (max-width:768px){
+            .feature-highlights {
+                grid-template-columns: 1fr;
+            }
+        }
+        @media (max-width:480px){
+            .feature-highlights { padding: 20px 0; }
+            .feature-card h3 { font-size: 18px; }
+            h1{font-size:28px}
+            .card{min-height:150px;padding:20px}
+            .place-title { font-size: 20px; }
+        }
+    </style>
+
 </head>
 <body>
-  <div class="wrap">
-    <h1>Best choices for Sunny Shores Retreat</h1>
-    <div class="subtitle">Click any destination for more info — perfect picks for a refreshing getaway.</div>
+    <div class="wrap">
+        <a href="project.html" class="back-btn">
+            <span>←</span> Back to Home
+        </a>
 
-    <div class="grid" id="grid">
-      <!-- Cards inserted by JS -->
+        <section class="feature-highlights">
+            <div class="feature-card" data-aos="fade-right" data-aos-duration="800">
+                <div class="icon">🌴</div>
+                <h3>Tropical Escapes</h3>
+                <p>Relax in the warmth of the sun-kissed sands and coconut groves.</p>
+            </div>
+            <div class="feature-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+                <div class="icon">🍹</div>
+                <h3>Coastal Cuisine</h3>
+                <p>Taste the freshest seafood and local delicacies by the shore.</p>
+            </div>
+            <div class="feature-card" data-aos="fade-left" data-aos-duration="800" data-aos-delay="400">
+                <div class="icon">🚤</div>
+                <h3>Water Adventures</h3>
+                <p>Diving, surfing, parasailing—endless ways to enjoy the sea.</p>
+            </div>
+        </section>
+
+        <h1>Best choices for Sunny Shores Retreat</h1>
+        <div class="subtitle">Escape to the coast! Click any destination for itinerary details and booking options.</div>
+
+        <div class="grid" id="grid">
+        </div>
     </div>
-  </div>
 
-  <!-- Modal -->
-  <div class="modal-backdrop" id="backdrop" role="dialog" aria-hidden="true">
-    <div class="modal" role="document" aria-labelledby="modal-title">
-      <h3 id="modal-title">Title</h3>
-      <p id="modal-body">Content</p>
-      <button class="close-btn" id="closeBtn">Close</button>
+    <div class="modal-backdrop" id="backdrop" role="dialog" aria-hidden="true">
+        <div class="modal" id="infoModal" role="document" aria-labelledby="modal-title">
+            <h3 id="modal-title">Title</h3>
+            <p id="modal-body">Content</p>
+            <div class="modal-buttons">
+                <button class="modal-btn close-btn" id="closeBtn">Cancel</button>
+                <button class="modal-btn explore-btn" id="exploreBtn">Explore Trip →</button>
+            </div>
+        </div>
     </div>
-  </div>
+    
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 
-  <script>
-  const places = [
-    {
-      name: 'Mumbai',
-      short: 'Sandy beaches and vibrant nightlife in India\'s city by the sea.',
-      more: 'Mumbai offers iconic beaches like Juhu and Chowpatty, Bollywood vibes, and a bustling urban culture combined with seaside relaxation.'
-    },
-    {
-      name: 'Goa',
-      short: 'Sun, sand, parties, and water sports on the western coast.',
-      more: 'Goa is famous for its pristine beaches, vibrant nightlife, Portuguese heritage, and adventure activities like parasailing and jet skiing.'
-    },
-    {
-      name: 'Chennai',
-      short: 'Cultural city beaches with long promenades and temples nearby.',
-      more: 'Chennai’s Marina Beach and Elliot’s Beach are perfect for early morning walks, seaside food, and exploring local traditions along the coast.'
-    },
-    {
-      name: 'Kerala',
-      short: 'Backwaters, serene beaches, and lush tropical surroundings.',
-      more: 'Kerala’s Kovalam and Varkala beaches offer calm waters, Ayurvedic resorts, and beautiful sunset views, perfect for relaxation and wellness.'
-    },
-    {
-      name: 'Puri',
-      short: 'Historical and spiritual beaches with cultural richness.',
-      more: 'Puri Beach in Odisha is famous for its golden sands, Jagannath Temple nearby, and traditional cultural festivals, making it ideal for spiritual and leisure visits.'
-    }
-  ];
+    <script>
+        // AOS Initialization
+        AOS.init({
+            once: true // Animation will run once
+        });
 
-  const pages = [
-    'mumbai.html',  // Mumbai
-    'goa.html',     // Goa
-    'chennai.html', // Chennai
-    'kerala.html',  // Kerala
-    'puri.html'     // Puri
-  ];
+        // Setup Intersection Observer for scroll animation
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting){
+                    entry.target.classList.add('show');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2 });
 
-  const grid = document.getElementById('grid');
-  
-  places.forEach((p, i)=>{
-    const card = document.createElement('button');
-    card.className = 'card';
-    card.setAttribute('aria-label', p.name + ' — click for more info');
-    card.innerHTML = `
-      <div class="bg"></div>
-      <div class="blob"></div>
-      <div>
-        <span class="place-index">${i+1}</span>
-        <h4 class="place-title">${p.name}</h4>
-        <p class="place-desc">${p.short}</p>
-      </div>
-      <div class="more">
-        <div class="hint">Click for more info</div>
-        <div class="arrow">➜</div>
-      </div>
-    `;
-    grid.appendChild(card);
 
-    // Click to redirect to corresponding page
-    card.addEventListener('click', ()=>{
-      window.location.href = pages[i];
-    });
-  });
+        const places = [
+            {
+                name: 'Mumbai',
+                short: 'Sandy beaches and vibrant nightlife in India\'s city by the sea.',
+                more: 'Mumbai offers iconic beaches like Juhu and Chowpatty, Bollywood vibes, and a bustling urban culture combined with seaside relaxation.',
+                page: 'mumbai.html'
+            },
+            {
+                name: 'Goa',
+                short: 'Sun, sand, parties, and water sports on the western coast.',
+                more: 'Goa is famous for its pristine beaches, vibrant nightlife, Portuguese heritage, and adventure activities like parasailing and jet skiing.',
+                page: 'goa.html'
+            },
+            {
+                name: 'Chennai',
+                short: 'Cultural city beaches with long promenades and temples nearby.',
+                more: 'Chennai’s Marina Beach and Elliot’s Beach are perfect for early morning walks, seaside food, and exploring local traditions along the coast.',
+                page: 'chennai.html'
+            },
+            {
+                name: 'Kerala',
+                short: 'Backwaters, serene beaches, and lush tropical surroundings.',
+                more: 'Kerala’s Kovalam and Varkala beaches offer calm waters, Ayurvedic resorts, and beautiful sunset views, perfect for relaxation and wellness.',
+                page: 'kerala.html'
+            },
+            {
+                name: 'Puri',
+                short: 'Historical and spiritual beaches with cultural richness.',
+                more: 'Puri Beach in Odisha is famous for its golden sands, Jagannath Temple nearby, and traditional cultural festivals, making it ideal for spiritual and leisure visits.',
+                page: 'puri.html'
+            },
+            // NEW 6th Card Added Here
+            {
+                name: 'Andamans',
+                short: 'Exotic islands with clear turquoise waters and coral reefs.',
+                more: 'The Andaman Islands offer stunning natural beauty, world-class diving and snorkeling, and pristine beaches like Radhanagar Beach for a true island escape.',
+                page: 'andaman.html'
+            }
+        ];
 
-  // Show on scroll effect
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if(entry.isIntersecting){
-        entry.target.classList.add('show');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.2 });
+        const grid = document.getElementById('grid');
+        const modalBackdrop = document.getElementById('backdrop');
+        const infoModal = document.getElementById('infoModal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalBody = document.getElementById('modal-body');
+        const closeBtn = document.getElementById('closeBtn');
+        const exploreBtn = document.getElementById('exploreBtn');
 
-  document.querySelectorAll('.card').forEach(card => {
-    observer.observe(card);
-  });
-</script>
+        places.forEach((p, i)=>{
+            const card = document.createElement('button');
+            card.className = 'card';
+            card.setAttribute('aria-label', p.name + ' — click for more info');
+            
+            card.innerHTML = `
+                <div>
+                    <span class="place-index">${i+1}</span>
+                    <h4 class="place-title">${p.name}</h4>
+                    <p class="place-desc">${p.short}</p>
+                </div>
+                <div class="more">
+                    <div class="hint">View Details</div>
+                    <div class="arrow">➜</div>
+                </div>
+            `;
+
+            grid.appendChild(card);
+            observer.observe(card); // Apply show-on-scroll animation
+
+            // Add AOS attributes to cards for staggered animation (optional, but looks good)
+            card.setAttribute('data-aos', 'fade-up');
+            card.setAttribute('data-aos-duration', '700');
+            card.setAttribute('data-aos-delay', (i * 100).toString());
+
+
+            card.addEventListener('click', (e)=>{
+                // Modal Logic
+                modalTitle.textContent = p.name;
+                modalBody.textContent = p.more;
+                exploreBtn.onclick = () => {
+                    window.location.href = p.page; // Redirect on Explore
+                };
+                
+                modalBackdrop.style.display = 'flex';
+                // Delay adding 'open' class for animation
+                setTimeout(() => infoModal.classList.add('open'), 10);
+            });
+        });
+
+        // Modal close functionality
+        const closeModal = () => {
+            infoModal.classList.remove('open');
+            setTimeout(() => modalBackdrop.style.display = 'none', 300); // Wait for transition
+        };
+
+        closeBtn.addEventListener('click', closeModal);
+        modalBackdrop.addEventListener('click', (e) => {
+            if (e.target === modalBackdrop) {
+                closeModal();
+            }
+        });
+
+    </script>
 
 </body>
 </html>
