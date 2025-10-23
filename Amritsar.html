@@ -2,133 +2,263 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Welcome to Amritsar</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #1f1c2c, #928DAB);
-      color: #fff;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amritsar - The Holy City</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <style>
+        /* --- Color Variables for Dark Neon Theme (Adjusted for Golden Temple/Sikh theme) --- */
+        :root {
+            --dark-bg-start: #1f1c2c;
+            --dark-bg-end: #928DAB;
+            --text-light: #f0f8ff;
+            --text-muted: #d1d5db;
+            --neon-gold: #FFD700; /* Vibrant Gold/Yellow */
+            --neon-blue: #0077b6; /* Deep Sky/Navy Blue */
+            --card-dark: rgba(30, 27, 38, 0.9);
+            --card-border: rgba(255, 255, 255, 0.1);
+            --accent-glow: 0 0 15px rgba(255, 215, 0, 0.8);
+        }
 
-    header {
-      text-align: center;
-      padding: 40px 20px;
-    }
+        /* Base Styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--dark-bg-start), var(--dark-bg-end));
+            color: var(--text-light);
+            min-height: 100vh;
+        }
 
-    header h1 {
-      font-size: 3rem;
-      margin-bottom: 10px;
-    }
+        .wrap {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
 
-    .places {
-      display: flex;
-      flex-direction: column;
-      gap: 50px;
-      max-width: 1000px;
-      margin: auto;
-      padding: 40px 20px;
-    }
+        /* --- Header/Back Button Styles --- */
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            margin: 30px 0;
+            color: var(--neon-gold);
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: color 0.3s;
+            text-decoration: none;
+        }
+        .back-btn:hover {
+            color: var(--neon-blue);
+        }
+        .back-btn span {
+            margin-right: 8px;
+            font-size: 20px;
+        }
 
-    .place {
-      display: flex;
-      align-items: center;
-      gap: 30px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 20px;
-      backdrop-filter: blur(10px);
-      padding: 20px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.3);
-      transition: transform 0.3s ease;
-    }
+        header {
+            text-align: center;
+            padding: 40px 20px 60px;
+        }
 
-    .place:hover {
-      transform: scale(1.03);
-    }
+        header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3.5rem;
+            margin: 0 0 10px;
+            color: var(--neon-gold);
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.9);
+            font-weight: 700;
+        }
 
-    .place img {
-      width: 300px;
-      height: 200px;
-      border-radius: 15px;
-      object-fit: cover;
-      box-shadow: 0 0 15px rgba(0,0,0,0.5);
-      transition: transform 0.3s ease;
-    }
+        header p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 800px;
+            margin: 10px auto 0;
+            line-height: 1.6;
+        }
 
-    .place img:hover {
-      transform: scale(1.05);
-    }
+        /* --- New Card Grid Layout --- */
+        .places-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 20px 0;
+        }
 
-    .place-text {
-      flex: 1;
-    }
+        .place-card {
+            background: var(--card-dark);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+            border: 1px solid var(--card-border);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            min-height: 400px; /* Uniform height */
+        }
 
-    .place-text h2 {
-      margin: 0 0 10px;
-      font-size: 1.8rem;
-      color: #ffd369;
-    }
+        .place-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--accent-glow), 0 15px 40px rgba(0, 0, 0, 0.8);
+        }
 
-    .place-text p {
-      margin: 0;
-      line-height: 1.5;
-    }
+        .card-image-container {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
 
-    /* alternate layout */
-    .place:nth-child(even) {
-      flex-direction: row-reverse;
-    }
-  </style>
+        .card-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .place-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .card-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-content h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.6rem;
+            margin: 0 0 10px;
+            color: var(--neon-gold);
+        }
+
+        .card-content p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            line-height: 1.5;
+            flex-grow: 1;
+        }
+
+        .explore-link {
+            display: inline-block;
+            background: var(--neon-blue); /* Deep Blue accent for buttons */
+            color: var(--text-light);
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: background 0.3s, transform 0.3s;
+            align-self: flex-start;
+        }
+
+        .explore-link:hover {
+            background: #4fc3f7; /* Lighter blue on hover */
+            transform: scale(1.05);
+        }
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+            .places-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>Welcome to Amritsar</h1>
-    <p>Explore Amritsar’s iconic landmarks and historical sites 🕌🇮🇳</p>
-  </header>
+    <div class="wrap">
+        <a href="project.html" class="back-btn">
+            <span>←</span> Back to Pilgrimage Destinations
+        </a>
 
-  <section class="places">
-    <div class="place">
-      <img src="golden.png" alt="Golden Temple">
-      <div class="place-text">
-        <h2>Golden Temple</h2>
-        <p>The holiest Gurdwara of Sikhism, famous for its stunning architecture, sacred pool, and peaceful ambiance.</p>
-      </div>
-    </div>
+        <header data-aos="fade-down">
+            <h1>ਅੰਮ੍ਰਿਤਸਰ - ਸ੍ਰੀ ਹਰਿਮੰਦਰ ਸਾਹਿਬ ਦਾ ਸ਼ਹਿਰ ✨</h1>
+            <p>ਸਿੱਖ ਧਰਮ ਦਾ ਕੇਂਦਰ, ਇਹ ਸ਼ਹਿਰ ਇਤਿਹਾਸ, ਬਹਾਦਰੀ ਅਤੇ ਸ਼ਰਧਾ ਦਾ ਪ੍ਰਤੀਕ ਹੈ। ਸ੍ਰੀ ਹਰਿਮੰਦਰ ਸਾਹਿਬ ਦੀ ਸ਼ਾਂਤੀ ਤੋਂ ਲੈ ਕੇ ਵਾਘਾ ਬਾਰਡਰ ਦੇ ਜੋਸ਼ ਤੱਕ, ਅੰਮ੍ਰਿਤਸਰ ਦਾ ਹਰ ਅਨੁਭਵ ਯਾਦਗਾਰੀ ਹੈ। **ਸਤਿਨਾਮ ਸ੍ਰੀ ਵਾਹਿਗੁਰੂ!** ੴ</p>
+        </header>
 
-    <div class="place">
-      <img src="jallia.png" alt="Jallianwala Bagh">
-      <div class="place-text">
-        <h2>Jallianwala Bagh</h2>
-        <p>A historical site commemorating the tragic massacre of 1919, with memorials and gardens for reflection.</p>
-      </div>
-    </div>
+        <section class="places-grid">
+            
+            <div class="place-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+                <div class="card-image-container">
+                    <img src="golden.png" alt="Golden Temple">
+                </div>
+                <div class="card-content">
+                    <h3>The Golden Temple (Harmandir Sahib)</h3>
+                    <p>The holiest Gurdwara of Sikhism, famous for its stunning golden architecture, sacred Amrit Sarovar (Pool of Nectar), and the powerful, peaceful recitation of Gurbani.</p>
+                    <a href="#" class="explore-link">Temple Darshan</a>
+                </div>
+            </div>
 
-    <div class="place">
-      <img src="wagah.png" alt="Wagah Border">
-      <div class="place-text">
-        <h2>Wagah Border</h2>
-        <p>Famous for the daily flag-lowering ceremony between India and Pakistan, a patriotic and energetic spectacle.</p>
-      </div>
-    </div>
+            <div class="place-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+                <div class="card-image-container">
+                    <img src="jallia.png" alt="Jallianwala Bagh">
+                </div>
+                <div class="card-content">
+                    <h3>Jallianwala Bagh</h3>
+                    <p>A somber yet crucial historical site that commemorates the martyrs of the 1919 massacre. The memorial stands as a testament to India's freedom struggle and sacrifice.</p>
+                    <a href="#" class="explore-link">Visit Memorial</a>
+                </div>
+            </div>
 
-    <div class="place">
-      <img src="Atemple.png" alt="Durgiana Temple">
-      <div class="place-text">
-        <h2>Durgiana Temple</h2>
-        <p>A beautiful Hindu temple dedicated to Goddess Durga, often compared to the Golden Temple in architecture.</p>
-      </div>
-    </div>
+            <div class="place-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">
+                <div class="card-image-container">
+                    <img src="wagah.png" alt="Wagah Border">
+                </div>
+                <div class="card-content">
+                    <h3>Wagah-Attari Border Ceremony</h3>
+                    <p>Famous for the daily 'Beating Retreat' ceremony, a highly energetic and patriotic flag-lowering ritual performed by the border forces of India and Pakistan.</p>
+                    <a href="#" class="explore-link">Ceremony Timings</a>
+                </div>
+            </div>
 
-    <div class="place">
-      <img src="museum.png" alt="Partition Museum">
-      <div class="place-text">
-        <h2>Partition Museum</h2>
-        <p>A museum dedicated to the memory of the Partition of India in 1947, showcasing stories, artifacts, and history.</p>
-      </div>
+            <div class="place-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
+                <div class="card-image-container">
+                    <img src="Atemple.png" alt="Durgiana Temple">
+                </div>
+                <div class="card-content">
+                    <h3>Durgiana Temple (Lakshmi Narayan Temple)</h3>
+                    <p>A beautiful Hindu temple dedicated to Goddess Durga and other deities. Its architecture closely resembles that of the Golden Temple, set in the middle of a sacred lake.</p>
+                    <a href="#" class="explore-link">Temple Architecture</a>
+                </div>
+            </div>
+            
+            <div class="place-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="500">
+                <div class="card-image-container">
+                    <img src="museum.png" alt="Partition Museum">
+                </div>
+                <div class="card-content">
+                    <h3>The Partition Museum</h3>
+                    <p>Dedicated to the victims and survivors of the 1947 Partition of India. It uses oral histories, artifacts, and multimedia to tell the poignant human story of separation and hope.</p>
+                    <a href="#" class="explore-link">View Exhibits</a>
+                </div>
+            </div>
+
+             <div class="place-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="600">
+                <div class="card-image-container">
+                    <img src="https://tse2.mm.bing.net/th/id/OIP.GUS5e6wOix-XdTffK3Kb0gHaE8?pid=Api&P=0&h=180" alt="Amritsari Food">
+                </div>
+                <div class="card-content">
+                    <h3>Amritsari Food & Hall Bazaar</h3>
+                    <p>The streets of Amritsar are a foodie paradise. Explore the famous Hall Bazaar and taste authentic Punjabi delicacies like Amritsari Kulcha, Lassi, and Langar Prasad.</p>
+                    <a href="#" class="explore-link">Food Guide</a>
+                </div>
+            </div>
+
+        </section>
     </div>
-  </section>
+    
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true 
+        });
+    </script>
 </body>
 </html>
