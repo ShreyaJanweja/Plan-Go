@@ -1,133 +1,266 @@
-<!DOCTYPE html>  
+
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Welcome to Shimla</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #1f1c2c, #928DAB);
-      color: #fff;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shimla - Summer Capital of the British Raj</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <style>
+        /* --- Consistent Color Variables (Snowy Retreat Theme) --- */
+        :root {
+            --dark-bg: #1A1E29; 
+            --section-bg: #272C3D; 
+            --text-light: #f0f8ff;
+            --text-muted: #aeb8c9;
+            --neon-blue: #00e0ff; /* Bright Blue */
+            --neon-purple: #bb86fc; /* Slightly brighter purple */
+            --card-dark: #33384a; /* Darker card background for depth */
+            --accent-glow: 0 0 15px rgba(0, 224, 255, 0.7);
+        }
 
-    header {
-      text-align: center;
-      padding: 40px 20px;
-    }
+        /* --- Base Styles: Applying the Dark/Neon Theme --- */
+        * {box-sizing: border-box;}
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            /* Using the gradient background for consistency */
+            background: linear-gradient(135deg, #1f1c2c, #928DAB); 
+            color: var(--text-light);
+            min-height: 100vh;
+        }
 
-    header h1 {
-      font-size: 3rem;
-      margin-bottom: 10px;
-    }
+        .wrap {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
 
-    .places {
-      display: flex;
-      flex-direction: column;
-      gap: 50px;
-      max-width: 1000px;
-      margin: auto;
-      padding: 40px 20px;
-    }
+        /* --- Header/Back Button Styles --- */
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            margin: 30px 0;
+            color: var(--neon-blue); /* Blue for Snowy theme */
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: color 0.3s;
+            text-decoration: none;
+        }
+        .back-btn:hover {
+            color: var(--neon-purple);
+        }
+        .back-btn span {
+            margin-right: 8px;
+            font-size: 20px;
+        }
 
-    .place {
-      display: flex;
-      align-items: center;
-      gap: 30px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 20px;
-      backdrop-filter: blur(10px);
-      padding: 20px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.3);
-      transition: transform 0.3s ease;
-    }
+        header {
+            text-align: center;
+            padding: 40px 20px 60px;
+        }
 
-    .place:hover {
-      transform: scale(1.03);
-    }
+        header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3.5rem;
+            margin: 0 0 10px;
+            color: var(--neon-blue);
+            text-shadow: 0 0 15px rgba(0, 224, 255, 0.8);
+            font-weight: 700;
+        }
 
-    .place img {
-      width: 300px;
-      height: 200px;
-      border-radius: 15px;
-      object-fit: cover;
-      box-shadow: 0 0 15px rgba(0,0,0,0.5);
-      transition: transform 0.3s ease;
-    }
+        header p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 800px;
+            margin: 10px auto 0;
+            line-height: 1.6;
+        }
 
-    .place img:hover {
-      transform: scale(1.05);
-    }
+        /* --- Card Grid Layout --- */
+        .places-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 20px 0;
+        }
 
-    .place-text {
-      flex: 1;
-    }
+        .place-card {
+            background: var(--card-dark);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(0, 224, 255, 0.4); 
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            min-height: 400px; 
+        }
 
-    .place-text h2 {
-      margin: 0 0 10px;
-      font-size: 1.8rem;
-      color: #ffd369;
-    }
+        .place-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 25px var(--neon-purple), 0 15px 40px rgba(0, 0, 0, 0.8); 
+        }
 
-    .place-text p {
-      margin: 0;
-      line-height: 1.5;
-    }
+        .card-image-container {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
 
-    /* alternate layout */
-    .place:nth-child(even) {
-      flex-direction: row-reverse;
-    }
-  </style>
+        .card-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .place-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .card-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-content h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.6rem;
+            margin: 0 0 10px;
+            color: var(--neon-blue); 
+        }
+
+        .card-content p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            line-height: 1.5;
+            flex-grow: 1;
+        }
+
+        .explore-link {
+            display: inline-block;
+            background: var(--neon-purple); 
+            color: var(--dark-bg);
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: background 0.3s, transform 0.3s;
+            align-self: flex-start;
+        }
+
+        .explore-link:hover {
+            background: #d5a6ff;
+            transform: scale(1.05);
+        }
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+            .places-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>Welcome to Shimla</h1>
-    <p>Discover the colonial charm, hills, and famous landmarks of Shimla 🌄</p>
-  </header>
+    <div class="wrap">
+        <a href="snowy.html" class="back-btn">
+            <span>←</span> Back to Snowy Retreats
+        </a>
 
-  <section class="places">
-    <div class="place">
-      <img src="https://traveleva.gumlet.io/activities/1680/1680_Screenshot%202024-02-11%20at%207.28.19%E2%80%AFPM.png?w=1244&h=312" alt="Christ Church">
-      <div class="place-text">
-        <h2>Christ Church</h2>
-        <p>Iconic church located on the Ridge, famous for its neo-Gothic architecture and stained glass windows.</p>
-      </div>
-    </div>
+        <header data-aos="fade-down">
+            <h1>Welcome to Shimla</h1>
+            <p>Discover the colonial charm, historic architecture, and the famous hills of Shimla, the former **Summer Capital of the British Raj**. 🌄</p>
+        </header>
 
-    <div class="place">
-      <img src="https://www.shimlamanalitravel.com/jap/media/gallery/Mall-Road-Shimla.jpg" alt="Mall Road">
-      <div class="place-text">
-        <h2>Mall Road</h2>
-        <p>The bustling center of Shimla with shops, cafes, and colonial buildings — perfect for strolling and shopping.</p>
-      </div>
-    </div>
+        <section class="places-grid">
+            
+            <div class="place-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+                <div class="card-image-container">
+                    <img src="https://traveleva.gumlet.io/activities/1680/1680_Screenshot%202024-02-11%20at%207.28.19%E2%80%AFPM.png?w=1244&h=312" alt="Christ Church">
+                </div>
+                <div class="card-content">
+                    <h3>The Ridge & Christ Church</h3>
+                    <p>The **Ridge** is a large open space in the heart of Shimla, serving as the city’s cultural hub. It is home to the iconic **Christ Church**, famous for its neo-Gothic architecture and stunning stained glass windows. A must-visit landmark.</p>
+                    <a href="#" class="explore-link">View Architecture</a>
+                </div>
+            </div>
 
-    <div class="place">
-      <img src="https://realhimachal.in/wp-content/uploads/2022/06/Jakhu-Temple-2-1024x576.jpg" alt="Jakhu Temple">
-      <div class="place-text">
-        <h2>Jakhu Temple</h2>
-        <p>Ancient temple dedicated to Lord Hanuman, situated on Jakhu Hill with panoramic views of Shimla.</p>
-      </div>
-    </div>
+            <div class="place-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+                <div class="card-image-container">
+                    <img src="https://www.shimlamanalitravel.com/jap/media/gallery/Mall-Road-Shimla.jpg" alt="Mall Road">
+                </div>
+                <div class="card-content">
+                    <h3>The Mall Road</h3>
+                    <p>The **Mall Road** is the main street and bustling commercial center of Shimla. Lined with shops, restaurants, cafes, and banks, it's perfect for leisurely **strolling, shopping**, and soaking in the colonial-era atmosphere.</p>
+                    <a href="#" class="explore-link">Shopping Guide</a>
+                </div>
+            </div>
 
-    <div class="place">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuaEu-W9h4lYaMZzOUE4x_5O87pBTSZDz6bQ&s" alt="Viceregal Lodge">
-      <div class="place-text">
-        <h2>Viceregal Lodge</h2>
-        <p>Historic building set amidst beautiful gardens, previously the residence of the British Viceroy of India.</p>
-      </div>
-    </div>
+            <div class="place-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">
+                <div class="card-image-container">
+                    <img src="https://realhimachal.in/wp-content/uploads/2022/06/Jakhu-Temple-2-1024x576.jpg" alt="Jakhu Temple">
+                </div>
+                <div class="card-content">
+                    <h3>Jakhu Temple & Hill</h3>
+                    <p>Situated on **Jakhu Hill**, the highest peak in Shimla, this ancient temple is dedicated to **Lord Hanuman**. It features a massive 108-foot-tall statue of the deity and offers breathtaking panoramic views of the entire town and the surrounding hills.</p>
+                    <a href="#" class="explore-link">Trekking Route</a>
+                </div>
+            </div>
 
-    <div class="place">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEWAyeqthlX2uH1gBSya9yKYetCo-igyQWlg&s" alt="Scandal Point">
-      <div class="place-text">
-        <h2>Scandal Point</h2>
-        <p>Popular viewpoint in Shimla offering scenic vistas, shopping, and local food stalls.</p>
-      </div>
+            <div class="place-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
+                <div class="card-image-container">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuaEu-W9h4lYaMZzOUE4x_5O87pBTSZDz6bQ&s" alt="Viceregal Lodge">
+                </div>
+                <div class="card-content">
+                    <h3>Indian Institute of Advanced Study (Viceregal Lodge)</h3>
+                    <p>Formerly the **Viceregal Lodge**, this historic building was the residence of the British Viceroy of India. It now houses the Indian Institute of Advanced Study and is known for its magnificent architecture and beautifully maintained gardens.</p>
+                    <a href="#" class="explore-link">Visitor Information</a>
+                </div>
+            </div>
+
+            <div class="place-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="500">
+                <div class="card-image-container">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEWAyeqthlX2uH1gBSya9yKYetCo-igyQWlg&s" alt="Scandal Point">
+                </div>
+                <div class="card-content">
+                    <h3>Scandal Point</h3>
+                    <p>This popular junction on the Mall Road connects to the Ridge and is famous for offering stunning **sunset views**. The name comes from a historical anecdote involving the Maharaja of Patiala and a British lady.</p>
+                    <a href="#" class="explore-link">Local Legend</a>
+                </div>
+            </div>
+            
+            <div class="place-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="600">
+                <div class="card-image-container">
+                    <img src="https://tse4.mm.bing.net/th/id/OIP.4NiKrPynkJy3afh4XJBjWQHaE8?pid=Api&P=0&h=180" alt="Kalka Shimla Railway">
+                </div>
+                <div class="card-content">
+                    <h3>Kalka-Shimla Railway (Toy Train)</h3>
+                    <p>A UNESCO World Heritage Site, the **Kalka-Shimla Railway** is a narrow-gauge track famous for its scenic route through 102 tunnels and over 800 bridges. A ride on the Toy Train offers an unforgettable journey through the hills.</p>
+                    <a href="#" class="explore-link">Book Train Tickets</a>
+                </div>
+            </div>
+
+        </section>
     </div>
-  </section>
+    
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true // Animation will run once
+        });
+    </script>
 </body>
 </html>
