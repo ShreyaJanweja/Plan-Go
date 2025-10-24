@@ -1,25 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Plan & Go - Travel Smart</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="about.css">
-    <style>
-        /* --- Your CSS from before --- */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Poppins:wght@300;400;500&display=swap');
+
+    /* --- Color Variables for Dark Neon Theme --- */
         :root {
-            --dark-bg-start: #1f1c2c;
-            --dark-bg-end: #3d3b4b;
+            --dark-bg-start: #1f1c2c; /* Deep Dark Blue/Purple */
+            --dark-bg-end: #3d3b4b; /* Slightly lighter Dark */
             --text-light: #f0f8ff;
             --text-muted: #d1d5db;
-            --neon-accent: #00FFFF;
-            --primary-color: #3f51b5;
+            --neon-accent: #00FFFF; /* Bright Aqua/Cyan Neon */
+            --primary-color: #3f51b5; /* Deep Violet Blue */
             --card-dark: rgba(30, 27, 38, 0.9);
             --card-border: rgba(0, 255, 255, 0.2);
             --accent-glow: 0 0 10px rgba(0, 255, 255, 0.5), 0 0 20px rgba(0, 255, 255, 0.3);
         }
 
+        /* --- Base Styles --- */
         body {
             font-family: 'Poppins', sans-serif;
             margin: 0;
@@ -30,13 +24,14 @@
             min-height: 100vh;
         }
 
+        /* --- Header Styles --- */
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             height: 70px;  
             padding: 0 50px; 
-            background: rgba(30, 27, 38, 0.8);
+            background: rgba(30, 27, 38, 0.8); /* Dark background for header */
             backdrop-filter: blur(10px);
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
             position: sticky;
@@ -73,6 +68,7 @@
             text-shadow: 0 0 5px rgba(0, 255, 255, 0.8);
         }
 
+        /* --- Section Styling --- */
         h2 {
             text-align: center;
             font-size: 2.8rem;
@@ -92,6 +88,7 @@
             margin: auto;
         }
 
+        /* --- About Content Layout --- */
         .about-content {
             display: flex;
             gap: 4rem;
@@ -139,6 +136,7 @@
             box-shadow: var(--accent-glow);
         }
 
+        /* --- Team Section Styles --- */
         .team {
             padding: 60px 20px;
         } 
@@ -192,13 +190,14 @@
             color: var(--text-muted);
         }
 
+        /* --- Responsive Design --- */
         @media (max-width: 900px) {
             .about-content {
                 flex-direction: column;
                 gap: 2rem;
             }
             .about-images {
-                order: -1;
+                order: -1; /* Move images above text on mobile */
                 width: 100%;
                 justify-content: center;
                 gap: 10px;
@@ -209,7 +208,7 @@
         }
         @media (max-width: 600px) {
             header nav ul {
-                display: none;
+                display: none; /* Hide nav links on very small screens or consider a hamburger menu */
             }
             header h1 {
                 font-size: 22px;
@@ -224,62 +223,4 @@
                 width: 100%;
             }
         }
-    </style>
-</head> 
-<body>
-    <header>
-        <h1>Plan & Go ✈</h1>
-
-        <nav>
-            <ul>
-                <li><a href="project.html">Home</a></li>
-                <li><a href="login.html">Login</a></li>
-                <li><a href="signup.html">Sign Up</a></li>
-            </ul>
-        </nav>
-    </header> 
-
-    <section class="about-section">
-        <div class="about-container">
-            <h2>About Us</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>
-                        "Welcome to <strong>Plan & Go</strong>! We are dedicated to make travel <strong>simple, smart, and memorable</strong>. 
-                        Our platform helps you plan your trips with ease, and discover exciting destinations—all in one place."
-                    </p>
-                    <p>
-                        "At Plan & Go, we believe every journey should be <strong>stress-free</strong> and full of experiences. That's why we've built a platform that lets you create, organize, and share your travel plans effortlessly.
-                        Whether you're planning a solo trip, a family vacation, or an adventure with friends, Plan & Go is here to guide you every step of the way."
-                    </p>
-                </div>
-                <div class="about-images">
-                    <img src="aboutus bg 1.png" alt="Travel Planning">
-                    <img src="about us bg2.png" alt="Destination Discovery">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="team">
-        <h2>Meet Our Team</h2>
-        <div class="team-container">
-            <div class="team-member">
-                <img src="sejal.png" alt="Sejal">
-                <h3>Sejal</h3>
-                <p>+1 800-123-4567</p>
-            </div>
-            <div class="team-member">
-                <img src="https://i.pinimg.com/236x/55/c7/cc/55c7cc5d7ae7e121684f1be0a381f965.jpg" alt="Shreya">
-                <h3>Shreya</h3>
-                <p>+1 800-111-2222</p>
-            </div>
-            <div class="team-member">
-                <img src="srishti.png" alt="Srishti">
-                <h3>Srishti</h3>
-                <p>+1 800-987-6543</p>
-            </div>
-        </div>
-    </section>
-</body>
-</html>
+   
