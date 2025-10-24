@@ -2,133 +2,266 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Welcome to Mumbai</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #1f1c2c, #928DAB);
-      color: #fff;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mumbai - The City of Dreams & Glamour</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <style>
+        /* --- Consistent Color Variables (Dark/Vibrant City Theme) --- */
+        :root {
+            --dark-bg: #1A1E29; /* Deep Navy Blue/Black */
+            --section-bg: #272C3D; 
+            --text-light: #f0f8ff;
+            --text-muted: #aeb8c9;
+            --vibrant-gold: #FFD700; /* Gold Accent for 'City of Gold' feel */
+            --neon-blue: #00e0ff; /* Bright Blue for light/water */
+            --neon-purple: #bb86fc; /* Purple for hover state on back button */
+            --card-dark: #33384a; 
+            --accent-glow: 0 0 15px rgba(255, 215, 0, 0.7); /* Gold Glow */
+        }
 
-    header {
-      text-align: center;
-      padding: 40px 20px;
-    }
+        /* --- Base Styles --- */
+        * {box-sizing: border-box;}
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--dark-bg), var(--section-bg)); 
+            color: var(--text-light);
+            min-height: 100vh;
+        }
 
-    header h1 {
-      font-size: 3rem;
-      margin-bottom: 10px;
-    }
+        .wrap {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
 
-    .places {
-      display: flex;
-      flex-direction: column;
-      gap: 50px;
-      max-width: 1000px;
-      margin: auto;
-      padding: 40px 20px;
-    }
+        /* --- New: Back Button Styles --- */
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            margin: 30px 0 0 0; /* Adjusted margin to place it at the top */
+            color: var(--neon-blue); 
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: color 0.3s;
+            text-decoration: none;
+        }
+        .back-btn:hover {
+            color: var(--neon-purple); /* Hover color from the Manali theme */
+        }
+        .back-btn span {
+            margin-right: 8px;
+            font-size: 20px;
+        }
 
-    .place {
-      display: flex;
-      align-items: center;
-      gap: 30px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 20px;
-      backdrop-filter: blur(10px);
-      padding: 20px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.3);
-      transition: transform 0.3s ease;
-    }
+        /* --- Header Styles --- */
+        header {
+            text-align: center;
+            padding: 40px 20px 60px;
+        }
 
-    .place:hover {
-      transform: scale(1.03);
-    }
+        header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3.5rem;
+            margin: 0 0 10px;
+            color: var(--vibrant-gold); 
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+            font-weight: 700;
+        }
 
-    .place img {
-      width: 300px;
-      height: 200px;
-      border-radius: 15px;
-      object-fit: cover;
-      box-shadow: 0 0 15px rgba(0,0,0,0.5);
-      transition: transform 0.3s ease;
-    }
+        header p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 800px;
+            margin: 10px auto 0;
+            line-height: 1.6;
+        }
 
-    .place img:hover {
-      transform: scale(1.05);
-    }
+        /* --- Card Grid Layout --- */
+        .places-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 20px 0;
+        }
 
-    .place-text {
-      flex: 1;
-    }
+        .place-card {
+            background: var(--card-dark);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 215, 0, 0.4); 
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            min-height: 400px; 
+        }
 
-    .place-text h2 {
-      margin: 0 0 10px;
-      font-size: 1.8rem;
-      color: #ffd369;
-    }
+        .place-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 25px var(--vibrant-gold), 0 15px 40px rgba(0, 0, 0, 0.8); 
+        }
 
-    .place-text p {
-      margin: 0;
-      line-height: 1.5;
-    }
+        .card-image-container {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
 
-    /* alternate layout */
-    .place:nth-child(even) {
-      flex-direction: row-reverse;
-    }
-  </style>
+        .card-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .place-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .card-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-content h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.6rem;
+            margin: 0 0 10px;
+            color: var(--neon-blue); 
+        }
+
+        .card-content p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            line-height: 1.5;
+            flex-grow: 1;
+        }
+
+        .explore-link {
+            display: inline-block;
+            background: var(--vibrant-gold); 
+            color: var(--dark-bg);
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: background 0.3s, transform 0.3s;
+            align-self: flex-start;
+        }
+
+        .explore-link:hover {
+            background: #fff59d;
+            transform: scale(1.05);
+        }
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+            .places-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>Welcome to Mumbai</h1>
-    <p>Explore the famous beaches and iconic landmarks of Mumbai 🌊🏙️</p>
-  </header>
+    <div class="wrap">
 
-  <section class="places">
-    <div class="place">
-      <img src="juhu.png" alt="Juhu Beach">
-      <div class="place-text">
-        <h2>Juhu Beach</h2>
-        <p>One of Mumbai’s most popular beaches, bustling with street food stalls, sunset views, and lively crowds.</p>
-      </div>
-    </div>
+        <a href="sunny.html" class="back-btn">
+            <span>←</span> Back to Sunny Shores
+        </a>
+        
+        <header data-aos="fade-down">
+            <h1>Welcome to Mumbai - The City of Dreams 🌃✨</h1>
+            <p>Explore the famous beaches, iconic landmarks, and the vibrant life that never sleeps in the financial capital of India. 🌊🏙️</p>
+        </header>
 
-    <div class="place">
-      <img src="chowpatty.png" alt="Chowpatty Beach">
-      <div class="place-text">
-        <h2>Chowpatty Beach</h2>
-        <p>A famous city beach near Marine Drive, known for food stalls, Ganesh Visarjan ceremonies, and evening strolls.</p>
-      </div>
-    </div>
+        <section class="places-grid">
+            
+            <div class="place-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+                <div class="card-image-container">
+                    <img src="https://tse2.mm.bing.net/th/id/OIP.VuQn3HA-yKR2eHkQOT3U3AHaF3?pid=Api&P=0&h=180" alt="Gateway of India">
+                </div>
+                <div class="card-content">
+                    <h3>Gateway of India</h3>
+                    <p>The iconic monument overlooking the Arabian Sea, symbolizing Mumbai’s rich colonial heritage. It's a key starting point for ferries to the **Elephanta Caves**.</p>
+                    <a href="#" class="explore-link">View Ferry Schedule</a>
+                </div>
+            </div>
 
-    <div class="place">
-      <img src="gateway.png" alt="Gateway of India">
-      <div class="place-text">
-        <h2>Gateway of India</h2>
-        <p>The iconic monument overlooking the Arabian Sea, symbolizing Mumbai’s rich colonial heritage.</p>
-      </div>
-    </div>
+            <div class="place-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+                <div class="card-image-container">
+                    <img src="https://tse1.mm.bing.net/th/id/OIP.5vi0l-fYPbaJgk0WtF3heAHaE9?pid=Api&P=0&h=180" alt="Marine Drive">
+                </div>
+                <div class="card-content">
+                    <h3>Marine Drive (Queen's Necklace)</h3>
+                    <p>The scenic **3.6 km promenade** along the coastline, famous for sunset views and the spectacular **“Queen’s Necklace”** pattern created by the streetlights at night. Perfect for an evening stroll.</p>
+                    <a href="#" class="explore-link">Walk the Promenade</a>
+                </div>
+            </div>
 
-    <div class="place">
-      <img src="marine.png" alt="Marine Drive">
-      <div class="place-text">
-        <h2>Marine Drive</h2>
-        <p>The scenic promenade along the coastline, famous for sunset views and the “Queen’s Necklace” lights at night.</p>
-      </div>
-    </div>
+            <div class="place-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">
+                <div class="card-image-container">
+                    <img src="https://tse2.mm.bing.net/th/id/OIP.eJgx3zhWF_7k5tL0Zlfz9gHaFj?pid=Api&P=0&h=180" alt="Juhu & Chowpatty Beach">
+                </div>
+                <div class="card-content">
+                    <h3>Juhu & Chowpatty Beach</h3>
+                    <p>Mumbai's most popular beaches, known for the buzzing street food scene (especially **Pani Puri** and **Bhel Puri**), lively crowds, and beautiful Arabian Sea sunsets.</p>
+                    <a href="#" class="explore-link">Try Street Food</a>
+                </div>
+            </div>
 
-    <div class="place">
-      <img src="sanjay.png" alt="Sanjay Gandhi National Park">
-      <div class="place-text">
-        <h2>Sanjay Gandhi National Park</h2>
-        <p>A lush green sanctuary within the city, offering hiking trails, wildlife, and the historic Kanheri Caves.</p>
-      </div>
+            <div class="place-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
+                <div class="card-image-container">
+                    <img src="https://tse3.mm.bing.net/th/id/OIP.g4u3qBvTJ-qBqpsf4b5DRgHaEd?pid=Api&P=0&h=180" alt="CSMT Terminus">
+                </div>
+                <div class="card-content">
+                    <h3>CSMT (Victorian Gothic Architecture)</h3>
+                    <p>The **Chhatrapati Shivaji Maharaj Terminus**, a UNESCO World Heritage Site, is a spectacular example of Victorian Gothic Revival architecture, serving as one of the busiest railway stations in the world.</p>
+                    <a href="#" class="explore-link">See Night View</a>
+                </div>
+            </div>
+            
+            <div class="place-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="500">
+                <div class="card-image-container">
+                    <img src="https://tse3.mm.bing.net/th/id/OIP.ABchxYFSRruPuo41witgcgHaEK?pid=Api&P=0&h=180" alt="Sanjay Gandhi National Park and Kanheri Caves">
+                </div>
+                <div class="card-content">
+                    <h3>Sanjay Gandhi National Park & Caves</h3>
+                    <p>A massive **lush green sanctuary** right within the city limits. It offers hiking trails, wildlife, and the ancient **Kanheri Caves**, a group of rock-cut Buddhist monuments.</p>
+                    <a href="#" class="explore-link">Trek Info</a>
+                </div>
+            </div>
+            
+            <div class="place-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="600">
+                <div class="card-image-container">
+                    <img src="https://tse2.mm.bing.net/th/id/OIP.0xpwS4JSXTal-WkJeMW70wHaEK?pid=Api&P=0&h=180" alt="Bandra-Worli Sea Link">
+                </div>
+                <div class="card-content">
+                    <h3>Bandra-Worli Sea Link</h3>
+                    <p>An 8-lane **cable-stayed bridge** that connects Bandra with Worli. It is a modern marvel of engineering and offers spectacular views, especially when lit up at night.</p>
+                    <a href="#" class="explore-link">View Construction</a>
+                </div>
+            </div>
+
+        </section>
     </div>
-  </section>
+    
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true // Animation will run once
+        });
+    </script>
 </body>
 </html>
