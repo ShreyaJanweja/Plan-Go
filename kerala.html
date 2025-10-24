@@ -3,133 +3,267 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Welcome to Kerala</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #1f1c2c, #928DAB);
-      color: #fff;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Kerala - God's Own Country</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <style>
+        /* --- Consistent Color Variables (Adapted Dark/Kerala Theme) --- */
+        :root {
+            --dark-bg: #1A1E29; /* Deep Navy Blue/Black */
+            --section-bg: #272C3D; 
+            --text-light: #f0f8ff;
+            --text-muted: #aeb8c9;
+            --warm-gold: #FFC300; /* Primary Accent (for header/card headings) */
+            --emerald-green: #00BF63; /* Kerala's Accent (for buttons/glow, representing lush greenery) */
+            --card-dark: #33384a; 
+            --accent-glow: 0 0 15px rgba(0, 191, 99, 0.7); /* Emerald Green Glow */
+            --back-link-color: #bb86fc; /* Purple for Back Button */
+        }
 
-    header {
-      text-align: center;
-      padding: 40px 20px;
-    }
+        /* --- Base Styles --- */
+        * {box-sizing: border-box;}
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            /* Using the dark gradient background */
+            background: linear-gradient(135deg, var(--dark-bg), var(--section-bg)); 
+            color: var(--text-light);
+            min-height: 100vh;
+        }
 
-    header h1 {
-      font-size: 3rem;
-      margin-bottom: 10px;
-    }
+        .wrap {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
 
-    .places {
-      display: flex;
-      flex-direction: column;
-      gap: 50px;
-      max-width: 1000px;
-      margin: auto;
-      padding: 40px 20px;
-    }
+        /* --- Back Button Style (for consistency) --- */
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            margin: 30px 0 0 0;
+            color: var(--back-link-color); /* Purple/Neon */
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: color 0.3s;
+            text-decoration: none;
+        }
+        .back-btn:hover {
+            color: var(--text-light);
+        }
+        .back-btn span {
+            margin-right: 8px;
+            font-size: 20px;
+        }
 
-    .place {
-      display: flex;
-      align-items: center;
-      gap: 30px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 20px;
-      backdrop-filter: blur(10px);
-      padding: 20px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.3);
-      transition: transform 0.3s ease;
-    }
+        /* --- Header Styles --- */
+        header {
+            text-align: center;
+            padding: 40px 20px 60px;
+        }
 
-    .place:hover {
-      transform: scale(1.03);
-    }
+        header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3.5rem;
+            margin: 0 0 10px;
+            color: var(--emerald-green); /* Emerald Green for Kerala Header */
+            text-shadow: 0 0 15px rgba(0, 191, 99, 0.8);
+            font-weight: 700;
+        }
 
-    .place img {
-      width: 300px;
-      height: 200px;
-      border-radius: 15px;
-      object-fit: cover;
-      box-shadow: 0 0 15px rgba(0,0,0,0.5);
-      transition: transform 0.3s ease;
-    }
+        header p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 800px;
+            margin: 10px auto 0;
+            line-height: 1.6;
+        }
 
-    .place img:hover {
-      transform: scale(1.05);
-    }
+        /* --- Card Grid Layout (Replaces old .places flex) --- */
+        .places-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 20px 0;
+        }
 
-    .place-text {
-      flex: 1;
-    }
+        .place-card { /* Renamed .place to .place-card for consistency */
+            background: var(--card-dark);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 195, 0, 0.4); /* Warm Gold Border */
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            min-height: 400px; 
+        }
 
-    .place-text h2 {
-      margin: 0 0 10px;
-      font-size: 1.8rem;
-      color: #ffd369;
-    }
+        .place-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 25px var(--emerald-green), 0 15px 40px rgba(0, 0, 0, 0.8); /* Emerald Green Hover Glow */
+        }
 
-    .place-text p {
-      margin: 0;
-      line-height: 1.5;
-    }
+        .card-image-container {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
 
-    /* alternate layout */
-    .place:nth-child(even) {
-      flex-direction: row-reverse;
-    }
-  </style>
+        .card-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .place-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .card-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-content h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.6rem;
+            margin: 0 0 10px;
+            color: var(--warm-gold); /* Used Warm Gold for Card Sub-Headers */
+        }
+
+        .card-content p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            line-height: 1.5;
+            flex-grow: 1;
+        }
+
+        .explore-link {
+            display: inline-block;
+            background: var(--emerald-green); /* Emerald Green Button */
+            color: var(--dark-bg);
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: background 0.3s, transform 0.3s;
+            align-self: flex-start;
+        }
+
+        .explore-link:hover {
+            background: #9dffcc;
+            transform: scale(1.05);
+        }
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+            .places-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>Welcome to Kerala</h1>
-    <p>Explore Kerala’s famous beaches and cultural landmarks 🌴🏖️</p>
-  </header>
+    <div class="wrap">
+        
+        <a href="sunny.html" class="back-btn">
+            <span>←</span> Back to Sunny Shores
+        </a>
+        
+        <header data-aos="fade-down">
+            <h1>Welcome to Kerala - God's Own Country 💚🚢</h1>
+            <p>Experience the tranquil backwaters, lush tea plantations, and pristine beaches of this tropical paradise. 🏞️</p>
+        </header>
 
-  <section class="places">
-    <div class="place">
-      <img src="kavalam.png" alt="Kovalam Beach">
-      <div class="place-text">
-        <h2>Kovalam Beach</h2>
-        <p>One of Kerala's most famous beaches, known for its crescent-shaped coastline, lighthouses, and water sports.</p>
-      </div>
-    </div>
+        <section class="places-grid">
+            
+            <div class="place-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+                <div class="card-image-container">
+                    <img src="https://tse4.mm.bing.net/th/id/OIP.0gkFj1F5jehvPtD4feqRkAHaE8?pid=Api&P=0&h=180" alt="Alleppey Backwaters">
+                </div>
+                <div class="card-content">
+                    <h3>Alleppey Backwaters (Alappuzha)</h3>
+                    <p>Famous for its serene **houseboat cruises** through a network of canals, lakes, and lagoons, surrounded by lush greenery and charming villages.</p>
+                    <a href="#" class="explore-link">Book a Houseboat</a>
+                </div>
+            </div>
 
-    <div class="place">
-      <img src="varkala.png" alt="Varkala Beach">
-      <div class="place-text">
-        <h2>Varkala Beach</h2>
-        <p>Famous for its dramatic cliffs, natural springs, and the tranquil Papanasam beach.</p>
-      </div>
-    </div>
+            <div class="place-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+                <div class="card-image-container">
+                    <img src="https://tse4.mm.bing.net/th/id/OIP.T1qiQOxhtrkGE-9onfYiCwHaE8?pid=Api&P=0&h=180" alt="Munnar Tea Plantations">
+                </div>
+                <div class="card-content">
+                    <h3>Munnar Tea Plantations</h3>
+                    <p>Rolling hills covered in vibrant green **tea plantations**, offering breathtaking views, cool climate, and opportunities for trekking and tea tasting.</p>
+                    <a href="#" class="explore-link">Visit a Tea Estate</a>
+                </div>
+            </div>
 
-    <div class="place">
-      <img src="fortkali.png" alt="Fort Kochi">
-      <div class="place-text">
-        <h2>Fort Kochi</h2>
-        <p>A historic town known for colonial architecture, Chinese fishing nets, and cultural heritage.</p>
-      </div>
-    </div>
+            <div class="place-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">
+                <div class="card-image-container">
+                    <img src="https://tse1.mm.bing.net/th/id/OIP.6qTzQxIIGvwecHu9ulcUkwHaDt?pid=Api&P=0&h=180" alt="Kovalam Beach">
+                </div>
+                <div class="card-content">
+                    <h3>Kovalam Beach</h3>
+                    <p>One of Kerala's most famous beaches, known for its iconic **lighthouse**, shallow waters ideal for swimming, and lively beachfront shacks.</p>
+                    <a href="#" class="explore-link">Climb the Lighthouse</a>
+                </div>
+            </div>
 
-    <div class="place">
-      <img src="boat.png" alt="Alleppey Backwaters">
-      <div class="place-text">
-        <h2>Alleppey Backwaters</h2>
-        <p>Famous for houseboat cruises through the serene backwaters, surrounded by lush greenery and coconut palms.</p>
-      </div>
-    </div>
+            <div class="place-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
+                <div class="card-image-container">
+                    <img src="fortkali.png" alt="Fort Kochi">
+                </div>
+                <div class="card-content">
+                    <h3>Fort Kochi</h3>
+                    <p>A historic trading port with diverse influences – Chinese fishing nets, Portuguese churches, and Dutch architecture. Perfect for heritage walks.</p>
+                    <a href="#" class="explore-link">Explore History</a>
+                </div>
+            </div>
 
-    <div class="place">
-      <img src="ptemple.png" alt="Padmanabhaswamy Temple">
-      <div class="place-text">
-        <h2>Padmanabhaswamy Temple</h2>
-        <p>A historic Hindu temple in Thiruvananthapuram, famous for its Dravidian architecture and rich heritage.</p>
-      </div>
+            <div class="place-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="500">
+                <div class="card-image-container">
+                    <img src="https://tse2.mm.bing.net/th/id/OIP.xYDgWEY_SWMKF-JphnrX2gHaE7?pid=Api&P=0&h=180" alt="Periyar Wildlife Sanctuary">
+                </div>
+                <div class="card-content">
+                    <h3>Periyar Wildlife Sanctuary</h3>
+                    <p>A protected area and tiger reserve known for its elephants, a scenic lake, and diverse wildlife. Ideal for boat safaris and nature walks.</p>
+                    <a href="#" class="explore-link">Book a Safari</a>
+                </div>
+            </div>
+            
+            <div class="place-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="600">
+                <div class="card-image-container">
+                    <img src="varkala.png" alt="Varkala Cliff Beach">
+                </div>
+                <div class="card-content">
+                    <h3>Varkala Cliff Beach</h3>
+                    <p>Unique cliff-backed beach known for its natural springs, Ayurvedic resorts, and spectacular sunsets. A spiritual and tranquil getaway.</p>
+                    <a href="#" class="explore-link">Find a Resort</a>
+                </div>
+            </div>
+
+        </section>
     </div>
-  </section>
+    
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true // Animation will run once
+        });
+    </script>
 </body>
 </html>
