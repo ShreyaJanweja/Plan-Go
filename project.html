@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +14,8 @@
         /* Custom properties for a modern, slightly lighter dark theme */
         :root {
             --dark-bg: #1A1E29; 
-            --section-bg: #1A1E29; 
+            --section-bg: #10131A; /* Slightly darker for contrast */
+            --card-bg: #252A3B; /* Background for cards/elements */
             --text-light: #f0f8ff;
             --text-muted: #aeb8c9;
             --neon-blue: #00e0ff; 
@@ -81,7 +83,11 @@
 
         .hero {
             text-align: center;
-            padding: 80px 20px;
+            padding: 100px 20px 80px; 
+            background-image: linear-gradient(rgba(26, 30, 41, 0.8), rgba(26, 30, 41, 0.8)), url('https://images.unsplash.com/photo-1542037106-f1311b528b80?fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; 
         }
 
         .hero h1 {
@@ -110,7 +116,8 @@
             gap: 15px;
             flex-wrap: nowrap; 
             padding: 30px;
-            background: var(--section-bg);
+            background: rgba(26, 30, 41, 0.8);
+            backdrop-filter: blur(3px);
             border-radius: 15px;
             box-shadow: 0 0 15px rgba(0, 224, 255, 0.2), 0 0 25px rgba(0, 0, 0, 0.7);
             border: 1px solid rgba(0, 224, 255, 0.4); 
@@ -144,7 +151,7 @@
             min-width: 170px; 
             font-size: 16px;
             font-family: 'Poppins', sans-serif;
-            background-color: #33384a; 
+            background-color: var(--card-bg); 
             color: var(--text-light);
             transition: 0.3s, box-shadow 0.3s;
             box-shadow: 0 0 3px rgba(187, 134, 252, 0.5); 
@@ -184,30 +191,34 @@
             box-shadow: 0 0 25px var(--neon-blue);
         }
 
-        /* About Section */
-        .about {
+        /* Common Section Styles */
+        section {
             padding: 70px 20px;
             text-align: center;
-            background: var(--dark-bg);
         }
-
-        .about h2 {
+        
+        section h2 {
             font-size: 34px;
             color: var(--neon-blue);
             font-family: 'Montserrat', sans-serif;
             font-weight: 700;
             margin-bottom: 20px;
+            text-shadow: 0 0 8px rgba(0, 224, 255, 0.5);
         }
 
-        .about p {
+        section p.subtitle {
             max-width: 700px;
-            margin: auto;
+            margin: 0 auto 50px;
             color: var(--text-muted);
             font-size: 18px;
-            margin-bottom: 50px;
             line-height: 1.6;
         }
 
+        /* About Section (Fixed Background) */
+        .about {
+            background: var(--dark-bg); 
+        }
+        
         .features {
             display: flex;
             justify-content: center;
@@ -216,7 +227,7 @@
         }
 
         .card {
-            background: var(--section-bg);
+            background: var(--card-bg); 
             padding: 30px 20px;
             border-radius: 15px;
             font-size: 18px;
@@ -238,119 +249,215 @@
                 inset 0 0 15px var(--neon-blue),
                 0 0 25px var(--neon-blue);
         }
-
+        
         /* Suggested Trips */
         .suggested-trips {
-            text-align: center;
-            padding: 60px 20px;
-            background: var(--section-bg);
+            background: var(--section-bg); 
         }
-
-        .suggested-trips h2 {
-            font-size: 2rem;
+        .suggested-trips h3 {
+            color: var(--neon-purple);
             margin-bottom: 10px;
-            color: var(--neon-blue);
+            font-weight: 500;
         }
 
-        .suggested-trips p {
-            color: var(--text-muted);
-            margin-bottom: 40px;
-            font-size: 1.1rem;
-        } 
-
+        /* Trip Container (Removed Perspective from here) */
         .trips-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 25px;
             max-width: 1100px;
             margin: auto;
-            /* Added perspective for 3D effect */
-            perspective: 1000px;
         }
 
-        /* --- 3D FLIP CARD STYLING --- */
+        /* FIX: Trip Card Container for 3D Flip */
         .trip-card-container {
-            height: 400px; /* Fixed height for consistent flip */
             position: relative;
-            transform-style: preserve-3d;
+            width: 100%;
+            height: 450px; /* Set a fixed height */
             transition: transform 0.6s;
-            /* Overall card hover effect */
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-            border-radius: 15px;
-            border: 1px solid #444;
+            transform-style: preserve-3d; /* Key for 3D effect */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); 
+            border-radius: 10px;
         }
 
-        /* On Hover, Flip the container */
-        .trip-card-container:hover {
-            transform: rotateY(180deg) translateY(-8px); /* Added slight lift on hover */
-            box-shadow: 0 0 15px var(--neon-purple); 
+        /* On hover, flip the container */
+        .trips-container a:hover .trip-card-container {
+            transform: rotateY(180deg);
         }
 
-        /* Styling for both Front and Back faces */
+        /* Card Styling (Front and Back) */
         .trip-card {
             position: absolute;
             width: 100%;
             height: 100%;
-            backface-visibility: hidden; /* Hide the back when looking at the front */
-            background: #33384a;
-            border-radius: 15px;
+            backface-visibility: hidden; /* FIX: Prevents back content from showing through */
+            background: var(--card-bg);
+            border-radius: 10px;
             overflow: hidden;
+            padding-bottom: 0;
+            text-align: left;
+            transition: transform 0.6s;
+            border: 1px solid rgba(0, 224, 255, 0.2);
+        }
+
+        .trip-card.front {
+            /* Front side */
+        }
+
+        .trip-card.back {
+            background: linear-gradient(145deg, var(--neon-purple) 30%, var(--card-bg));
+            transform: rotateY(180deg); /* Back side initial rotation */
+            padding: 20px;
             display: flex;
             flex-direction: column;
-        } 
-
-        /* Front Face Styling */
-        .trip-card.front {
-            transform: rotateY(0deg);
-        }
-
-        .trip-card.front img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-
-        .trip-card.front h3 {
-            font-size: 1.3rem;
-            margin: 15px 15px 8px;
-            color: var(--text-light);
-        }
-
-        .trip-card.front p {
-            padding: 0 15px 20px;
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            flex-grow: 1;
-        }
-
-        /* Back Face Styling */
-        .trip-card.back {
-            transform: rotateY(180deg); /* Initial position for the back face */
-            padding: 25px;
             justify-content: center;
             align-items: center;
             text-align: center;
-            background: linear-gradient(145deg, var(--neon-purple), #33384a);
+        }
+        
+        .trip-card img {
+            width: 100%;
+            height: 200px; 
+            object-fit: cover;
+        }
+        
+        .trip-card h3 {
+            padding: 10px 15px 5px;
+            font-size: 1.2rem;
+            color: var(--neon-blue);
+            font-weight: 600;
+        }
+        
+        .trip-card p {
+            padding: 0 15px 15px;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.4;
         }
         
         .trip-card.back h3 {
-            color: var(--text-light);
-            font-size: 1.6rem;
-            margin-bottom: 15px;
-            text-shadow: 0 0 5px rgba(0,0,0,0.5);
+            color: var(--dark-bg);
+            text-shadow: none;
         }
-
+        
         .trip-card.back p {
-            color: var(--text-light);
-            font-size: 1.1rem;
-            line-height: 1.5;
+            color: var(--dark-bg);
+            font-weight: 500;
         }
-        /* --- END 3D FLIP CARD STYLING --- */
 
 
-        /* Footer */
-        footer {
+        /* Travel Guides Section Styles */
+        .travel-guides {
+            background: var(--dark-bg); 
+        }
+
+        .guide-container {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .guide-card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            width: 300px;
+            text-align: left;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+            transition: transform 0.4s, box-shadow 0.4s;
+            border: 1px solid rgba(0, 224, 255, 0.2);
+        }
+
+        .guide-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 224, 255, 0.35);
+        }
+
+        .guide-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .guide-card-content {
+            padding: 20px;
+        }
+
+        .guide-card h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.4rem;
+            color: var(--neon-blue);
+            margin-bottom: 5px;
+        }
+
+        .guide-card p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+        }
+
+        .guide-card button {
+            background: var(--neon-purple);
+            color: var(--dark-bg);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .guide-card button:hover {
+            background: var(--neon-blue);
+        }
+
+        /* Testimonials Section Styles */
+        .testimonials {
             background: var(--section-bg);
+        }
+
+        .review-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .review-card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            border-left: 5px solid var(--neon-purple);
+            transition: transform 0.3s;
+        }
+        
+        .review-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 224, 255, 0.2);
+        }
+
+        .review-card p {
+            font-style: italic;
+            color: var(--text-light);
+            font-size: 1.05rem;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .reviewer-info {
+            font-weight: 600;
+            color: var(--neon-blue);
+        }
+        
+        /* Footer (Existing) */
+        footer {
+            background: var(--dark-bg);
             text-align: center;
             padding: 18px;
             font-size: 14px;
@@ -359,6 +466,7 @@
             font-family: 'Poppins', sans-serif;
             border-top: 1px solid rgba(0, 224, 255, 0.3);
         }
+
 
         /* Responsive Adjustments */
         @media (max-width: 900px) {
@@ -378,10 +486,19 @@
             .trip-form button {
                 width: 100%; 
             }
+            .hero h1 {
+                font-size: 44px;
+            }
         }
         @media (max-width: 600px) {
             .trip-form > div {
                 min-width: 100%; 
+            }
+            .navbar {
+                padding: 15px 20px;
+            }
+            .hero {
+                padding-top: 80px;
             }
         }
     </style>
@@ -396,13 +513,18 @@
         </nav>
     </header>
 
-    <section class="hero">
-        <h1>Plan & Go ✈</h1>
+    <section class="hero" 
+        data-aos="fade-up" 
+        data-aos-duration="1000" 
+        data-aos-once="false" 
+        data-aos-anchor-placement="top-center">
+    
+        <h1>Plan Your Trip Now!</h1> 
         <p>Your smart travel planner - simple, fast & personalized.</p>
 
-        <div class="trip-form">
-            <div><label for="startDate">Start Date:</label><input type="date" id="startDate"></div>
-            <div><label for="endDate">End Date:</label><input type="date" id="endDate"></div>
+        <form class="trip-form" onsubmit="event.preventDefault(); planTrip();">
+            <div><label for="startDate">Start Date:</label><input type="date" id="startDate" required></div>
+            <div><label for="endDate">End Date:</label><input type="date" id="endDate" required></div>
             <div>
                 <label for="destinationSelect">Choose destination</label>
                 <select id="destinationSelect" required>
@@ -476,14 +598,14 @@
                     <option value="Vienna">Vienna (Austria)</option>
                 </select>
             </div>
-            <div><label for="people">Number of People</label><input type="number" id="people" min="1" placeholder="Number of People"></div>
-            <button onclick="planTrip()">Plan Trip</button>
-        </div>
+            <div><label for="people">Number of People</label><input type="number" id="people" min="1" placeholder="Number of People" required></div>
+            <button type="submit">Plan Trip</button>
+        </form>
     </section>
 
     <section class="about" data-aos="fade-up" data-aos-duration="1000">
         <h2>Why Choose Plan & Go?</h2>
-        <p>Plan & Go helps you create personalized travel plans, track expenses, check weather forecasts, 
+        <p class="subtitle">Plan & Go helps you create personalized travel plans, track expenses, check weather forecasts, 
         and share your trips with friends. Our simple design makes travel planning smooth and fun!</p>
 
         <div class="features">
@@ -493,10 +615,48 @@
         </div>
     </section>
 
+    ---
+
+    <section class="travel-guides">
+        <h2>💡 Travel Guides & Tips</h2>
+        <p class="subtitle">Explore our quick guides for some of the world's best travel spots. Get insider tips before you book!</p>
+
+        <div class="guide-container">
+            <div class="guide-card" data-aos="fade-up" data-aos-delay="100">
+                <img src="https://tse3.mm.bing.net/th/id/OIP.Gd0-N3d_YsNOUDQnx0PQ9wHaE8?pid=Api&P=0&h=180" alt="Paris Guide">
+                <div class="guide-card-content">
+                    <h4>Paris: City of Love</h4>
+                    <p>3-day itinerary, best cafes, and how to avoid tourist traps. Perfect romantic getaway.</p>
+                    <button onclick="alert('Redirecting to Paris Guide...');">Read Guide</button>
+                </div>
+            </div>
+
+            <div class="guide-card" data-aos="fade-up" data-aos-delay="300">
+                <img src="https://tse2.mm.bing.net/th/id/OIP.V2qAkbpGexnnPyLR2nBqnQHaE7?pid=Api&P=0&h=180" alt="Leh Ladakh Guide">
+                <div class="guide-card-content">
+                    <h4>Leh-Ladakh: High Roads</h4>
+                    <p>Essential checklist for bike trips, altitude sickness tips, and must-see monasteries.</p>
+                    <button onclick="alert('Redirecting to Ladakh Guide...');">Read Guide</button>
+                </div>
+            </div>
+
+            <div class="guide-card" data-aos="fade-up" data-aos-delay="500">
+                <img src="https://tse4.mm.bing.net/th/id/OIP.Pi0weBSa0naErcYfA4tkuwHaEJ?pid=Api&P=0&h=180" alt="Dubai Guide">
+                <div class="guide-card-content">
+                    <h4>Dubai: Modern Marvel</h4>
+                    <p>Luxury travel on a budget, best desert safaris, and visa requirements overview.</p>
+                    <button onclick="alert('Redirecting to Dubai Guide...');">Read Guide</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    ---
+
     <section class="suggested-trips" data-aos="fade-up" data-aos-duration="1000">
         <h2>🌍 Some of Our Suggested Trips</h2>
         <h3> Must Explore These Destinations</h3>
-        <p>Discover some of our handpicked destinations to make your travel unforgettable.</p>
+        <p class="subtitle">Discover some of our handpicked destinations to make your travel unforgettable.</p>
     
         <div class="trips-container">
             
@@ -544,6 +704,28 @@
         </div>
     </section>
 
+    ---
+    
+    <section class="testimonials">
+        <h2>Trusted by Travellers</h2>
+        <p class="subtitle">Don't just take our word for it. See what our happy customers have to say about their Plan & Go experience!</p>
+
+        <div class="review-container">
+            <div class="review-card" data-aos="zoom-in" data-aos-delay="100">
+                <p>"The best planner I've ever used. Simple, fast, and the itinerary feature saved me so much time in Bali!"</p>
+                <div class="reviewer-info">— **Sameer K., Mumbai**</div>
+            </div>
+            <div class="review-card" data-aos="zoom-in" data-aos-delay="300">
+                <p>"Loved the suggested trips. We booked the Snowy Retreat and it was exactly as described. Highly recommend Plan & Go."</p>
+                <div class="reviewer-info">— **Priya R., Delhi**</div>
+            </div>
+            <div class="review-card" data-aos="zoom-in" data-aos-delay="500">
+                <p>"Easy to navigate, especially the date selection part. Made planning my Europe trip hassle-free. Five stars!"</p>
+                <div class="reviewer-info">— **Ahmed B., Pune**</div>
+            </div>
+        </div>
+    </section>
+
     <footer>
         <p>Contact us: plan&go@gmail.com | +91 98765 43210</p>
         <p>© 2025 Plan & Go. All rights reserved.</p>
@@ -554,7 +736,7 @@
     <script>
         // --- AOS Initialization with once: false ---
         AOS.init({
-            once: false // Har baar animation repeat hoga jab section view mein aayega
+            once: false 
         });
         
         document.addEventListener("DOMContentLoaded", () => {
@@ -614,27 +796,19 @@
             let endDate = document.getElementById("endDate").value;
             let people = document.getElementById("people").value;
 
-            if (!destination || destination === "") {
-                alert("⚠️ Please select a destination!");
-                return;
-            }
-
-            if (!startDate || !endDate || !people) {
-                alert("⚠️ Please fill all fields!");
-                return;
-            }
-
+            // Date validation re-check
             let start = new Date(startDate);
             let end = new Date(endDate);
             let days = Math.floor((end - start) / (1000 * 60 * 60 * 24)) + 1;
+            
             if (days <= 0) {
-                alert("⚠️ End date must be after start date!");
+                alert("⚠️ End date must be after or the same as the start date!");
                 return;
             }
 
             // Save trip details to localStorage for the next page
             localStorage.setItem("tripData", JSON.stringify({
-                destination, days, people: parseInt(people)
+                destination, startDate, endDate, days, people: parseInt(people)
             }));
 
             // Redirect to the trip schedule page
