@@ -1,0 +1,632 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dubai: Modern Marvel 🇦🇪</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        /* --- 🎨 Pink and Black Luxury Theme --- */
+
+        :root {
+            --dark-bg: #111111; /* Deep Black for luxury */
+            --section-bg: #1A1A1A; /* Slightly lighter black */
+            --card-bg: #222222; /* Dark card background for contrast on itinerary */
+            --text-dark: #FFFFFF; /* White text on dark cards */
+            --text-light: #F0F0F0; /* Light text on dark background */
+            --primary-pink: #FF69B4; /* Hot Pink for vibrancy */
+            --secondary-pink: #FF1493; /* Deep Pink for accents */
+            --primary-color: var(--primary-pink);
+        }
+
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-light);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Navbar (Sleek and minimal) */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 50px;
+            background: rgba(17, 17, 17, 0.95);
+            backdrop-filter: blur(5px);
+            font-family: 'Montserrat', sans-serif;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.7);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 2px solid var(--primary-pink); /* Pink accent line */
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--primary-pink);
+            text-shadow: 0 0 10px rgba(255, 105, 180, 0.7); /* Pink glow */
+            letter-spacing: 1px;
+        }
+
+        .navbar a {
+            margin-left: 20px;
+            color: var(--text-light);
+            font-weight: 600;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        .navbar a:hover {
+            color: var(--primary-pink);
+            text-shadow: 0 0 5px rgba(255, 105, 180, 0.5);
+        }
+
+        /* Guide Hero Section (Dubai Skyline) */
+        .guide-hero {
+            position: relative;
+            height: 65vh;
+            /* Placeholder for a futuristic Dubai skyline image */
+            background-image: linear-gradient(rgba(0,0,0,0.7), var(--dark-bg)), url('https://images.unsplash.com/photo-1512406798782-b7e28b2a1a06?fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--text-light);
+            border-bottom: 5px solid var(--primary-pink);
+        }
+
+        .guide-hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 5rem;
+            margin-bottom: 15px;
+            color: var(--primary-pink); /* Title in Pink */
+            font-weight: 900;
+            text-shadow: 0 0 20px rgba(255, 105, 180, 0.8);
+            letter-spacing: 3px;
+        }
+
+        .guide-hero p {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            color: var(--text-light);
+            max-width: 900px;
+            margin: 0 auto;
+            text-shadow: 0 0 5px rgba(0,0,0,0.7);
+        }
+        
+        /* Main Content Sections */
+        .guide-section {
+            padding: 80px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .guide-section h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3.2rem;
+            color: var(--primary-pink);
+            margin-bottom: 40px;
+            text-shadow: 0 0 10px rgba(255, 105, 180, 0.3);
+        }
+        
+        .guide-section h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.2rem;
+            color: var(--secondary-pink);
+            margin-top: 50px;
+            margin-bottom: 25px;
+        }
+
+        .guide-section p {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: var(--text-light);
+            margin-bottom: 25px;
+            text-align: justify;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* List Styling (Pink checks) */
+        .info-list {
+            text-align: left;
+            margin: 30px auto;
+            max-width: 800px;
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .info-list li {
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+        
+        .info-list li::before {
+            content: '✓'; /* Checkmark for tips/requirements */
+            position: absolute;
+            left: 0;
+            top: 0; 
+            color: var(--primary-pink); 
+            font-size: 1.3rem;
+            font-weight: 900;
+        }
+        
+        /* --- ITINERARY CARD STYLING --- */
+        
+        .itinerary-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* Default 3 parallel columns */
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .day-card {
+            background: var(--card-bg); /* Dark Card Background */
+            color: var(--text-dark); /* White Text on Dark Card */
+            border-radius: 15px;
+            padding: 25px 30px;
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.3); /* Pink Glow Shadow */
+            border: 3px solid var(--primary-pink); /* Thick Pink Border */
+            text-align: left;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .day-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 18px 40px rgba(255, 105, 180, 0.5);
+        }
+        
+        /* Pink corner ribbon for flair */
+        .day-card::after {
+            content: '💎';
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: var(--primary-pink);
+            padding: 10px 15px 5px 15px;
+            color: var(--dark-bg);
+            font-size: 1.5rem;
+            transform: rotate(20deg);
+            box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.5);
+            z-index: 10;
+        }
+
+
+        .day-card h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            color: var(--secondary-pink); /* Deep Pink Heading */
+            margin-bottom: 15px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px dashed #333333; /* Light dashed divider */
+            padding-bottom: 10px;
+        }
+
+        .day-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .day-card ul li {
+            font-size: 1rem;
+            color: var(--text-light); /* Light text on dark card background */
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .day-card ul li::before {
+            content: '⚡'; /* Electric bolt for modern feel */
+            position: absolute;
+            left: 0;
+            color: var(--primary-pink);
+            font-size: 1.1rem;
+            top: 2px;
+        }
+        
+        /* Cost Estimate Table */
+        .cost-estimate {
+            background: #1A1A1A; /* Slightly lighter background for the box */
+            color: var(--text-light);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(255, 105, 180, 0.2);
+            margin: 40px 0;
+            text-align: left;
+        }
+        
+        .cost-estimate h3 {
+            color: var(--primary-pink);
+            text-align: center;
+            border-bottom: 2px solid var(--primary-pink);
+            padding-bottom: 10px;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+        
+        .cost-estimate table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 1.1rem;
+        }
+        
+        .cost-estimate th, .cost-estimate td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #333333; /* Dark subtle line */
+        }
+        
+        .cost-estimate th {
+            background-color: var(--secondary-pink);
+            color: var(--dark-bg);
+            text-align: left;
+        }
+        
+        .cost-estimate td:last-child {
+            font-weight: 600;
+            color: var(--primary-pink);
+            text-align: right;
+        }
+        
+        .cost-estimate .total-row td {
+            background-color: var(--primary-pink);
+            color: var(--dark-bg);
+            font-weight: 700;
+            font-size: 1.2rem;
+            border-top: 3px solid var(--dark-bg);
+        }
+        
+        /* Styling for image containers */
+        .image-container {
+            border: 2px solid var(--secondary-pink);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 15px;
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
+            height: 200px; /* Fixed height for consistency */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #333; /* Dark background for images */
+        }
+        
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Cover the container */
+            display: block;
+        }
+
+        .image-placeholder-text {
+            color: #AAAAAA;
+            font-size: 1rem;
+            text-align: center;
+            padding: 15px;
+        }
+
+        /* Image blocks flexbox layout */
+        .image-flex-container {
+            display: flex; 
+            justify-content: space-around; 
+            margin-top: 30px; 
+            flex-wrap: wrap;
+            text-align: center;
+        }
+
+        .image-block {
+            width: 30%; 
+            min-width: 250px; 
+            margin-bottom: 20px;
+        }
+
+
+        /* Call to Action */
+        .cta-section {
+            background: linear-gradient(90deg, #FF1493, #FF69B4); /* Transitioning Pinks */
+            padding: 70px 20px;
+            text-align: center;
+            color: var(--dark-bg); /* Dark text on bright pink background */
+            border-radius: 10px;
+            margin: 60px auto;
+            max-width: 1000px;
+            box-shadow: 0 15px 40px rgba(255, 105, 180, 0.4);
+        }
+
+        .cta-section h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3rem;
+            color: var(--dark-bg);
+            text-shadow: none;
+            margin-bottom: 25px;
+        }
+
+        .cta-section button {
+            background: var(--dark-bg);
+            color: var(--primary-pink);
+            border: none;
+            padding: 16px 40px;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.3s, color 0.3s, transform 0.2s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            border: 2px solid var(--primary-pink);
+        }
+
+        .cta-section button:hover {
+            background: var(--section-bg);
+            color: var(--primary-pink);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--section-bg);
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+            color: var(--text-light);
+            margin-top: auto;
+            border-top: 1px solid var(--secondary-pink);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 1000px) {
+             .itinerary-grid {
+                 /* On medium screens, let them stack up to 2 columns */
+                 grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+             }
+             .image-block {
+                width: 45%; /* Adjust width for smaller screens */
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 20px;
+            }
+            .guide-hero h1 {
+                font-size: 3.5rem;
+            }
+            .guide-hero p {
+                font-size: 1.4rem;
+            }
+            .guide-section h2 {
+                font-size: 2.5rem;
+            }
+            .cta-section h2 {
+                font-size: 2rem;
+            }
+            .image-block {
+                width: 100%; /* Stack images on small screens */
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .guide-hero h1 {
+                font-size: 2.8rem;
+            }
+            .itinerary-grid {
+                 /* Force 1 column on smallest screens */
+                 grid-template-columns: 1fr; 
+             }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">Elite Escapes 💎</div>
+        <nav id="navbar-links">
+            <a href="#itinerary">3-Day Plan</a> 
+            <a href="#cost-section">Cost Estimate</a> 
+            <a href="#visa-info">Visa Guide</a>
+            <a href="project.html">Home</a>
+            <a href="login.html">Login</a>
+            <a href="signup.html">Signup</a>
+        </nav>
+    </header>
+
+    <section class="guide-hero" data-aos="fade-in" data-aos-duration="1000">
+        <div class="guide-hero-content">
+            <h1>Dubai: Modern Marvel 🏙️</h1>
+            <p>Experience **Luxury on a Budget**. Your guide to opulence without the overload.</p>
+        </div>
+    </section>
+
+    <section class="guide-section" data-aos="fade-up" data-aos-delay="200">
+        <h2>✨ The Global Hub of Extravagance</h2>
+        <p>Dubai is a testament to human innovation, a city where futuristic architecture meets desert tradition. It's renowned for its world-class shopping, incredible dining, and unparalleled experiences. This guide focuses on how to tap into the city's luxurious side without breaking your bank, proving that **smart travel is the new luxury**.</p>
+        
+        <h3>Luxury Travel on a Budget: The Smart Approach</h3>
+        <ul class="info-list">
+            <li>**Maximize Free Views:** Skip expensive observatory tickets and enjoy the free, spectacular **Dubai Mall Fountain Show**.</li>
+            <li>**Use the Metro:** The Dubai Metro is clean, quick, and air-conditioned—a far cheaper alternative to taxis for major routes.</li>
+            <li>**Embrace Happy Hours:** Seek out afternoon and early evening deals at high-end hotel bars for a taste of luxury beverages at reduced prices.</li>
+            <li>**Affordable Beaches:** Enjoy the sun and luxury-level facilities at public beaches like JBR and Kite Beach for free.</li>
+        </ul>
+    </section>
+
+    <section class="guide-section" id="itinerary" data-aos="fade-up" data-aos-delay="300"> 
+        <h2>🗓️ Your 3-Day Luxury Budget Itinerary</h2>
+        <p>This plan strategically balances the city's most iconic, high-end experiences with budget-friendly alternatives to give you a truly elite trip.</p>
+
+        <div class="itinerary-grid">
+            
+            <div class="day-card" data-aos="fade-up" data-aos-delay="100">
+                <h4>Day 1: Skyline & Fountain Glamour</h4>
+                <ul>
+                    <li>⚡ Morning: Visit **Burj Khalifa** (book early for cheapest slots). Explore the **Dubai Mall**.</li>
+                    <li>⚡ Afternoon: Relax at **JBR Beach** and walk the Marina, viewing the yachts for free.</li>
+                    <li>⚡ Evening: Watch the spectacular **Dubai Fountain Show**. Budget dinner at a food court or a cheap local Arabic eatery in the Mall.</li>
+                </ul>
+            </div>
+
+            
+            <div class="day-card" data-aos="fade-up" data-aos-delay="200">
+                <h4>Day 2: Desert Adventure & Old Town Charm</h4>
+                <ul>
+                    <li>⚡ Morning: Immerse yourself in history at **Al Seef/Al Fahidi** (Old Dubai). Take an **Abra ride** across the Creek (very cheap!).</li>
+                    <li>⚡ Afternoon: Explore the **Spice and Gold Souks** (shopping is optional!). Lunch on authentic, affordable Indian/Pakistani food in Deira.</li>
+                    <li>⚡ Evening: Head out for a **Desert Safari** (book a mid-range package for the best value including dinner and show).</li>
+                </ul>
+            </div>
+
+            
+            <div class="day-card" data-aos="fade-up" data-aos-delay="300">
+                <h4>Day 3: Man-Made Wonders & Farewell</h4>
+                <ul>
+                    <li>⚡ Morning: Visit **The Palm Jumeirah**. Walk the boardwalk or take the inexpensive Monorail to see the Atlantis hotel.</li>
+                    <li>⚡ Afternoon: Spend time at the free **Dubai Aquarium** viewing pane in the mall. Find some souvenirs at the **Global Village** (seasonal).</li>
+                    <li>⚡ Evening: Enjoy a final, luxurious but budget-friendly meal at an international buffet or a highly-rated **budget restaurant** off-season.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    
+    <section class="guide-section" id="cost-section" data-aos="fade-up" data-aos-delay="350"> 
+        <h2>💰 3-Day Estimated Cost (Per Couple)</h2>
+        <p>This estimate is for a **comfortable, budget-conscious trip** (excluding flights). Costs are approximate and based on smart spending.</p>
+        
+        <div class="cost-estimate" data-aos="zoom-in">
+            <h3>Total Estimated Budget for 3 Days in Dubai (Excluding Flights)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Per Day (Approx. AED)</th>
+                        <th>Total 3 Days (Approx. AED)</th>
+                        <th>Total 3 Days (Approx. INR)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Accommodation (3-star Hotel/Airbnb in Deira/Bur Dubai)</td>
+                        <td>AED 250 - AED 400</td>
+                        <td>AED 750 - AED 1,200</td>
+                        <td>**₹ 16,875 - ₹ 27,000**</td>
+                    </tr>
+                    <tr>
+                        <td>Food & Dining (Local Eateries, Food Courts, 1 Mid-Range Dinner)</td>
+                        <td>AED 150 - AED 200</td>
+                        <td>AED 450 - AED 600</td>
+                        <td>**₹ 10,125 - ₹ 13,500**</td>
+                    </tr>
+                    <tr>
+                        <td>Local Transport (Metro/Bus/Abra)</td>
+                        <td>AED 40 - AED 60</td>
+                        <td>AED 120 - AED 180</td>
+                        <td>**₹ 2,700 - ₹ 4,050**</td>
+                    </tr>
+                    <tr>
+                        <td>Activities & Entrance Fees (Burj Khalifa, Mid-Range Safari, Monorail)</td>
+                        <td>AED 100 - AED 200</td>
+                        <td>AED 300 - AED 600</td>
+                        <td>**₹ 6,750 - ₹ 13,500**</td>
+                    </tr>
+                    <tr class="total-row">
+                        <td>GRAND TOTAL (Approximate)</td>
+                        <td></td>
+                        <td>**AED 1,620 - AED 2,580**</td>
+                        <td>**₹ 36,450 - ₹ 58,050**</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="margin-top: 15px; font-size: 0.9rem;">**Note:** This does not include **Shopping or International Flights**. Current exchange rate: 1 AED ≈ 22.5 INR (Approx).</p>
+               
+            <div class="image-flex-container">
+                
+                <div class="image-block">
+                    <p style="font-weight: 600; color: var(--secondary-pink); margin-bottom: 10px;">Famous Dessert (Kunafa)</p>
+                    <div class="image-container">
+                        <span class="image-placeholder-text">Kunafa Image Placeholder</span>
+                    </div>
+                    <p style="font-size: 0.9rem; color: var(--text-light); margin-top: 5px;">Approx. **₹450 - ₹1,010**</p>
+                </div>
+                
+                <div class="image-block">
+                    <p style="font-weight: 600; color: var(--secondary-pink); margin-bottom: 10px;">Iconic Landmark (Burj Khalifa)</p>
+                    <div class="image-container">
+                        <span class="image-placeholder-text">Burj Khalifa Image Placeholder</span>
+                    </div>
+                    <p style="font-size: 0.9rem; color: var(--text-light); margin-top: 5px;">Entry from approx. **₹4,000 - ₹9,000**</p>
+                </div>
+                
+                <div class="image-block">
+                    <p style="font-weight: 600; color: var(--secondary-pink); margin-bottom: 10px;">Famous Cafe (Arabian Tea House)</p>
+                    <div class="image-container">
+                        <span class="image-placeholder-text">Arabian Tea House Image Placeholder</span>
+                    </div>
+                    <p style="font-size: 0.9rem; color: var(--text-light); margin-top: 5px;">2 people, approx. **₹2,250 - ₹3,375**</p>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+
+    <section class="guide-section" id="visa-info" data-aos="fade-up" data-aos-delay="500">
+        <h2>🛂 Visa Requirements Overview (Indian Nationals)</h2>
+        <p>The UAE visa process for Indian passport holders has become much easier. It's crucial to check the latest rules before booking, but here are the key options and requirements:</p>
+
+        <ul class="info-list">
+            <li>**30-Day Tourist Visa:** The most common option for holidays. Requires a clear passport copy, photograph, and application fee.</li>
+            <li>**Visa on Arrival (VoA):** Indian citizens who hold a valid US, UK, or Schengen Visa or Green Card (or residence permit) are often eligible for a 14-day VoA.</li>
+            <li>**Passport Validity:** Your passport must be valid for at least **6 months** from the date of entry into the UAE.</li>
+            <li>**Transit Visa:** For stopovers, a 96-hour (4-day) transit visa may be available, often free or low-cost when booked with an airline.</li>
+        </ul>
+    </section>
+
+    <section class="cta-section" data-aos="zoom-in" data-aos-delay="600">
+        <h2>Ready for Your Elite Dubai Adventure? 🚀</h2>
+        <p>Stop dreaming and start planning. Click below to download your complete Luxury Budget Checklist!</p>
+        <button onclick="window.location.href='guide-dubai-download.pdf';">Download Free Checklist</button>
+    </section>
+
+    <footer>
+        <p>Contact us: elite-escapes@mail.com | Travel Smart. Travel Elite.</p>
+        <p>© 2025 Elite Escapes. All rights reserved.</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: false // Animations will only run once
+        });
+    </script>
+
+</body>
+</html>
