@@ -1,0 +1,634 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ladakh: The Land of High Passes 🏔️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        /* --- 🎨 Blue and Black Ladakh Theme --- */
+
+        :root {
+            --dark-bg: #0A0A0A; /* Deep Black for high altitude feel */
+            --section-bg: #151515; /* Dark grey for subtle contrast */
+            --card-bg: #FFFFFF; /* White for cards */
+            --text-dark: #333333; /* Dark text on white cards */
+            --text-light: #F0F0F0; /* Light text on dark background */
+            --primary-blue: #00BFFF; /* Deep Sky Blue for clear mountain skies */
+            --secondary-blue: #007BA7; /* Darker Blue for accents */
+            --primary-color: var(--primary-blue);
+        }
+
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-light);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 50px;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(5px);
+            font-family: 'Montserrat', sans-serif;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 2px solid var(--primary-blue); /* Blue accent line */
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--primary-blue);
+            text-shadow: 0 0 10px rgba(0, 191, 255, 0.7); /* Blue glow */
+            letter-spacing: 1px;
+        }
+
+        .navbar a, #navbar-links span {
+            margin-left: 20px;
+            color: var(--text-light);
+            font-weight: 600;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        .navbar a:hover {
+            color: var(--primary-blue);
+            text-shadow: 0 0 5px rgba(0, 191, 255, 0.5);
+        }
+
+        /* Guide Hero Section (Ladakh Mountains) */
+        .guide-hero {
+            position: relative;
+            height: 60vh;
+            /* **Ladakh Hero Image Source** */
+            background-image: linear-gradient(rgba(0,0,0,0.6), rgba(10, 10, 10, 0.9)), url('https://images.unsplash.com/photo-1594247515082-9571348c4078?fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--text-light);
+            border-bottom: 5px solid var(--primary-blue);
+        }
+
+        .guide-hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 4.5rem;
+            margin-bottom: 10px;
+            color: var(--primary-blue); /* Title in Blue */
+            font-weight: 900;
+            text-shadow: 0 0 15px rgba(0, 191, 255, 0.9);
+        }
+
+        .guide-hero p {
+            font-size: 1.5rem;
+            color: var(--text-light);
+            max-width: 800px;
+            margin: 0 auto;
+            text-shadow: 0 0 5px rgba(0,0,0,0.7);
+        }
+
+        /* Main Content Sections */
+        .guide-section {
+            padding: 80px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .guide-section h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.8rem;
+            color: var(--primary-blue);
+            margin-bottom: 30px;
+            text-shadow: 0 0 8px rgba(0, 191, 255, 0.4);
+        }
+        
+        .guide-section h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            color: var(--secondary-blue);
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        .guide-section p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--text-light);
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        
+        .guide-section ul {
+            text-align: left;
+            margin: 20px auto;
+            max-width: 800px;
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .guide-section ul li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            color: var(--text-light);
+        }
+        
+        /* New Bullet: Prayer Flag */
+        .guide-section ul li::before {
+            content: '🚩'; 
+            position: absolute;
+            left: 0;
+            top: 0; 
+            font-size: 1.1rem;
+            color: var(--primary-blue); /* Color is ignored for emoji, but keep for consistency */
+        }
+        
+        /* --- ITINERARY CARD STYLING --- */
+        
+        .itinerary-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .day-card {
+            background: var(--card-bg); /* White Card */
+            color: var(--text-dark); /* Dark Text on White Card */
+            border-radius: 15px;
+            padding: 25px 30px;
+            box-shadow: 0 10px 30px rgba(0, 191, 255, 0.4); /* Blue Shadow */
+            border: 3px solid var(--primary-blue); /* Thick Blue Border */
+            text-align: left;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .day-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 18px 40px rgba(0, 191, 255, 0.6);
+        }
+        
+        /* Blue corner ribbon for flair */
+        .day-card::after {
+            content: '🏔️';
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: var(--primary-blue);
+            padding: 10px 15px 5px 15px;
+            color: white;
+            font-size: 1.5rem;
+            transform: rotate(20deg);
+            box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.3);
+            z-index: 10;
+        }
+
+
+        .day-card h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            color: var(--secondary-blue); 
+            margin-bottom: 15px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px dashed #ADD8E6; /* Light dashed divider */
+            padding-bottom: 10px;
+        }
+
+        .day-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .day-card ul li {
+            font-size: 1rem;
+            color: var(--text-dark); /* Dark text on white background */
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .day-card ul li::before {
+            content: '☸️'; /* Dharma Wheel for Buddhist theme */
+            position: absolute;
+            left: 0;
+            color: var(--primary-blue);
+            font-size: 1.1rem;
+            top: 2px;
+        }
+
+        /* --- GALLERY STYLING (Same as Cafe, now Landmarks) --- */
+        
+        .cafe-gallery { /* Renamed to .landmark-gallery in HTML, but CSS uses old class */
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .cafe-item {
+            background: var(--card-bg); 
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--primary-blue);
+            transition: transform 0.3s;
+        }
+
+        .cafe-item:hover {
+            transform: scale(1.03);
+        }
+
+        .cafe-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 1px solid var(--primary-blue);
+        }
+
+        .cafe-item-content {
+            padding: 15px;
+            text-align: center;
+            color: var(--text-dark); 
+        }
+
+        .cafe-item-content h5 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.2rem;
+            color: var(--secondary-blue); 
+            margin-bottom: 5px;
+        }
+
+        .cafe-item-content p {
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            margin-bottom: 0;
+            text-align: center;
+        }
+        
+        /* --- COST ESTIMATE SECTION STYLING --- */
+        .cost-estimate {
+            background: #CCEEFF; /* Very Light Blue Background */
+            color: var(--text-dark);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            margin: 40px 0;
+            text-align: left;
+        }
+        
+        .cost-estimate h3 {
+            color: var(--primary-blue);
+            text-align: center;
+            border-bottom: 2px solid var(--primary-blue);
+            padding-bottom: 10px;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+        
+        .cost-estimate table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 1.1rem;
+        }
+        
+        .cost-estimate th, .cost-estimate td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #99CCFF;
+        }
+        
+        .cost-estimate th {
+            background-color: var(--primary-blue);
+            color: white;
+            text-align: left;
+        }
+        
+        .cost-estimate td:last-child {
+            font-weight: 600;
+            color: var(--secondary-blue);
+            text-align: right;
+        }
+        
+        .cost-estimate .total-row td {
+            background-color: var(--secondary-blue);
+            color: white;
+            font-weight: 700;
+            font-size: 1.2rem;
+            border-top: 3px solid white;
+        }
+
+
+        /* Call to Action */
+        .cta-section {
+            background: linear-gradient(45deg, var(--secondary-blue), var(--primary-blue));
+            padding: 60px 20px;
+            text-align: center;
+            color: var(--text-light);
+            border-radius: 15px;
+            margin: 60px auto;
+            max-width: 900px;
+            box-shadow: 0 10px 30px rgba(0, 191, 255, 0.6);
+        }
+
+        .cta-section h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3rem;
+            color: var(--text-light);
+            text-shadow: none;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            color: var(--text-light);
+        }
+
+        .cta-section button {
+            background: var(--text-light);
+            color: var(--primary-blue);
+            border: none;
+            padding: 15px 35px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.3s, color 0.3s, transform 0.2s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border: 2px solid var(--primary-blue);
+        }
+
+        .cta-section button:hover {
+            background: var(--dark-bg);
+            color: var(--primary-blue);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--section-bg);
+            text-align: center;
+            padding: 18px;
+            font-size: 14px;
+            color: var(--text-light);
+            margin-top: auto;
+            font-family: 'Poppins', sans-serif;
+            border-top: 2px solid var(--primary-blue);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 1000px) {
+             .itinerary-grid, .cafe-gallery {
+                 grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+             }
+        }
+        
+        @media (max-width: 768px) {
+            .guide-hero h1 {
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .guide-hero h1 {
+                font-size: 2.5rem;
+            }
+            .cost-estimate th, .cost-estimate td {
+                padding: 10px 8px;
+                font-size: 0.9rem;
+            }
+            .itinerary-grid, .cafe-gallery {
+                 grid-template-columns: 1fr; 
+             }
+        }
+        /* --- 🎨 Style End --- */
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">Highlander's Quest 🏔️</div>
+        <nav id="navbar-links">
+            <a href="#itinerary">5-Day Plan</a> 
+            <a href="#cost-section">Cost</a> 
+            <a href="#landmarks">Must-Visit</a> 
+            <a href="project.html">Home</a> 
+            <a href="login.html">Login</a>
+            <a href="signup.html">Signup</a>
+        </nav>
+    </header>
+
+    <section class="guide-hero" data-aos="fade-in" data-aos-duration="1000">
+        <div class="guide-hero-content">
+            <h1>Ladakh: The Land of High Passes 🏔️🇮🇳</h1>
+            <p>Your ultimate 5-day guide to the Himalayas' most breathtaking destination. A journey for the soul.</p>
+        </div>
+    </section>
+    
+    <section class="guide-section" data-aos="fade-up" data-aos-delay="200">
+        <h2>☸️ Juley! Welcome to Leh-Ladakh</h2>
+        <p>Ladakh is a realm of stark, breathtaking landscapes, dominated by towering snow-capped mountains and crystal-clear high-altitude lakes. It is a land deeply rooted in **Tibetan Buddhist culture**, visible in its magnificent monasteries and colorful prayer flags. This guide is tailored for a **5-day adventure**, ensuring proper **acclimatization** and covering the most iconic spots.</p>
+        
+        <h3>Crucial Travel Tips for High Altitude</h3>
+        <ul class="info-list">
+            <li>**Acclimatization is Key:** Spend your first 24-48 hours in Leh resting completely to adjust to the high altitude (11,000 ft).</li>
+            <li>**Permits:** Inner Line Permit (ILP) is required for places like Nubra Valley and Pangong Lake. Get it online before you go.</li>
+            <li>**Stay Hydrated:** Drink plenty of water (avoiding alcohol and smoking) to prevent Acute Mountain Sickness (AMS).</li>
+            <li>**Carry Cash:** ATMs are scarce outside Leh. Carry enough cash for permits, monasteries, and small expenses.</li>
+        </ul>
+    </section>
+
+    <section class="guide-section" id="itinerary" data-aos="fade-up" data-aos-delay="300"> 
+        <h2>🗓️ Your 5-Day Himalayan Adventure Itinerary</h2>
+        <p>This plan prioritizes safety through acclimatization and takes you to all the must-see locations using a standard route.</p>
+
+        <div class="itinerary-grid">
+            
+            <div class="day-card" data-aos="fade-up" data-aos-delay="100">
+                <h4>Day 1-2: Leh & Acclimatization</h4>
+                <ul>
+                    <li>☸️ Day 1: Arrive at Leh airport. **Rest completely** at the hotel/homestay.</li>
+                    <li>☸️ Day 2: Light local sightseeing: **Leh Palace**, **Shanti Stupa** (slow walking only). Visit a local market.</li>
+                    <li>☸️ Food: Enjoy local Ladakhi cuisine like **Thukpa** or **Momo** in Leh town.</li>
+                </ul>
+            </div>
+
+            
+            <div class="day-card" data-aos="fade-up" data-aos-delay="200">
+                <h4>Day 3: Nubra Valley & Sand Dunes</h4>
+                <ul>
+                    <li>☸️ Morning: Drive over **Khardungla Pass** (one of the highest motorable roads).</li>
+                    <li>☸️ Afternoon: Check into your stay in **Hunder/Diskit**. Visit the **Diskit Monastery**.</li>
+                    <li>☸️ Evening: Enjoy a **Double-Humped Camel Safari** in the Hunder sand dunes.</li>
+                </ul>
+            </div>
+
+            
+            <div class="day-card" data-aos="fade-up" data-aos-delay="300">
+                <h4>Day 4: Pangong Lake (Blue Wonder)</h4>
+                <ul>
+                    <li>☸️ Morning: Drive from Nubra to **Pangong Tso** (Lake) via Shyok river route.</li>
+                    <li>☸️ Afternoon: Reach the lake. Watch the lake's **famous color changes** (Blue, Green, Red).</li>
+                    <li>☸️ Night: Stay in a camp/homestay near the lake. Enjoy the spectacular **starry night sky**.</li>
+                </ul>
+            </div>
+            
+            <div class="day-card" data-aos="fade-up" data-aos-delay="400" style="grid-column: 1 / span 3;">
+                <h4>Day 5: Return to Leh & Monasteries</h4>
+                <ul>
+                    <li>☸️ Morning: Capture sunrise photos at Pangong Tso. Drive back to Leh.</li>
+                    <li>☸️ Mid-day: On the way, stop at **Thiksey Monastery** and **Shey Palace**.</li>
+                    <li>☸️ Evening: Last-minute souvenir shopping in Leh market. Prepare for departure.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    
+    <section class="guide-section" id="cost-section" data-aos="fade-up" data-aos-delay="500"> 
+        <h2>💰 5-Day Estimated Cost (Per Couple)</h2>
+        <p>Yeh estimate ek **mid-range** trip ke liye hai. Ladakh mein cost thoda high ho sakta hai due to remote location aur permits.</p>
+        
+        <div class="cost-estimate" data-aos="zoom-in">
+            <h3>Total Estimated Budget for 5 Days in Ladakh (Excluding Flights)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Per Day (Approx. ₹)</th>
+                        <th>Total 5 Days (Approx. ₹)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Accommodation (Mid-Range Hotel/Homestay)</td>
+                        <td>₹3,000 - ₹5,000</td>
+                        <td>**₹15,000 - ₹25,000**</td>
+                    </tr>
+                    <tr>
+                        <td>Food & Dining (Standard Meals)</td>
+                        <td>₹1,500 - ₹2,500</td>
+                        <td>**₹7,500 - ₹12,500**</td>
+                    </tr>
+                    <tr>
+                        <td>Transportation (Leh Local Taxi + 3 Day Outstation Package)</td>
+                        <td>₹4,000 - ₹6,000 (average)</td>
+                        <td>**₹20,000 - ₹30,000**</td>
+                    </tr>
+                    <tr>
+                        <td>Permits, Entrance Fees, Activities (ILP, Monastery Fees, Camel Safari)</td>
+                        <td>₹500 - ₹1,000 (average)</td>
+                        <td>**₹2,500 - ₹5,000**</td>
+                    </tr>
+                    <tr class="total-row">
+                        <td>GRAND TOTAL (Approximate)</td>
+                        <td></td>
+                        <td>**₹45,000 - ₹72,500**</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="margin-top: 15px; font-size: 0.9rem;">**Note:** Ismein **Leh flights** (Jo kaafi mehengi ho sakti hain) aur **Shopping** ka kharcha shaamil nahi hai. Bike Rental par cost kam ho sakta hai.</p>
+        </div>
+    </section>
+
+    <section class="guide-section" id="landmarks" data-aos="fade-up" data-aos-delay="600"> 
+        <h2>📸 Essential Ladakh Photo Spots (Must-Visit)</h2>
+        <p>Ladakh ki khoobsurati ko capture karne ke liye yeh teen jagah zarur jaana:</p>
+
+        <div class="cafe-gallery">
+            
+            <div class="cafe-item" data-aos="zoom-in" data-aos-delay="100">
+                <img src="https://images.unsplash.com/photo-1579737920150-13f8c858564a?fit=crop&w=800&q=80" alt="Pangong Lake" loading="lazy">
+                <div class="cafe-item-content">
+                    <h5>Pangong Tso Lake</h5>
+                    <p>The iconic blue, high-altitude lake. Best viewed at sunrise/sunset.</p>
+                </div>
+            </div>
+            
+            <div class="cafe-item" data-aos="zoom-in" data-aos-delay="200">
+                <img src="https://images.unsplash.com/photo-1628178652277-22731855b72e?fit=crop&w=800&q=80" alt="Diskit Monastery" loading="lazy">
+                <div class="cafe-item-content">
+                    <h5>Diskit Monastery</h5>
+                    <p>Oldest and largest monastery in Nubra Valley, featuring a massive Buddha statue.</p>
+                </div>
+            </div>
+            
+            <div class="cafe-item" data-aos="zoom-in" data-aos-delay="300">
+                <img src="https://images.unsplash.com/photo-1594247515082-9571348c4078?fit=crop&w=800&q=80" alt="Magnetic Hill" loading="lazy">
+                <div class="cafe-item-content">
+                    <h5>Khardungla Pass</h5>
+                    <p>Historic high-altitude pass, the gateway to the Nubra and Shyok valleys.</p>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <section class="guide-section" data-aos="fade-up" data-aos-delay="700">
+        <h2>💊 Health & Safety Checklist</h2>
+        <p>Ladakh ki harsh climate aur altitude ke liye taiyaar rehna bahut zaruri hai. Yeh cheezein apne saath zarur rakhein:</p>
+
+        <ul>
+            <li>**First Aid Kit:** Diamox (for AMS), Painkillers, Anti-diarrheal, Band-aids.</li>
+            <li>**Warm Clothing:** Thermal wear, woollen caps, gloves, heavy jacket (even in summer).</li>
+            <li>**Sun Protection:** High SPF sunscreen, UV-protected sunglasses (essential for snow/glare), lip balm.</li>
+            <li>**Backups:** Power bank for devices, extra battery for cameras.</li>
+            <li>**Medication:** Always consult your doctor before taking any altitude-related medication.</li>
+        </ul>
+    </section>
+
+    <section class="cta-section" data-aos="zoom-in" data-aos-delay="800">
+        <h2>Aapka Himalayan Safar Intezaar Kar Raha Hai! 🛵</h2>
+        <p>Highlander's Quest shuru karne ke liye taiyaar ho jao! Apni planning shuru karne ke liye button dabao.</p>
+        <button onclick="window.location.href='index.html';">Start Planning Your Quest</button>
+    </section>
+
+    <footer>
+        <p>Contact us: highlandersquest@mail.com | Adventure Awaits Above.</p>
+        <p>© 2025 Highlander's Quest. All rights reserved.</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: false // Animation on scroll
+        });
+
+        // Basic Login/Logout logic removed for brevity but can be re-added if needed
+    </script>
+
+</body>
+</html>
