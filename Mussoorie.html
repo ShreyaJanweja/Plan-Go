@@ -155,6 +155,7 @@
             font-size: 0.9rem;
             transition: background 0.3s, transform 0.3s;
             align-self: flex-start;
+            cursor: pointer; /* Added cursor pointer */
         }
 
         .explore-link:hover {
@@ -162,6 +163,107 @@
             transform: scale(1.05);
         }
 
+        /* --- Modal Styles (Added) --- */
+        
+        /* Backdrop: Makes the background dark and slightly blurs it */
+        .modal-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7); /* Dark overlay */
+            backdrop-filter: blur(5px); /* Blur effect */
+            z-index: 1000; /* High z-index */
+            display: none; /* Initially hidden */
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .modal-backdrop.open {
+            display: flex;
+            opacity: 1;
+        }
+
+        /* Modal Content Box */
+        .modal-content {
+            background: var(--card-dark);
+            padding: 20px; /* Reduced padding for image focus */
+            border-radius: 15px;
+            max-width: 600px;
+            width: 90%;
+            box-shadow: var(--accent-glow);
+            border: 2px solid var(--neon-blue);
+            position: relative;
+            transform: scale(0.8); /* Start smaller */
+            transition: transform 0.3s ease-out;
+            overflow: hidden; /* To contain the image */
+        }
+
+        .modal-backdrop.open .modal-content {
+            transform: scale(1); /* Zoom in when open */
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            padding: 10px 10px 0; /* Adjust padding */
+        }
+
+        .modal-header h3 {
+            color: var(--neon-blue);
+            font-size: 1.8rem;
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+        }
+
+        /* Close button style (The 'X') */
+        .modal-close-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 24px;
+            cursor: pointer;
+            transition: color 0.3s, transform 0.2s;
+        }
+
+        .modal-close-btn:hover {
+            color: var(--neon-purple);
+            transform: rotate(90deg);
+        }
+
+        /* Modal Image - Focal point */
+        .modal-image {
+            width: 100%;
+            height: auto;
+            max-height: 350px; /* Make image larger */
+            object-fit: cover;
+            border-radius: 10px;
+            margin: 0 0 15px 0;
+            border: 2px solid rgba(187, 134, 252, 0.5);
+            transition: transform 0.3s;
+        }
+        
+        /* Modal Body for text */
+        .modal-body {
+            padding: 0 10px 10px;
+            text-align: center; /* Center the short inspirational text */
+        }
+
+        .modal-body p {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1rem; /* Slightly larger text */
+            color: var(--neon-purple); /* Purple for contrast/appeal */
+            font-weight: 600;
+            line-height: 1.4;
+            margin: 0;
+            text-shadow: 0 0 5px rgba(187, 134, 252, 0.3);
+        }
+        
         /* Media Queries for Responsiveness */
         @media (max-width: 768px) {
             header h1 {
@@ -169,6 +271,12 @@
             }
             .places-grid {
                 grid-template-columns: 1fr;
+            }
+            .modal-image {
+                max-height: 200px;
+            }
+            .modal-header h3 {
+                font-size: 1.4rem;
             }
         }
     </style>
@@ -193,7 +301,7 @@
                 <div class="card-content">
                     <h3>Christ Church & Colonial Heritage</h3>
                     <p>The **Christ Church** is one of the oldest churches in the Himalayas, known for its beautiful Gothic architecture and stunning stained-glass windows, including one depicting Jesus Christ. It’s a peaceful spot reflecting the town's history.</p>
-                    <a href="#" class="explore-link">View History</a>
+                    <a href="#" class="explore-link" onclick="event.preventDefault(); openModal('Christ Church', 'Witness the serene beauty of the oldest church in the Himalayas. Find peace under its beautiful stained-glass windows. 🙏', 'https://mussoorietourism.co.in/images/places-to-visit/header/kellogg-memorial-church-mussoorie-tourism-entry-fee-timings-holidays-reviews-header.jpg');">View History</a>
                 </div>
             </div>
 
@@ -204,7 +312,7 @@
                 <div class="card-content">
                     <h3>The Mall Road</h3>
                     <p>The bustling heart of Mussoorie, **Mall Road** is a must-visit for shopping, dining, and leisurely evening strolls. It runs through the center of town, connecting the two main points, and is famous for its colonial charm and lively atmosphere.</p>
-                    <a href="#" class="explore-link">Street Shopping Guide</a>
+                    <a href="#" class="explore-link" onclick="event.preventDefault(); openModal('Mall Road Magic', 'Shop, Dine, and Stroll! Feel the colonial charm and the lively evening buzz. **Don\'t forget to try the local coffee!** 🛍️', 'https://media1.thrillophilia.com/filestore/8g04nqjtiivm7nglko8db34bygwd_shutterstock_2365470931%20(1).jpg?w=800&dpr=2');">Street Shopping Guide</a>
                 </div>
             </div>
 
@@ -215,7 +323,7 @@
                 <div class="card-content">
                     <h3>Lal Tibba (Highest Peak)</h3>
                     <p>Located in Landour, **Lal Tibba** is the highest point in Mussoorie. It offers spectacular, unobstructed, and panoramic views of the snow-clad **Himalayan peaks** (like Kedarnath and Badrinath), which can be seen clearly through a Japanese telescope.</p>
-                    <a href="#" class="explore-link">View Telescope Point</a>
+                    <a href="#" class="explore-link" onclick="event.preventDefault(); openModal('The View from Lal Tibba', 'Witness the majestic, snow-clad Himalayas! Panoramic views of Kedarnath & Badrinath await. **Grab the telescope!** 🔭', 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/10/8c/d7/13/rainbow-during-sunset.jpg?w=900&h=500&s=1');">View Telescope Point</a>
                 </div>
             </div>
 
@@ -226,7 +334,7 @@
                 <div class="card-content">
                     <h3>Camel's Back Road</h3>
                     <p>This **scenic 3 km road** gets its name from a natural rock formation that resembles a sitting camel. It's ideal for a quiet morning or sunset **walk** and provides stunning views of the valley and the surrounding Himalayan peaks.</p>
-                    <a href="#" class="explore-link">Trekking Guide</a>
+                    <a href="#" class="explore-link" onclick="event.preventDefault(); openModal('Camel\'s Back Road Walk', 'Go for a peaceful sunset walk on this camel-shaped road! Enjoy stunning valley views and fresh mountain air. 🌄 **Perfect for photography.**', 'https://www.kiomoi.com/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fkmadmin%2Fimage%2Fupload%2Fc_scale%2Cw_500%2Ff_auto%2Fv1621333933%2Fkiomoi%2FMussoorie_Camel%27s_Back_Road_1621333932825.jpg&w=3840&q=75');">Trekking Guide</a>
                 </div>
             </div>
 
@@ -237,7 +345,7 @@
                 <div class="card-content">
                     <h3>Kempty Falls</h3>
                     <p>Located about 13 km from Mussoorie, **Kempty Falls** is one of the most famous tourist spots. This large, multi-tiered waterfall drops down from a height of about 40 feet, creating a pool where visitors can enjoy **swimming and picnics**.</p>
-                    <a href="#" class="explore-link">Travel Tips</a>
+                    <a href="#" class="explore-link" onclick="event.preventDefault(); openModal('Kempty Falls Fun', 'Dive into the multi-tiered waterfall! Enjoy swimming and picnics in the refreshing pool. **Don\'t forget your swimming gear!** 💦', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtDEYc1YBpNrQc1D-1BtgXAP9kqWiABl5wBg&s');">Travel Tips</a>
                 </div>
             </div>
             
@@ -248,17 +356,60 @@
                 <div class="card-content">
                     <h3>Gun Hill</h3>
                     <p>The second-highest peak in Mussoorie, **Gun Hill** offers a spectacular 360-degree view of the Himalayan ranges and the entire Mussoorie town. It is easily accessible via a **ropeway (cable car)** ride from the Mall Road.</p>
-                    <a href="#" class="explore-link">Ropeway Details</a>
+                    <a href="#" class="explore-link" onclick="event.preventDefault(); openModal('Gun Hill Cable Car Ride', 'Take the thrilling Ropeway ride for a 360° panoramic view of the town and mountains! The best spot for sunsets. 🚠', 'https://tse2.mm.bing.net/th/id/OIP.VhVNGMMBxTZonNO220G4ygHaFj?pid=Api&P=0&h=180');">Ropeway Details</a>
                 </div>
             </div>
 
         </section>
     </div>
     
+    <div id="infoModalBackdrop" class="modal-backdrop">
+        <div id="infoModalContent" class="modal-content">
+            <img id="modalImage" class="modal-image"> 
+            
+            <div class="modal-header">
+                <h3 id="modalTitle">Details</h3>
+                <button class="modal-close-btn" onclick="closeModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <p id="modalDescription"></p>
+            </div>
+        </div>
+    </div>
+    
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
     <script>
         AOS.init({
             once: true // Animation will run once
+        });
+
+        /* --- Modal Logic (Added) --- */
+
+        // Function to handle the opening of the modal
+        function openModal(title, description, imageUrl) {
+            document.getElementById('modalTitle').textContent = title;
+            document.getElementById('modalDescription').innerHTML = description;
+            
+            const modalImg = document.getElementById('modalImage');
+            modalImg.src = imageUrl;
+            modalImg.alt = title; 
+
+            document.getElementById('infoModalBackdrop').classList.add('open');
+            document.body.style.overflow = 'hidden'; // Prevents background scrolling
+        }
+
+        // Function to close the modal
+        function closeModal() {
+            document.getElementById('infoModalBackdrop').classList.remove('open');
+            document.body.style.overflow = ''; // Re-enable background scrolling
+        }
+
+        // Close modal when clicking outside the content (on the backdrop)
+        document.getElementById('infoModalBackdrop').addEventListener('click', function(event) {
+            // Check if the click was directly on the backdrop, not on the modal content
+            if (event.target === this) {
+                closeModal();
+            }
         });
     </script>
 </body>
