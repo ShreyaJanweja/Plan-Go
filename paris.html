@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,16 +10,16 @@
     <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
     
     <style>
-        /* --- 🎨 Style Start --- */
-
+        /* --- 🎨 Style Start (Styles are kept the same) --- */
+        
         :root {
-            --dark-bg: #1B0F1B; /* Very dark purple-black for depth */
+            --dark-bg: #1B0F1B; 
             --section-bg: #2B1A2B; 
-            --card-bg: #FFFFFF; /* White for cards */
-            --text-dark: #333333; /* Dark text on white cards */
-            --text-light: #F0F0F0; /* Light text on dark background */
-            --primary-red: #FF3366; /* Vibrant Red for Love/Paris */
-            --secondary-red: #B00030; /* Darker Red for accents */
+            --card-bg: #FFFFFF; 
+            --text-dark: #333333; 
+            --text-light: #F0F0F0; 
+            --primary-red: #FF3366; 
+            --secondary-red: #B00030; 
             --primary-color: var(--primary-red);
         }
 
@@ -79,12 +80,13 @@
             color: var(--primary-red);
             text-shadow: 0 0 5px rgba(255, 51, 102, 0.5);
         }
-
+        
+        /* ... (Rest of the CSS is the same) ... */
+        
         /* Guide Hero Section */
         .guide-hero {
             position: relative;
             height: 60vh;
-            /* Using a placeholder image URL - replace with your own for production */
             background-image: linear-gradient(rgba(0,0,0,0.6), rgba(27, 15, 27, 0.9)), url('https://images.unsplash.com/photo-1502602898668-a0359373ef5e?fit=crop&w=1920&q=80');
             background-size: cover;
             background-position: center;
@@ -100,7 +102,7 @@
             font-family: 'Montserrat', sans-serif;
             font-size: 4.5rem;
             margin-bottom: 10px;
-            color: var(--primary-red); /* Title in Red */
+            color: var(--primary-red); 
             font-weight: 900;
             text-shadow: 0 0 15px rgba(255, 51, 102, 0.9);
         }
@@ -140,7 +142,7 @@
         .guide-section p {
             font-size: 1.1rem;
             line-height: 1.7;
-            color: var(--text-light); /* Keep body text light on dark background */
+            color: var(--text-light); 
             margin-bottom: 20px;
             text-align: justify;
         }
@@ -179,18 +181,18 @@
         
         .itinerary-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr); /* Default 3 parallel columns */
+            grid-template-columns: repeat(3, 1fr); 
             gap: 30px;
             margin-top: 40px;
         }
 
         .day-card {
-            background: var(--card-bg); /* White Card */
-            color: var(--text-dark); /* Dark Text on White Card */
+            background: var(--card-bg); 
+            color: var(--text-dark); 
             border-radius: 15px;
             padding: 25px 30px;
-            box-shadow: 0 10px 30px rgba(255, 51, 102, 0.4); /* Red Shadow */
-            border: 3px solid var(--primary-red); /* Thick Red Border */
+            box-shadow: 0 10px 30px rgba(255, 51, 102, 0.4); 
+            border: 3px solid var(--primary-red); 
             text-align: left;
             transition: transform 0.3s, box-shadow 0.3s;
             position: relative;
@@ -221,13 +223,13 @@
         .day-card h4 {
             font-family: 'Montserrat', sans-serif;
             font-size: 1.8rem;
-            color: var(--secondary-red); /* Dark Red Heading */
+            color: var(--secondary-red); 
             margin-bottom: 15px;
             text-align: center;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-bottom: 1px dashed #FFCCCC; /* Light dashed divider */
+            border-bottom: 1px dashed #FFCCCC; 
             padding-bottom: 10px;
         }
 
@@ -238,14 +240,14 @@
 
         .day-card ul li {
             font-size: 1rem;
-            color: var(--text-dark); /* Dark text on white background */
+            color: var(--text-dark); 
             margin-bottom: 10px;
             padding-left: 25px;
             position: relative;
         }
 
         .day-card ul li::before {
-            content: '✦'; /* Change checkmark to star/dot */
+            content: '✦'; 
             position: absolute;
             left: 0;
             color: var(--primary-red);
@@ -295,7 +297,7 @@
         }
 
         .cafe-item {
-            background: var(--card-bg); /* White Card */
+            background: var(--card-bg); 
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
@@ -317,13 +319,13 @@
         .cafe-item-content {
             padding: 15px;
             text-align: center;
-            color: var(--text-dark); /* Dark text on white background */
+            color: var(--text-dark); 
         }
 
         .cafe-item-content h5 {
             font-family: 'Montserrat', sans-serif;
             font-size: 1.2rem;
-            color: var(--secondary-red); /* Darker Red Heading */
+            color: var(--secondary-red); 
             margin-bottom: 5px;
         }
 
@@ -336,7 +338,7 @@
         
         /* --- NEW COST ESTIMATE SECTION STYLING --- */
         .cost-estimate {
-            background: #FFCCCC; /* Very Light Red/Pink Background */
+            background: #FFCCCC; 
             color: var(--text-dark);
             padding: 40px;
             border-radius: 15px;
@@ -447,7 +449,6 @@
         /* Responsive Adjustments */
         @media (max-width: 1000px) {
             .itinerary-grid, .cafe-gallery {
-                /* On medium screens, let them stack up to 2 columns */
                 grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
             }
         }
@@ -475,7 +476,6 @@
                 font-size: 0.9rem;
             }
             .itinerary-grid, .cafe-gallery {
-                /* Force 1 column on smallest screens */
                 grid-template-columns: 1fr; 
             }
         }
@@ -490,8 +490,7 @@
             <a href="#itinerary">Itinerary</a> 
             <a href="#cost-section">Cost</a> 
             <a href="#cafe-section">Cafes</a> 
-            <a href="project.html">Home</a>
-
+            <a href="project.html">Home</a> 
             
         </nav>
     </header>
@@ -649,7 +648,7 @@
     <section class="cta-section" data-aos="zoom-in" data-aos-delay="600">
         <h2>Aapka Paris Adventure Wait Kar Raha Hai! 🥂</h2>
         <p>Ab jab plan taiyaar hai, agla kadam uthao! Bas ek click, aur shuru ho jaayegi tumhari romantic journey.</p>
-        <button onclick="window.location.href='index.html';">Book Your Dream Trip Now</button>
+        <button onclick="window.location.href='project.html';">Book Your Dream Trip Now</button>
     </section>
 
     <footer>
@@ -669,22 +668,23 @@
             const nav = document.getElementById("navbar-links");
 
             if (user) {
-                // If logged in, replace Login/Signup with Welcome and Logout button
+                // ✅ FIX 3: Update Home link to project.html for logged-in user
+                // If logged in, replace all links with logged-in view
                 nav.innerHTML = `
                     <a href="#itinerary">Itinerary</a> 
                     <a href="#cost-section">Cost</a> 
                     <a href="#cafe-section">Cafes</a>
-                    <span style="margin-right:10px; color:var(--primary-red); font-weight:600;">👋 Hi, ${user.fullname}</span>
+                    <a href="project.html">Home</a> <span style="margin-right:10px; color:var(--primary-red); font-weight:600;">👋 Hi, ${user.fullname}</span>
                     <a href="#" id="logoutBtn">Logout</a>
                 `;
                 document.getElementById("logoutBtn").addEventListener("click", (e) => {
                     e.preventDefault(); 
                     localStorage.removeItem("loggedInUser");
-                    // Reload the page to show default Login/Signup links again
+                    // Reload the page to show default links again
                     window.location.reload(); 
                 });
             } 
-            // If logged out, the default HTML links (Login/Signup) remain visible, which is correct.
+            // If logged out, the default HTML links (including Home, Login, Signup) remain visible.
         });
     </script>
 

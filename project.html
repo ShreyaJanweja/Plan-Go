@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,8 +17,8 @@
             --card-bg: #252A3B; /* Background for cards/elements */
             --text-light: #f0f8ff;
             --text-muted: #aeb8c9;
-            --neon-blue: #00e0ff; 
-            --neon-purple: #bb86fc;
+            --neon-blue: #00e0ff; /* Primary Neon Color */
+            --neon-purple: #bb86fc; /* Secondary Neon Color */
             --primary-color: var(--neon-blue);
         }
 
@@ -84,6 +83,7 @@
         .hero {
             text-align: center;
             padding: 100px 20px 80px; 
+            /* Added a default image for the background, replace with your own if needed */
             background-image: linear-gradient(rgba(26, 30, 41, 0.8), rgba(26, 30, 41, 0.8)), url('https://images.unsplash.com/photo-1542037106-f1311b528b80?fit=crop&w=1920&q=80');
             background-size: cover;
             background-position: center;
@@ -136,10 +136,6 @@
             margin-bottom: 5px;
             text-align: left;
             color: var(--text-light);
-        }
-
-        .sr-only {
-            display: none; 
         }
 
         .trip-form select,
@@ -214,7 +210,7 @@
             line-height: 1.6;
         }
 
-        /* About Section (Fixed Background) */
+        /* About Section */
         .about {
             background: var(--dark-bg); 
         }
@@ -260,7 +256,7 @@
             font-weight: 500;
         }
 
-        /* Trip Container (Removed Perspective from here) */
+        /* Trip Container (Flex/Grid for Layout) */
         .trips-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -269,11 +265,16 @@
             margin: auto;
         }
 
-        /* FIX: Trip Card Container for 3D Flip */
+        .trips-container a {
+            display: block; 
+            height: 100%; 
+        }
+
+        /* Trip Card Container for 3D Flip */
         .trip-card-container {
             position: relative;
             width: 100%;
-            height: 450px; /* Set a fixed height */
+            height: 450px; /* FIXED HEIGHT */
             transition: transform 0.6s;
             transform-style: preserve-3d; /* Key for 3D effect */
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); 
@@ -290,7 +291,7 @@
             position: absolute;
             width: 100%;
             height: 100%;
-            backface-visibility: hidden; /* FIX: Prevents back content from showing through */
+            backface-visibility: hidden; /* Prevents back content from showing through */
             background: var(--card-bg);
             border-radius: 10px;
             overflow: hidden;
@@ -298,10 +299,6 @@
             text-align: left;
             transition: transform 0.6s;
             border: 1px solid rgba(0, 224, 255, 0.2);
-        }
-
-        .trip-card.front {
-            /* Front side */
         }
 
         .trip-card.back {
@@ -328,7 +325,8 @@
             font-weight: 600;
         }
         
-        .trip-card p {
+        /* FIX: Trip Card Paragraph Style */
+        .trip-card p { 
             padding: 0 15px 15px;
             font-size: 0.95rem;
             color: var(--text-muted);
@@ -344,7 +342,6 @@
             color: var(--dark-bg);
             font-weight: 500;
         }
-
 
         /* Travel Guides Section Styles */
         .travel-guides {
@@ -380,6 +377,9 @@
             width: 100%;
             height: 180px;
             object-fit: cover;
+        }
+        .guide-card a {
+            display: block; /* Make the whole image/content clickable */
         }
 
         .guide-card-content {
@@ -455,7 +455,7 @@
             color: var(--neon-blue);
         }
         
-        /* Footer (Existing) */
+        /* Footer */
         footer {
             background: var(--dark-bg);
             text-align: center;
@@ -478,7 +478,6 @@
             .trip-form input[type="date"],
             .trip-form input[type="number"] {
                 min-width: 100%; 
-                margin-bottom: 0;
             }
             .trip-form > div {
                 min-width: 48%; 
@@ -513,20 +512,13 @@
         </nav>
     </header>
 
-    <section class="hero" 
-        data-aos="fade-up" 
-        data-aos-duration="1000" 
-        data-aos-once="false" 
-        data-aos-anchor-placement="top-center">
+    <section class="hero" data-aos="fade-up" data-aos-duration="1000">
     
         <h1>Plan Your Trip Now!</h1> 
         <p>Your smart travel planner - simple, fast & personalized.</p>
 
         <form class="trip-form" onsubmit="event.preventDefault(); planTrip();">
-            <div><label for="startDate">Start Date:</label><input type="date" id="startDate" required></div>
-            <div><label for="endDate">End Date:</label><input type="date" id="endDate" required></div>
-            <div>
-                <label for="destinationSelect">Choose destination</label>
+            <div><label for="destinationSelect">Choose destination</label>
                 <select id="destinationSelect" required>
                     <option value="" disabled selected>Choose destination</option>
                     <option disabled>──Indian Destinations ──</option>
@@ -598,10 +590,14 @@
                     <option value="Vienna">Vienna (Austria)</option>
                 </select>
             </div>
+            <div><label for="startDate">Start Date:</label><input type="date" id="startDate" required></div>
+            <div><label for="endDate">End Date:</label><input type="date" id="endDate" required></div>
             <div><label for="people">Number of People</label><input type="number" id="people" min="1" placeholder="Number of People" required></div>
             <button type="submit">Plan Trip</button>
         </form>
     </section>
+
+    ---
 
     <section class="about" data-aos="fade-up" data-aos-duration="1000">
         <h2>Why Choose Plan & Go?</h2>
@@ -630,6 +626,7 @@
                     <p>3-day itinerary, best cafes, and how to avoid tourist traps. Perfect romantic getaway.</p>
                     <button onclick="alert('Redirecting to Paris Guide...');">Read Guide</button>
                 </div>
+                </a>
             </div>
 
             <div class="guide-card" data-aos="fade-up" data-aos-delay="300">
@@ -640,6 +637,7 @@
                     <p>Essential checklist for bike trips, altitude sickness tips, and must-see monasteries.</p>
                     <button onclick="alert('Redirecting to Ladakh Guide...');">Read Guide</button>
                 </div>
+                </a>
             </div>
 
             <div class="guide-card" data-aos="fade-up" data-aos-delay="500">
@@ -650,6 +648,7 @@
                     <p>Luxury travel on a budget, best desert safaris, and visa requirements overview.</p>
                     <button onclick="alert('Redirecting to Dubai Guide...');">Read Guide</button>
                 </div>
+                </a>
             </div>
         </div>
     </section>
@@ -681,7 +680,7 @@
                 <div class="trip-card-container">
                     <div class="trip-card front">
                         <img src="https://tse4.mm.bing.net/th/id/OIP.sfOhqj3XmYL9Ing62XExaAHaE5?pid=Api&P=0&h=180" alt="Goa Adventure">
-                        <h3>Best Choices for Sunny Shores </h3><br>
+                        <h3>Best Choices for Sunny Shores</h3>
                         <p>Beaches, nightlife, and water sports — the ultimate getaway with friends!</p>
                     </div>
                     <div class="trip-card back">
@@ -737,9 +736,9 @@
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
     
     <script>
-        // --- AOS Initialization with once: false ---
+        // --- AOS Initialization ---
         AOS.init({
-            once: false 
+            once: false // Animations will run every time they come into view
         });
         
         document.addEventListener("DOMContentLoaded", () => {
@@ -748,6 +747,7 @@
             const nav = document.getElementById("navbar-links");
 
             if (user) {
+                // User is logged in, show Hi message and Logout button
                 nav.innerHTML = `
                     <span style="margin-right:10px; color:var(--neon-blue); font-weight:600;">👋 Hi, ${user.fullname}</span>
                     <a href="#" id="logoutBtn">Logout</a>
@@ -757,6 +757,7 @@
                     window.location.reload();
                 });
             } else {
+                // User is logged out, show Login and Signup buttons
                 const loginLink = document.createElement('a');
                 loginLink.href = 'login.html';
                 loginLink.textContent = 'Login';
@@ -768,7 +769,7 @@
                 nav.appendChild(signupLink);
             }
 
-            // Date validation logic
+            // Date validation logic: Min date is today, end date min is start date
             let today = new Date().toISOString().split("T")[0];
             let startInput = document.getElementById("startDate");
             let endInput = document.getElementById("endDate");
@@ -778,18 +779,23 @@
                 endInput.setAttribute("min", today);
 
                 startInput.addEventListener("change", () => {
+                    // Set the minimum value for the end date to be the selected start date
                     endInput.setAttribute("min", startInput.value);
+                    // Also clear the end date if it's earlier than the new start date
+                    if (new Date(endInput.value) < new Date(startInput.value)) {
+                         endInput.value = startInput.value;
+                    }
                 });
             }
         });
 
 
         function planTrip() {
-            // Plan Trip function
+            // Plan Trip function (checks login, validates dates, saves data, and redirects)
             const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
 
             if (!loggedInUser) {
-                alert("⚠️ Please login first!");
+                alert("⚠️ Please login first to plan a trip!");
                 window.location.href = "login.html";
                 return;
             }
@@ -804,8 +810,8 @@
             let end = new Date(endDate);
             let days = Math.floor((end - start) / (1000 * 60 * 60 * 24)) + 1;
             
-            if (days <= 0) {
-                alert("⚠️ End date must be after or the same as the start date!");
+            if (days <= 0 || !startDate || !endDate) {
+                alert("⚠️ Please select valid start and end dates. The end date must be on or after the start date.");
                 return;
             }
 
