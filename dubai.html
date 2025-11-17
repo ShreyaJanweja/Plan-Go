@@ -84,36 +84,79 @@
         /* Guide Hero Section (Dubai Skyline) */
         .guide-hero {
             position: relative;
-            height: 65vh;
+            height: 100vh;
             /* **Hero Image Source** */
-            background-image: linear-gradient(rgba(0,0,0,0.7), var(--dark-bg)), url('https://images.unsplash.com/photo-1512406798782-b7e28b2a1a06?fit=crop&w=1920&q=80');
+            background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1512406798782-b7e28b2a1a06?fit=crop&w=1920&q=80');
             background-size: cover;
             background-position: center;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
             color: var(--text-light);
-            border-bottom: 5px solid var(--primary-pink);
+            z-index: 10;
+            padding-top: 16px;
+        }
+
+        .guide-hero .badge {
+            font-size: 1rem;
+            color: var(--primary-pink);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .guide-hero h1 {
             font-family: 'Montserrat', sans-serif;
-            font-size: 5rem;
-            margin-bottom: 15px;
-            color: var(--primary-pink); /* Title in Pink */
+            font-size: 4rem;
             font-weight: 900;
-            text-shadow: 0 0 20px rgba(255, 105, 180, 0.8);
-            letter-spacing: 3px;
+            background: linear-gradient(90deg, var(--primary-pink), var(--secondary-pink), white);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+            line-height: 1.1;
         }
 
         .guide-hero p {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.8rem;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
             color: var(--text-light);
-            max-width: 900px;
+            max-width: 600px;
             margin: 0 auto;
-            text-shadow: 0 0 5px rgba(0,0,0,0.7);
+            opacity: 0.9;
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 50px;
+            border: 2px solid var(--primary-pink);
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            padding-top: 10px;
+        }
+
+        .scroll-indicator::after {
+            content: '';
+            width: 4px;
+            height: 10px;
+            background: var(--primary-pink);
+            border-radius: 2px;
+            animation: scroll 2s infinite;
+        }
+
+        @keyframes scroll {
+            0% { opacity: 1; transform: translateY(0); }
+            50% { opacity: 0; transform: translateY(10px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
         
         /* Main Content Sections */
@@ -461,10 +504,10 @@
     </header>
 
     <section class="guide-hero" data-aos="fade-in" data-aos-duration="1000">
-        <div class="guide-hero-content">
-            <h1>Dubai: Modern Marvel</h1>
-            <p>Experience Luxury on a Budget. Your guide to opulence without the overload.</p>
-        </div>
+        <span class="badge">Plan & Go — Luxury Travel Guides</span>
+        <h1>Dubai: Modern Marvel<br/>Experience Luxury on a Budget</h1>
+        <p>Your guide to experience without the overload.</p>
+        <!-- <div class="scroll-indicator"></div> -->
     </section>
 
     <section class="guide-section" data-aos="fade-up" data-aos-delay="200">
@@ -567,7 +610,7 @@
             </table>
             <p style="margin-top: 15px; font-size: 0.9rem;">Note: This does not include Shopping or International Flights. Current exchange rate: 1 AED ≈ 22.5 INR (Approx).</p>
                 
-            <div class="image-flex-container">
+            <!-- <div class="image-flex-container">
                 
                 <div class="image-block">
                     <p style="font-weight: 600; color: var(--secondary-pink); margin-bottom: 10px;">Kunafa Desser</p>
@@ -593,7 +636,7 @@
                     <p style="font-size: 0.9rem; color: var(--text-light); margin-top: 5px;">2 people, approx. **₹2,250 - ₹3,375**</p>
                 </div>
                 
-            </div>
+            </div> -->
         </div>
     </section>
 
@@ -610,11 +653,7 @@
         </ul>
     </section>
 
-    <section class="cta-section" data-aos="zoom-in" data-aos-delay="600">
-        <h2>Ready for Your Elite Dubai Adventure? 🚀</h2>
-        <p>Stop dreaming and start planning. Click below to download your complete Luxury Budget Checklist!</p>
-        <button onclick="window.location.href='guide-dubai-download.pdf';">Download Free Checklist</button>
-    </section>
+
 
     <footer>
         <p>Contact us: elite-escapes@mail.com | Travel Smart. Travel Elite.</p>

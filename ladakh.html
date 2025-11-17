@@ -84,34 +84,94 @@
         /* Guide Hero Section (Ladakh Mountains) */
         .guide-hero {
             position: relative;
-            height: 60vh;
+            height: 100vh;
             /* **Ladakh Hero Image Source** */
-            background-image: linear-gradient(rgba(0,0,0,0.6), rgba(10, 10, 10, 0.9)), url('https://images.unsplash.com/photo-1594247515082-9571348c4078?fit=crop&w=1920&q=80');
+            background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1594247515082-9571348c4078?fit=crop&w=1920&q=80');
             background-size: cover;
             background-position: center;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
             color: var(--text-light);
-            border-bottom: 5px solid var(--primary-blue);
+            z-index: 10;
+            padding-top: 16px;
         }
 
-        .guide-hero h1 {
+        .badge {
+            font-size: 1rem;
+            color: #FF3366;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero-title {
             font-family: 'Montserrat', sans-serif;
-            font-size: 4.5rem;
-            margin-bottom: 10px;
-            color: var(--primary-blue); /* Title in Blue */
+            font-size: 4rem;
             font-weight: 900;
-            text-shadow: 0 0 15px rgba(0, 191, 255, 0.9);
+            background: linear-gradient(90deg, #FF3366, #B00030, white);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+            line-height: 1.1;
         }
 
         .guide-hero p {
+            font-family: 'Poppins', sans-serif;
             font-size: 1.5rem;
             color: var(--text-light);
-            max-width: 800px;
+            max-width: 600px;
             margin: 0 auto;
-            text-shadow: 0 0 5px rgba(0,0,0,0.7);
+            opacity: 0.9;
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 50px;
+            border: 2px solid #FF3366;
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            padding-top: 10px;
+        }
+
+        .scroll-indicator::after {
+            content: '';
+            width: 4px;
+            height: 10px;
+            background: #FF3366;
+            border-radius: 2px;
+            animation: scroll 2s infinite;
+        }
+
+        @keyframes scroll {
+            0% { opacity: 1; transform: translateY(0); }
+            50% { opacity: 0; transform: translateY(10px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 3.5rem;
+            }
+            .guide-hero p {
+                font-size: 1.4rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2.8rem;
+            }
         }
 
         /* Main Content Sections */
@@ -451,11 +511,10 @@
         </nav>
     </header>
 
-    <section class="guide-hero" data-aos="fade-in" data-aos-duration="1000">
-        <div class="guide-hero-content">
-            <h1>Ladakh: The Land of High Passes </h1>
-            <p>Your ultimate 5-day guide to the Himalayas' most breathtaking destination. A journey for the soul.</p>
-        </div>
+    <section class="guide-hero">
+        <span class="badge">Plan & Go — Luxury Travel Guides</span>
+        <h1 class="hero-title">The Land of High Passes<br/>Awaits Your Journey.</h1>
+        <p>Your guide to experience without the overload.</p>
     </section>
     
     <section class="guide-section" data-aos="fade-up" data-aos-delay="200">
@@ -609,11 +668,7 @@
         </ul>
     </section>
 
-    <section class="cta-section" data-aos="zoom-in" data-aos-delay="800">
-        <h2>Himalayan is waiting for you!  </h2>
-        <p>Highlander's Quest shuru karne ke liye taiyaar ho jao! Apni planning shuru karne ke liye button dabao.</p>
-        <button onclick="window.location.href='index.html';">Start Planning Your Quest</button>
-    </section>
+
 
     <footer>
         <p>Contact us: highlandersquest@mail.com | Adventure Awaits Above.</p>

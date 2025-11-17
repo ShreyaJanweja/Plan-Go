@@ -8,19 +8,27 @@
     <title>Paris: City of Love Guide 🗼</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
     
     <style>
         /* --- 🎨 Style Start (Styles are kept the same) --- */
         
         :root {
-            --dark-bg: #1B0F1B; 
-            --section-bg: #2B1A2B; 
-            --card-bg: #FFFFFF; 
-            --text-dark: #333333; 
-            --text-light: #F0F0F0; 
-            --primary-red: #FF3366; 
-            --secondary-red: #B00030; 
-            --primary-color: var(--primary-red);
+            --dark-bg: #111111; /* Deep Black for luxury */
+            --section-bg: #1A1A1A; /* Slightly lighter black */
+            --card-bg: #222222; /* Dark card background for contrast on itinerary */
+            --text-dark: #FFFFFF; /* White text on dark cards */
+            --text-light: #F0F0F0; /* Light text on dark background */
+            --primary-pink: #FF69B4; /* Hot Pink for vibrancy */
+            --secondary-pink: #FF1493; /* Deep Pink for accents */
+            --primary-red: var(--primary-pink); /* Alias for compatibility */
+            --secondary-red: var(--secondary-pink); /* Alias for compatibility */
+            --primary-color: var(--primary-pink);
         }
 
         /* Base Styles */
@@ -50,21 +58,21 @@
             justify-content: space-between;
             align-items: center;
             padding: 15px 50px;
-            background: rgba(27, 15, 27, 0.95);
+            background: rgba(17, 17, 17, 0.95);
             backdrop-filter: blur(5px);
             font-family: 'Montserrat', sans-serif;
             box-shadow: 0 4px 15px rgba(0,0,0,0.5);
             position: sticky;
             top: 0;
             z-index: 100;
-            border-bottom: 1px solid var(--primary-red);
+            border-bottom: 1px solid var(--primary-pink);
         }
 
         .logo {
             font-size: 26px;
             font-weight: 700;
-            color: var(--primary-red);
-            text-shadow: 0 0 7px rgba(255, 51, 102, 0.8);
+            color: var(--primary-pink);
+            text-shadow: 0 0 7px rgba(255, 105, 180, 0.8);
             letter-spacing: 1px;
         }
 
@@ -77,8 +85,8 @@
         }
 
         .navbar a:hover {
-            color: var(--primary-red);
-            text-shadow: 0 0 5px rgba(255, 51, 102, 0.5);
+            color: var(--primary-pink);
+            text-shadow: 0 0 5px rgba(255, 105, 180, 0.5);
         }
         
         /* ... (Rest of the CSS is the same) ... */
@@ -86,33 +94,76 @@
         /* Guide Hero Section */
         .guide-hero {
             position: relative;
-            height: 60vh;
-            background-image: linear-gradient(rgba(0,0,0,0.6), rgba(27, 15, 27, 0.9)), url('https://images.unsplash.com/photo-1502602898668-a0359373ef5e?fit=crop&w=1920&q=80');
+            height: 90vh;
+            background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1502602898668-a0359373ef5e?fit=crop&w=1920&q=80');
             background-size: cover;
             background-position: center;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
             color: var(--text-light);
-            border-bottom: 5px solid var(--primary-red);
+            z-index: 10;
+            padding-top: 16px;
+        }
+
+        .badge {
+            font-size: 1rem;
+            color: var(--primary-pink);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .guide-hero h1 {
             font-family: 'Montserrat', sans-serif;
-            font-size: 4.5rem;
-            margin-bottom: 10px;
-            color: var(--primary-red); 
+            font-size: 4rem;
             font-weight: 900;
-            text-shadow: 0 0 15px rgba(255, 51, 102, 0.9);
+            background: linear-gradient(90deg, var(--primary-pink), var(--secondary-pink), white);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
         }
 
         .guide-hero p {
+            font-family: 'Poppins', sans-serif;
             font-size: 1.5rem;
             color: var(--text-light);
-            max-width: 800px;
+            max-width: 600px;
             margin: 0 auto;
-            text-shadow: 0 0 5px rgba(0,0,0,0.7);
+            opacity: 0.9;
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 50px;
+            border: 2px solid var(--primary-pink);
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            padding-top: 10px;
+        }
+
+        .scroll-indicator::after {
+            content: '';
+            width: 4px;
+            height: 10px;
+            background: var(--primary-pink);
+            border-radius: 2px;
+            animation: scroll 2s infinite;
+        }
+
+        @keyframes scroll {
+            0% { opacity: 1; transform: translateY(0); }
+            50% { opacity: 0; transform: translateY(10px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
 
         /* Main Content Sections */
@@ -458,7 +509,10 @@
                 padding: 15px 20px;
             }
             .guide-hero h1 {
-                font-size: 3rem;
+                font-size: 3.5rem;
+            }
+            .guide-hero p {
+                font-size: 1.4rem;
             }
             .day-card::after {
                 font-size: 1rem;
@@ -469,14 +523,14 @@
 
         @media (max-width: 480px) {
             .guide-hero h1 {
-                font-size: 2.5rem;
+                font-size: 2.8rem;
             }
             .cost-estimate th, .cost-estimate td {
                 padding: 10px 8px;
                 font-size: 0.9rem;
             }
             .itinerary-grid, .cafe-gallery {
-                grid-template-columns: 1fr; 
+                grid-template-columns: 1fr;
             }
         }
         /* --- 🎨 Style End --- */
@@ -496,10 +550,10 @@
     </header>
 
     <section class="guide-hero" data-aos="fade-in" data-aos-duration="1000">
-        <div class="guide-hero-content">
-            <h1>Paris: The City of Love </h1>
-            <p>Your ultimate 3-day guide for a perfect romantic getaway – from iconic landmarks to hidden cafes.</p>
-        </div>
+        <span class="badge">Plan & Go — Luxury Travel Guides</span>
+        <h1>Paris Adventure 2025 <br> Romantic Getaway</h1>
+        <p>Your ultimate 3-day guide for a perfect romantic getaway – from iconic landmarks to hidden cafes.</p>
+        <!-- <div class="scroll-indicator"></div> -->
     </section>
     
     <section class="guide-section" data-aos="fade-up" data-aos-delay="200">
@@ -645,11 +699,11 @@
         </ul>
     </section>
 
-    <section class="cta-section" data-aos="zoom-in" data-aos-delay="600">
+    <!-- <section class="cta-section" data-aos="zoom-in" data-aos-delay="600">
         <h2>Aapka Paris Adventure Wait Kar Raha Hai! 🥂</h2>
         <p>Ab jab plan taiyaar hai, agla kadam uthao! Bas ek click, aur shuru ho jaayegi tumhari romantic journey.</p>
         <button onclick="window.location.href='project.html';">Book Your Dream Trip Now</button>
-    </section>
+    </section> -->
 
     <footer>
         <p>Contact us: plan&go@gmail.com | +91 98765 43210</p>
