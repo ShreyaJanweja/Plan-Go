@@ -31,7 +31,8 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background: var(--dark-bg);
+            background-image: linear-gradient(rgba(26, 30, 41, 0.8), rgba(26, 30, 41, 0.8)), url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?fit=crop&w=1920&q=80');
+            background-size: cover;
             color: var(--text-light);
             min-height: 100vh;
             display: flex;
@@ -81,35 +82,74 @@
             text-shadow: 0 0 5px rgba(0, 224, 255, 0.5);
         }
 
-        /* Back to Home Button */
-        .back-home {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            background: var(--neon-blue);
-            color: var(--dark-bg);
-            border: none;
-            padding: 10px 20px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: 0.3s;
-            z-index: 101;
-        }
 
-        .back-home:hover {
-            background: #4de6ff;
-            box-shadow: 0 0 15px var(--neon-blue);
-        }
 
         /* Weather Container */
         .weather-container {
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 100px 20px 50px;
+            padding: 50px 20px;
             max-width: 1200px;
             margin: 0 auto;
+        }
+
+        /* Popular Cities Section */
+        .popular-cities {
+            margin-bottom: 50px;
+            width: 100%;
+        }
+
+        .popular-cities h2 {
+            text-align: center;
+            color: var(--neon-blue);
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            text-shadow: 0 0 10px rgba(0, 224, 255, 0.5);
+        }
+
+        .cities-grid {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: nowrap;
+        }
+
+        .city-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(0, 224, 255, 0.2);
+            border: 1px solid rgba(0, 224, 255, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .city-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 224, 255, 0.4);
+        }
+
+        .city-card img {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 15px;
+        }
+
+        .city-card h3 {
+            color: var(--neon-blue);
+            margin-bottom: 10px;
+        }
+
+        .city-card .temp {
+            font-size: 2rem;
+            color: var(--text-light);
+            margin-bottom: 5px;
+        }
+
+        .city-card .condition {
+            color: var(--text-muted);
         }
 
         /* Search Section */
@@ -331,6 +371,11 @@
             to { transform: translateX(0); opacity: 1; }
         }
 
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .weather-container {
@@ -359,6 +404,11 @@
     </header>
 
     <div class="weather-container">
+        <div class="popular-cities">
+            <h2>Popular Cities</h2>
+            <div class="cities-grid" id="citiesGrid"></div>
+        </div>
+
         <div class="search-section">
             <div class="search">
                 <input type="text" placeholder="Enter City name" spellcheck="false" id="searchInput">
@@ -417,7 +467,122 @@
         // Load body after DOM
         document.addEventListener("DOMContentLoaded", () => {
             document.body.classList.add('loaded');
+            loadPopularCities();
         });
+
+        // Popular cities data - larger list for randomization
+        const allCities = [
+            { name: "New York", country: "US" },
+            { name: "London", country: "GB" },
+            { name: "Tokyo", country: "JP" },
+            { name: "Paris", country: "FR" },
+            { name: "Sydney", country: "AU" },
+            { name: "Mumbai", country: "IN" },
+            { name: "Delhi", country: "IN" },
+            { name: "Bangalore", country: "IN" },
+            { name: "Dubai", country: "AE" },
+            { name: "Singapore", country: "SG" },
+            { name: "Hong Kong", country: "HK" },
+            { name: "Berlin", country: "DE" },
+            { name: "Rome", country: "IT" },
+            { name: "Barcelona", country: "ES" },
+            { name: "Amsterdam", country: "NL" },
+            { name: "Vienna", country: "AT" },
+            { name: "Prague", country: "CZ" },
+            { name: "Budapest", country: "HU" },
+            { name: "Warsaw", country: "PL" },
+            { name: "Moscow", country: "RU" },
+            { name: "Istanbul", country: "TR" },
+            { name: "Cairo", country: "EG" },
+            { name: "Cape Town", country: "ZA" },
+            { name: "Rio de Janeiro", country: "BR" },
+            { name: "Buenos Aires", country: "AR" },
+            { name: "Mexico City", country: "MX" },
+            { name: "Toronto", country: "CA" },
+            { name: "Vancouver", country: "CA" },
+            { name: "Los Angeles", country: "US" },
+            { name: "Chicago", country: "US" },
+            { name: "Miami", country: "US" },
+            { name: "Seattle", country: "US" },
+            { name: "San Francisco", country: "US" },
+            { name: "Boston", country: "US" },
+            { name: "Washington", country: "US" },
+            { name: "Atlanta", country: "US" },
+            { name: "Dallas", country: "US" },
+            { name: "Denver", country: "US" },
+            { name: "Phoenix", country: "US" },
+            { name: "Las Vegas", country: "US" },
+            { name: "Honolulu", country: "US" },
+            { name: "Anchorage", country: "US" },
+            { name: "London", country: "GB" },
+            { name: "Manchester", country: "GB" },
+            { name: "Birmingham", country: "GB" },
+            { name: "Glasgow", country: "GB" },
+            { name: "Liverpool", country: "GB" },
+            { name: "Edinburgh", country: "GB" },
+            { name: "Bristol", country: "GB" },
+            { name: "Leeds", country: "GB" },
+            { name: "Sheffield", country: "GB" },
+            { name: "Newcastle", country: "GB" }
+        ];
+
+        // Function to get random cities
+        function getRandomCities(num) {
+            const shuffled = allCities.sort(() => 0.5 - Math.random());
+            return shuffled.slice(0, num);
+        }
+
+        async function loadPopularCities() {
+            const citiesGrid = document.getElementById("citiesGrid");
+            citiesGrid.innerHTML = "";
+
+            const popularCities = getRandomCities(5);
+
+            for (const city of popularCities) {
+                try {
+                    const response = await fetch(weatherUrl + city.name + `&appid=${apikey}`);
+                    const data = await response.json();
+
+                    const card = document.createElement("div");
+                    card.className = "city-card";
+                    card.addEventListener("click", () => checkWeather(city.name));
+
+                    let iconSrc = "weatherAssests/clear.png";
+                    const weatherMain = data.weather[0].main;
+                    switch (weatherMain) {
+                        case "Clouds":
+                            iconSrc = "weatherAssests/clouds.png";
+                            break;
+                        case "Clear":
+                            iconSrc = "weatherAssests/clear.png";
+                            break;
+                        case "Rain":
+                            iconSrc = "weatherAssests/rain.png";
+                            break;
+                        case "Drizzle":
+                            iconSrc = "weatherAssests/drizzle.png";
+                            break;
+                        case "Mist":
+                            iconSrc = "weatherAssests/mist.png";
+                            break;
+                        case "Snow":
+                            iconSrc = "weatherAssests/snow.png";
+                            break;
+                    }
+
+                    card.innerHTML = `
+                        <img src="${iconSrc}" alt="${weatherMain}">
+                        <h3>${city.name}</h3>
+                        <div class="temp">${Math.round(data.main.temp)}°C</div>
+                        <div class="condition">${weatherMain}</div>
+                    `;
+
+                    citiesGrid.appendChild(card);
+                } catch (error) {
+                    console.error(`Error loading weather for ${city.name}:`, error);
+                }
+            }
+        }
 
         // City suggestions on input
         searchInput.addEventListener("input", () => {
@@ -486,6 +651,10 @@
                 const data = await response.json();
                 updateWeather(data);
                 fetchForecast(city);
+                // Scroll to weather section after search
+                setTimeout(() => {
+                    document.getElementById("weather").scrollIntoView({ behavior: 'smooth' });
+                }, 500);
             } catch (error) {
                 console.error("Error fetching weather:", error);
                 showError();
